@@ -6,13 +6,13 @@ import { ChevronRightIcon } from '@chakra-ui/icons'
 import Layout from '../components/layouts/article'
 import { BioSection, BioYear } from '../components/bio'
 import {
-  FiTwitter,
   FiGithub,
-  FiInstagram
 } from 'react-icons/fi'
-import { FaDiscord, FaGitAlt, FaReact, FaNodeJs } from "react-icons/fa";
+import { FaDiscord, FaGitAlt, FaReact, FaNodeJs, FaDocker, FaLaravel, FaLinux, FaFigma, FaPython } from "react-icons/fa";
 import { GrLinkedin } from "react-icons/gr";
 import { SiMysql, SiTypescript } from "react-icons/si";
+import { TbBrandNextjs, TbBrandCpp } from "react-icons/tb";
+
 
 const Page = () => {
   return (
@@ -27,8 +27,8 @@ const Page = () => {
             <Heading as="h2" variant="page-title">
               Mateus Arce
             </Heading>
+            <p className="">Engenheiro da computação</p>
             <p className="">Desenvolvedor Web</p>
-            <p>UI | UX</p>
 
           </Box>
           <Box flexShrink={0} mt={{ base: 4, md: 0 }} ml={{ md: 6 }} align="center">
@@ -44,6 +44,14 @@ const Page = () => {
             Sou um desenvolvedor web com paixão por criar serviços digitais. Gosto de fazer as coisas desde o planejamento de produtos e design até a solução de problemas da vida real com código.
             Quando não estou online, adoro ir ao cinema. Atualmente, estou estudando a biblioteca React e o framework Laravel, bem como Estrutura de dados.
           </Paragraph>
+          <Section delay={0.3}>
+          <Heading as="h3" variant="section-title" mb={3}>
+            Eu ♥
+          </Heading>
+          <Paragraph>
+            Música, Futebol, Fotografia, Programação, Cinema, Livros.
+          </Paragraph>
+        </Section>
           <Box align="center" my={4}>
             <NextLink href="/works">
               <Button rightIcon={<ChevronRightIcon />} colorScheme="blue">
@@ -54,70 +62,18 @@ const Page = () => {
         </Section>
         <Section delay={0.2}>
           <Heading as="h3" variant="section-title" mb={3}>
-            Bio
+            Experiência
           </Heading>
           <BioSection>
-            <BioYear>2001</BioYear>
-            Nasceu em Manaus, Brasil.
-          </BioSection>
-          <BioSection>
             <BioYear>2019</BioYear>
-            Formou em Técnico em Informática no Instituto Federal de Educação do Amazonas.
-          </BioSection>
-          <BioSection>
-            <BioYear>2019</BioYear>
-            Estagiou no Instituto de Desenvolvimento Sustentável <Link href='https://www.mamiraua.org.br/'>Mamirauá</Link>.
-          </BioSection>
-          <BioSection>
-            <BioYear>2020</BioYear>
-            Começou a cursar Engenharia da Computação.
+            Estágio no Instituto de Desenvolvimento Sustentável <Link href='https://www.mamiraua.org.br/'>Mamirauá</Link>.
           </BioSection>
           <BioSection>
             <BioYear>2022 até o presente</BioYear>
-            Estagia na área de desenvolvimento web na empresa <Link href='https://www.visteon.com/'>Visteon</Link>.
+            Estágio em desenvolvimento web na empresa <Link href='https://www.visteon.com/'>Visteon</Link>.
           </BioSection>
         </Section>
-        <Section delay={0.3}>
-          <Heading as="h3" variant="section-title" mb={3}>
-            Eu ♥
-          </Heading>
-          <Paragraph>
-            Música, Futebol, Fotografia, Programação, Cinema, Livros.
-          </Paragraph>
-        </Section>
 
-        <Section delay={0.3}>
-          <Heading as="h3" variant="section-title" mb={3}>
-            Minhas Redes Sociais
-          </Heading>
-          <List>
-            <ListItem>
-              <Link href="https://github.com/mateusarcedev" target="_blank">
-                <Button variant="ghost" colorScheme="blue" leftIcon={<Icon as={FiGithub} />} >@mateusarcedev</Button>
-              </Link>
-            </ListItem>
-            {/* <ListItem>
-              <Link href="https://twitter.com/mateusarce00" target="_blank">
-                <Button variant="ghost" colorScheme="blue" leftIcon={<Icon as={FiTwitter} />} >@mateusarce00</Button>
-              </Link>
-            </ListItem> */}
-            {/* <ListItem>
-              <Link href="https://instagram.com/_m_arce" target="_blank">
-                <Button variant="ghost" colorScheme="blue" leftIcon={<Icon as={FiInstagram} />} >@_m_arce</Button>
-              </Link>
-            </ListItem> */}
-            <ListItem>
-              <Link href="https://discordapp.com/users/technomancer#8791" target="_blank">
-                <Button variant="ghost" colorScheme="blue" leftIcon={<Icon as={FaDiscord} />} >@technomancer</Button>
-              </Link>
-            </ListItem>
-            <ListItem>
-              <Link href="https://www.linkedin.com/in/mateus-arce/" target="_blank">
-                <Button variant="ghost" colorScheme="blue" leftIcon={<Icon as={GrLinkedin} />} >mateus-arce</Button>
-              </Link>
-            </ListItem>
-          </List>
-        </Section>
 
         <Section delay={0.3}>
           <Heading as="h3" variant="section-title" mb={3}>
@@ -126,21 +82,50 @@ const Page = () => {
           <List>
             <ListItem>
               <Button variant="ghost" colorScheme="red" leftIcon={<Icon as={FaGitAlt} />} >Git</Button>
-            </ListItem>
-            <ListItem>
-              <Button variant="ghost" colorScheme="red" leftIcon={<Icon as={FaReact} />} >ReactJS</Button>
-            </ListItem>
-            <ListItem>
-              <Button variant="ghost" colorScheme="red" leftIcon={<Icon as={FaNodeJs} />} >NodeJS</Button>
-            </ListItem>
-            <ListItem>
+              <Button variant="ghost" colorScheme="red" leftIcon={<Icon as={FaDocker} />} >Docker</Button>
               <Button variant="ghost" colorScheme="red" leftIcon={<Icon as={SiMysql} />} >MYSQL</Button>
             </ListItem>
             <ListItem>
+            <Button variant="ghost" colorScheme="red" leftIcon={<Icon as={FaNodeJs} />} >NodeJS</Button>
+              <Button variant="ghost" colorScheme="red" leftIcon={<Icon as={FaReact} />} >ReactJS</Button>
               <Button variant="ghost" colorScheme="red" leftIcon={<Icon as={SiTypescript} />} >TypeScript</Button>
+            </ListItem>
+            <ListItem>
+              <Button variant="ghost" colorScheme="red" leftIcon={<Icon as={FaLaravel} />} >Laravel</Button>
+              <Button variant="ghost" colorScheme="red" leftIcon={<Icon as={TbBrandNextjs} />} >Nextjs</Button>
+              <Button variant="ghost" colorScheme="red" leftIcon={<Icon as={FaLinux} />} >Linux</Button>
+            </ListItem>
+            <ListItem>
+              <Button variant="ghost" colorScheme="red" leftIcon={<Icon as={FaFigma} />} >Figma</Button>
+              <Button variant="ghost" colorScheme="red" leftIcon={<Icon as={FaPython} />} >Python</Button>
+              <Button variant="ghost" colorScheme="red" leftIcon={<Icon as={TbBrandCpp} />} >C++</Button>
             </ListItem>
           </List>
         </Section>
+
+        <Section delay={0.3}>
+          <Heading as="h3" variant="section-title" mb={3}>
+            Redes Sociais
+          </Heading>
+          <List>
+            <ListItem>
+              <Link href="https://github.com/mateusarcedev" target="_blank">
+                <Button variant="ghost" colorScheme="blue" leftIcon={<Icon as={FiGithub} />} >@mateusarcedev</Button>
+              </Link>
+            </ListItem>
+            <ListItem>
+              <Link href="https://discordapp.com/users/technomancer#8791" target="_blank">
+                <Button variant="ghost" colorScheme="blue" leftIcon={<Icon as={FaDiscord} />} >@technomancer</Button>
+              </Link>
+            </ListItem>
+            <ListItem>
+              <Link href="https://www.linkedin.com/in/mateus-arce/" target="_blank">
+                <Button variant="ghost" colorScheme="blue" leftIcon={<Icon as={GrLinkedin} />} >Mateus Arce</Button>
+              </Link>
+            </ListItem>
+          </List>
+        </Section>
+
       </Container>
     </Layout>
   )
