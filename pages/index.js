@@ -41,8 +41,9 @@ const Page = () => {
             Sobre
           </Heading>
           <Paragraph>
-            Sou um desenvolvedor web com paixão por criar serviços digitais. Gosto de fazer as coisas desde o planejamento de produtos e design até a solução de problemas da vida real com código.
-            Quando não estou online, adoro ir ao cinema. Atualmente, estou estudando a biblioteca React e o framework Laravel, bem como Estrutura de dados.
+          E aí, pessoal! 👋 Este é o meu Portfólio, onde compartilho meus projetos vocês.
+          Meu nome é Mateus, e sou um desenvolvedor que adora explorar novas tecnologias e soluções criativas para problemas complexos. 💻🔍
+          Estou sempre procurando aprender mais e crescer como desenvolvedor, então fique à vontade para dar feedbacks e contribuir com meus projetos.
           </Paragraph>
           <Section delay={0.3}>
           <Heading as="h3" variant="section-title" mb={3}>
