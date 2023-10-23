@@ -31,7 +31,7 @@ const Page = () => {
             <p className="">Desenvolvedor Web</p>
 
           </Box>
-          <Box flexShrink={0} mt={{ base: 4, md: 0 }} ml={{ md: 5 }} align="center">
+          <Box flexShrink={0} mt={{ base: 4, md: 0 }} ml={{ md: 6 }} align="center">
             <Image borderColor="whiteAlpha.400" borderWidth={2} borderStyle="solid" maxWidth="100px" display="inline-block" borderRadius="20%" src="/images/arce.png" alt="Profile Image" />
           </Box>
         </Box>
