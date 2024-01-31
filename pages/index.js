@@ -11,7 +11,7 @@ import {
 import { FaDiscord, FaGitAlt, FaReact, FaNodeJs, FaDocker, FaLaravel, FaLinux, FaFigma, FaPython } from "react-icons/fa";
 import { GrLinkedin } from "react-icons/gr";
 import { SiMysql, SiTypescript } from "react-icons/si";
-import { TbBrandNextjs, TbBrandCpp } from "react-icons/tb";
+import { TbBrandNextjs} from "react-icons/tb";
 
 
 const Page = () => {
@@ -41,8 +41,8 @@ const Page = () => {
             Sobre
           </Heading>
           <Paragraph>
-          E aí, pessoal! 👋 Este é o meu Portfólio, onde compartilho meus projetos vocês.
-          Meu nome é Mateus, e sou um desenvolvedor que adora explorar novas tecnologias e soluções criativas para problemas complexos. 💻🔍
+         Este é o meu Portfólio, onde compartilho meus projetos vocês.
+          Eu sou um desenvolvedor que adora explorar novas tecnologias e soluções criativas para problemas complexos.
           Estou sempre procurando aprender mais e crescer como desenvolvedor, então fique à vontade para dar feedbacks e contribuir com meus projetos.
           </Paragraph>
           <Section delay={0.3}>
@@ -70,8 +70,8 @@ const Page = () => {
             Estágio no Instituto de Desenvolvimento Sustentável <Link href='https://www.mamiraua.org.br/'>Mamirauá</Link>.
           </BioSection>
           <BioSection>
-            <BioYear>2022 até o presente</BioYear>
-            Estágio em desenvolvimento web na empresa <Link href='https://www.visteon.com/'>Visteon</Link>.
+            <BioYear>2022 até 2023</BioYear>
+            Estágio em desenvolvimento web fullstack na empresa <Link href='https://www.visteon.com/'>Visteon</Link>.
           </BioSection>
         </Section>
 
@@ -99,7 +99,6 @@ const Page = () => {
             <ListItem>
               <Button variant="ghost" colorScheme="red" leftIcon={<Icon as={FaFigma} />} >Figma</Button>
               <Button variant="ghost" colorScheme="red" leftIcon={<Icon as={FaPython} />} >Python</Button>
-              <Button variant="ghost" colorScheme="red" leftIcon={<Icon as={TbBrandCpp} />} >C++</Button>
             </ListItem>
           </List>
         </Section>
