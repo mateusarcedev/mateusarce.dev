@@ -11,7 +11,8 @@ import {
 import { FaDiscord, FaGitAlt, FaReact, FaNodeJs, FaDocker, FaLaravel, FaLinux, FaFigma, FaPython } from "react-icons/fa";
 import { GrLinkedin } from "react-icons/gr";
 import { SiMysql, SiTypescript } from "react-icons/si";
-import { TbBrandNextjs} from "react-icons/tb";
+import { TbBrandNextjs } from "react-icons/tb";
+
 
 
 const Page = () => {
@@ -41,18 +42,21 @@ const Page = () => {
             Sobre
           </Heading>
           <Paragraph>
-         Este é o meu Portfólio, onde compartilho meus projetos vocês.
-          Eu sou um desenvolvedor que adora explorar novas tecnologias e soluções criativas para problemas complexos.
-          Estou sempre procurando aprender mais e crescer como desenvolvedor, então fique à vontade para dar feedbacks e contribuir com meus projetos.
+            Olá! Sou um apaixonado pelo desenvolvimento web, aprendendo a criar soluções inovadoras para ambientes frontend e backend.
+            <br />
+            <strong>Objetivos de Carreira:</strong><br />
+            🚀 Continuar crescendo como Desenvolvedor.<br />
+            🤝 Colaborar em projetos desafiadores e inovadores.<br />
+            📚 Aprender constantemente e aprimorar minhas habilidades técnicas.
           </Paragraph>
           <Section delay={0.3}>
-          <Heading as="h3" variant="section-title" mb={3}>
-            Eu ♥
-          </Heading>
-          <Paragraph>
-            Música, Futebol, Fotografia, Programação, Cinema, Livros.
-          </Paragraph>
-        </Section>
+            <Heading as="h3" variant="section-title" mb={3}>
+              Eu ♥
+            </Heading>
+            <Paragraph>
+              Música, Futebol, Fotografia, Programação, Cinema, Livros.
+            </Paragraph>
+          </Section>
           <Box align="center" my={4}>
             <NextLink href="/works">
               <Button rightIcon={<ChevronRightIcon />} colorScheme="blue">
@@ -87,7 +91,7 @@ const Page = () => {
               <Button variant="ghost" colorScheme="red" leftIcon={<Icon as={SiMysql} />} >MYSQL</Button>
             </ListItem>
             <ListItem>
-            <Button variant="ghost" colorScheme="red" leftIcon={<Icon as={FaNodeJs} />} >NodeJS</Button>
+              <Button variant="ghost" colorScheme="red" leftIcon={<Icon as={FaNodeJs} />} >NodeJS</Button>
               <Button variant="ghost" colorScheme="red" leftIcon={<Icon as={FaReact} />} >ReactJS</Button>
               <Button variant="ghost" colorScheme="red" leftIcon={<Icon as={SiTypescript} />} >TypeScript</Button>
             </ListItem>
