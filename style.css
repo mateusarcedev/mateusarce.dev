@@ -3,6 +3,7 @@
   padding: 0;
   box-sizing: border-box;
   font-family: "Roboto Mono", monospace;
+  scroll-behavior: smooth;
 }
 
 html {
@@ -201,7 +202,7 @@ h2 {
   }
 
   .projetos {
-    font-size: 12px;
+    font-size: 200px;
   }
 
   .techs {
@@ -212,7 +213,7 @@ h2 {
 
   .techs .fa-brands,
   .techs .fa-solid {
-    font-size: 20px;
+    font-size: 12px;
   }
 }
 
@@ -228,7 +229,7 @@ h2 {
   }
 
   .projetos {
-    font-size: 11px;
+    font-size: 12px;
   }
 
   .techs .fa-brands,
