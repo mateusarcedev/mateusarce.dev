@@ -173,3 +173,66 @@ h2 {
 .techs .fa-solid:hover::after {
   transition: opacity 0s ease-in-out, visibility 0s ease-in-out;
 }
+
+
+/* Estilos para telas pequenas (mobile) */
+@media (max-width: 768px) {
+  container {
+    width: 90%;
+    padding: 10px;
+  }
+
+  content {
+    width: 100%;
+    height: auto;
+    padding: 10px;
+  }
+
+  .about img {
+    width: 100px;
+    margin: 10px 0;
+  }
+
+  .links {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  .projetos {
+    font-size: 12px;
+  }
+
+  .techs {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+  }
+
+  .techs .fa-brands,
+  .techs .fa-solid {
+    font-size: 20px;
+  }
+}
+
+/* Estilos para telas muito pequenas (por exemplo, celulares em modo retrato) */
+@media (max-width: 480px) {
+  .about {
+    text-align: flex-start;
+  }
+
+  .links {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .projetos {
+    font-size: 11px;
+  }
+
+  .techs .fa-brands,
+  .techs .fa-solid {
+    font-size: 18px;
+  }
+}
