@@ -1,10 +1,11 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import Image from 'next/image'
 import { Line, LineChart, XAxis, YAxis, Tooltip, ResponsiveContainer } from 'recharts'
 import { Moon, Sun, Languages } from 'lucide-react'
 import { Button } from "@/components/ui/button"
+import { useQuery } from '@tanstack/react-query'
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {
@@ -147,25 +148,40 @@ const technologies = [
   { name: 'AWS', icon: faAws, color: '#232F3E' }
 ]
 
+const generateMockContributions = () => {
+  return Array.from({ length: 12 }, (_, i) => ({
+    month: i + 1,
+    contributions: Math.floor(Math.random() * 200) + 50
+  }))
+}
+
+const fetchGithubStats = async () => {
+  const response = await fetch('https://api.github.com/users/mateusarcedev')
+  if (!response.ok) {
+    throw new Error('Network response was not ok')
+  }
+  return response.json()
+}
+
 export default function Portfolio() {
-  const [lang, setLang] = useState('pt-BR')
+  const [lang, setLang] = useState<'pt-BR' | 'en-US'>('pt-BR');
   const [theme, setTheme] = useState('dark')
-  const [githubStats, setGithubStats] = useState(null)
-  const [contributionData, setContributionData] = useState([])
-  const t = translations[lang]
+  const t = translations[lang];
 
-  useEffect(() => {
-    fetch('https://api.github.com/users/mateusarcedev')
-      .then(res => res.json())
-      .then(data => setGithubStats(data))
-      .catch(error => console.error('Error fetching GitHub stats:', error))
+  const { data: githubStats, isLoading: isLoadingStats, error: statsError } = useQuery({
+    queryKey: ['githubStats'],
+    queryFn: fetchGithubStats
+  })
 
-    const mockContributions = Array.from({ length: 12 }, (_, i) => ({
-      month: i + 1,
-      contributions: Math.floor(Math.random() * 200) + 50
-    }))
-    setContributionData(mockContributions)
-  }, [])
+  const { data: contributionData } = useQuery({
+    queryKey: ['contributions'],
+    queryFn: generateMockContributions,
+    staleTime: Infinity // Since this is mock data, we don't need to refetch it
+  })
+
+  if (statsError) {
+    console.error('Error fetching GitHub stats:', statsError)
+  }
 
   return (
     <div className={`min-h-screen ${theme === 'dark' ? 'bg-[#151515] text-white' : 'bg-gray-100 text-gray-800'} font-mono p-8 transition-colors duration-300`}>
@@ -222,7 +238,7 @@ export default function Portfolio() {
           <p className={`${theme === 'dark' ? 'text-gray-300' : 'text-gray-700'}`}>{t.bio}</p>
         </section>
 
-        {githubStats && (
+        {!isLoadingStats && githubStats && (
           <section className="mb-12">
             <h2 className={`text-xl mb-6 ${theme === 'dark' ? 'text-[#15F5BA]' : 'text-blue-600'}`}>{t.stats}</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
@@ -240,7 +256,7 @@ export default function Portfolio() {
                   <p className="text-sm">{t.following}</p>
                 </div>
                 <div className={`${theme === 'dark' ? 'bg-[#1E1E1E]' : 'bg-white shadow-md'} p-4 rounded text-center`}>
-                  <p className={`text-2xl font-bold ${theme === 'dark' ? 'text-[#15F5BA]' : 'text-blue-600'}`}>{contributionData.reduce((acc, curr) => acc + curr.contributions, 0)}</p>
+                  <p className={`text-2xl font-bold ${theme === 'dark' ? 'text-[#15F5BA]' : 'text-blue-600'}`}>{contributionData?.reduce((acc, curr) => acc + curr.contributions, 0)}</p>
                   <p className="text-sm">{t.contributions}</p>
                 </div>
               </div>

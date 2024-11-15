@@ -1,7 +1,11 @@
-import type { Metadata } from "next";
+"use client"
+
 import localFont from "next/font/local";
 import "./globals.css";
-import { ThemeProvider } from 'next-themes'
+import { ThemeProvider } from 'next-themes';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
+import { useState } from 'react';
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -14,50 +18,23 @@ const geistMono = localFont({
   weight: "100 900",
 });
 
-export const metadata: Metadata = {
-  title: "Mateus Arce | Portfólio",
-  description: "Desenvolvedor full-stack e designer especializado em criação de sistemas personalizados. Conheça meus projetos e habilidades.",
-  openGraph: {
-    title: "Mateus Arce | Portfólio",
-    description: "Desenvolvedor full-stack e designer especializado em criação de sistemas personalizados. Conheça meus projetos e habilidades.",
-    url: "https://mateusarce.dev/",
-    images: [
-      {
-        url: "/images/og-image.jpg",
-        width: 1200,
-        height: 630,
-        alt: "Portfólio de Mateus Arce",
-      },
-    ],
-    siteName: "Mateus Arce",
-  },
-  twitter: {
-    card: "summary_large_image",
-    site: "@SeuTwitter",
-    title: "Mateus Arce | Portfólio",
-    description: "Desenvolvedor full-stack e designer especializado em criação de sistemas personalizados.",
-    images: [
-      {
-        url: "/images/twitter-image.jpg",
-        width: 1200,
-        height: 630,
-        alt: "Portfólio de Mateus Arce no Twitter",
-      },
-    ],
-  },
-};
 
 export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const [queryClient] = useState(() => new QueryClient());
+
   return (
     <html lang="en" suppressHydrationWarning>
       <body>
-        <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-          {children}
-        </ThemeProvider>
+        <QueryClientProvider client={queryClient}>
+          <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+            {children}
+          </ThemeProvider>
+          <ReactQueryDevtools initialIsOpen={false} />
+        </QueryClientProvider>
       </body>
     </html>
   );
