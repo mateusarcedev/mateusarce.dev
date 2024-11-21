@@ -1,9 +1,9 @@
 (globalThis.TURBOPACK = globalThis.TURBOPACK || []).push([
-    "static/chunks/app_page_tsx_d7bdc1._.js",
+    "static/chunks/app_page_tsx_1cacbb._.js",
     {},
 ]);
 (globalThis.TURBOPACK_CHUNK_LISTS = globalThis.TURBOPACK_CHUNK_LISTS || []).push({
-  "path": "static/chunks/app_page_tsx_d7bdc1._.js",
+  "path": "static/chunks/app_page_tsx_1cacbb._.js",
   "chunks": [
     "static/chunks/node_modules_@fortawesome_free-brands-svg-icons_index_mjs_660f2e._.js",
     "static/chunks/node_modules_@fortawesome_free-solid-svg-icons_index_mjs_6d4e8d._.js",

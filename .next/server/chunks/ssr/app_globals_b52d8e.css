@@ -441,6 +441,14 @@ body {
   margin-top: 1rem;
 }
 
+.mt-8 {
+  margin-top: 2rem;
+}
+
+.inline-block {
+  display: inline-block;
+}
+
 .flex {
   display: flex;
 }
@@ -808,6 +816,11 @@ body {
   background-color: rgb(255 255 255 / var(--tw-bg-opacity, 1));
 }
 
+.bg-gray-200 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(229 231 235 / var(--tw-bg-opacity, 1));
+}
+
 .p-1 {
   padding: .25rem;
 }
@@ -822,6 +835,10 @@ body {
 
 .p-8 {
   padding: 2rem;
+}
+
+.p-2 {
+  padding: .5rem;
 }
 
 .px-2 {
@@ -1062,6 +1079,21 @@ body {
   color: rgb(255 255 255 / var(--tw-text-opacity, 1));
 }
 
+.text-\[\#15F4BA\] {
+  --tw-text-opacity: 1;
+  color: rgb(21 244 186 / var(--tw-text-opacity, 1));
+}
+
+.text-\[\#CD5888\] {
+  --tw-text-opacity: 1;
+  color: rgb(205 88 136 / var(--tw-text-opacity, 1));
+}
+
+.text-gray-400 {
+  --tw-text-opacity: 1;
+  color: rgb(156 163 175 / var(--tw-text-opacity, 1));
+}
+
 .underline-offset-4 {
   text-underline-offset: 4px;
 }
@@ -1216,6 +1248,16 @@ body {
   background-color: hsl(var(--secondary) / .8);
 }
 
+.hover\:bg-\[\#CD5888\]:hover {
+  --tw-bg-opacity: 1;
+  background-color: rgb(205 88 136 / var(--tw-bg-opacity, 1));
+}
+
+.hover\:bg-gray-300:hover {
+  --tw-bg-opacity: 1;
+  background-color: rgb(209 213 219 / var(--tw-bg-opacity, 1));
+}
+
 .hover\:text-\[\#22A39F\]:hover {
   --tw-text-opacity: 1;
   color: rgb(34 163 159 / var(--tw-text-opacity, 1));
@@ -1248,6 +1290,11 @@ body {
 .hover\:text-red-800:hover {
   --tw-text-opacity: 1;
   color: rgb(153 27 27 / var(--tw-text-opacity, 1));
+}
+
+.hover\:text-\[\#15F4BA\]:hover {
+  --tw-text-opacity: 1;
+  color: rgb(21 244 186 / var(--tw-text-opacity, 1));
 }
 
 .hover\:underline:hover {

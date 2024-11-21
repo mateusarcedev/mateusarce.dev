@@ -1,7 +1,6 @@
 'use client'
 
 import { useState } from 'react'
-import Image from 'next/image'
 import { Line, LineChart, XAxis, YAxis, Tooltip, ResponsiveContainer } from 'recharts'
 import { Moon, Sun, Languages } from 'lucide-react'
 import { Button } from "@/components/ui/button"
@@ -56,15 +55,15 @@ const translations = {
 
 const projects = [
   {
-    name: { 'pt-BR': "DevLinks", 'en-US': "DevLinks" },
+    name: { 'pt-BR': "Tools4.tech", 'en-US': "Tools4.tech" },
     description: {
       'pt-BR': "Um hub de ferramentas para desenvolvedores.",
       'en-US': "A hub of tools for developers."
     },
-    url: "https://devlinks.mateusarce.dev/"
+    url: "https://www.tools4.tech/"
   },
   {
-    name: { 'pt-BR': "Estou aqui", 'en-US': "I am here" },
+    name: { 'pt-BR': "I am here", 'en-US': "I am here" },
     description: {
       'pt-BR': "App React Native para registrar e listar participantes de eventos.",
       'en-US': "React Native app to register and list event participants."
@@ -88,7 +87,7 @@ const projects = [
     url: "https://github.com/mateusarcedev/mycontacts"
   },
   {
-    name: { 'pt-BR': "Template", 'en-US': "Template" },
+    name: { 'pt-BR': "Template de mudança de tema e idioma", 'en-US': "Theme and language change template" },
     description: {
       'pt-BR': "Um site com mudança de idioma e tema para reaproveitar em outros projetos.",
       'en-US': "A website with language and theme change to reuse in other projects."
@@ -223,8 +222,8 @@ export default function Portfolio() {
             <a href="https://www.linkedin.com/in/mateus-arce/" target="_blank" rel="noopener noreferrer" className={`${theme === 'dark' ? 'text-[#15F5BA] hover:text-[#22A39F]' : 'text-blue-600 hover:text-blue-800'} transition-colors`}>
               <i className="fa-brands fa-linkedin mr-2"></i>linkedin
             </a>
-            <a href="https://devlinks.mateusarce.dev/" target="_blank" rel="noopener noreferrer" className={`${theme === 'dark' ? 'text-[#15F5BA] hover:text-[#22A39F]' : 'text-blue-600 hover:text-blue-800'} transition-colors`}>
-              <i className="fa-solid fa-toolbox mr-2"></i>devlinks
+            <a href="https://www.tools4.tech/" target="_blank" rel="noopener noreferrer" className={`${theme === 'dark' ? 'text-[#15F5BA] hover:text-[#22A39F]' : 'text-blue-600 hover:text-blue-800'} transition-colors`}>
+              <i className="fa-solid fa-toolbox mr-2"></i>Tools4.tech
             </a>
             <a href="/resume" target="_blank" rel="noopener noreferrer" className={`${theme === 'dark' ? 'text-[#15F5BA] hover:text-[#22A39F]' : 'text-blue-600 hover:text-blue-800'} transition-colors`}>
               <i className="fa-regular fa-file-lines mr-2"></i>{t.curriculum}
