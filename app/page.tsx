@@ -209,12 +209,10 @@ export default function Portfolio() {
           <h1 className={`${theme === 'dark' ? 'text-[#15F5BA]' : 'text-blue-600'} text-2xl font-bold mb-2`}>Mateus Silva Andrade Arce</h1>
           <h2 className="text-xl mb-4">{t.role}</h2>
           <div className="relative w-32 h-32 mb-4">
-            <Image
+            <img
               src="https://avatars.githubusercontent.com/u/96782284?v=4"
               alt="Mateus Arce"
-              fill
               className="rounded-full"
-              priority
             />
           </div>
           <p className={`${theme === 'dark' ? 'text-[#E96479]' : 'text-red-600'} mb-4`}>arcemateuss@gmail.com</p>

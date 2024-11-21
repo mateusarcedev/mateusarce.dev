@@ -3,12 +3,11 @@ import type { NextConfig } from "next";
 const nextConfig: NextConfig = {
   reactStrictMode: true,
   swcMinify: true,
-  output: 'export',
   compress: false,
   images: {
     domains: ['avatars.githubusercontent.com'],
     unoptimized: true,
   },
+  output: 'export',
 };
 
-export default nextConfig;
