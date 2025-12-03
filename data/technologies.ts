@@ -48,8 +48,8 @@ export const technologies = [
     icon: faJs,
     color: "#F7DF1E",
     description: {
-      "pt-BR": "Linguagem de programação interpretada estruturada para web.",
-      "en-US": "Structured interpreted programming language for the web.",
+      "pt-BR": "Runtime JavaScript",
+      "en-US": "JavaScript Runtime",
     },
     category: "frontend",
   },
@@ -59,8 +59,8 @@ export const technologies = [
     color: "#3178C6",
     isReactIcon: true,
     description: {
-      "pt-BR": "Superset do JavaScript que adiciona tipagem estática.",
-      "en-US": "JavaScript superset that adds static typing.",
+      "pt-BR": "Tipagem estática para JS",
+      "en-US": "Static typing for JS",
     },
     category: "frontend",
   },
@@ -69,8 +69,8 @@ export const technologies = [
     icon: faReact,
     color: "#61DAFB",
     description: {
-      "pt-BR": "Biblioteca JavaScript para construção de interfaces de usuário.",
-      "en-US": "JavaScript library for building user interfaces.",
+      "pt-BR": "Biblioteca UI declarativa",
+      "en-US": "Declarative UI library",
     },
     category: "frontend",
   },
@@ -80,8 +80,8 @@ export const technologies = [
     color: "#000000",
     isReactIcon: true,
     description: {
-      "pt-BR": "Framework React para produção com SSR e SSG.",
-      "en-US": "React framework for production with SSR and SSG.",
+      "pt-BR": "Framework React com SSR/SSG",
+      "en-US": "React framework with SSR/SSG",
     },
     category: "frontend",
   },
@@ -90,8 +90,8 @@ export const technologies = [
     icon: faVuejs,
     color: "#4FC08D",
     description: {
-      "pt-BR": "Framework progressivo para construção de interfaces.",
-      "en-US": "Progressive framework for building user interfaces.",
+      "pt-BR": "Framework progressivo",
+      "en-US": "Progressive framework",
     },
     category: "frontend",
   },
@@ -100,8 +100,8 @@ export const technologies = [
     icon: faReacteurope,
     color: "#61DAFB",
     description: {
-      "pt-BR": "Framework para desenvolvimento de aplicativos móveis nativos.",
-      "en-US": "Framework for building native mobile applications.",
+      "pt-BR": "Apps nativos multiplataforma",
+      "en-US": "Cross-platform native apps",
     },
     category: "mobile",
   },
@@ -110,8 +110,8 @@ export const technologies = [
     icon: faSass,
     color: "#CC6699",
     description: {
-      "pt-BR": "Pré-processador CSS com recursos avançados.",
-      "en-US": "CSS preprocessor with advanced features.",
+      "pt-BR": "Pré-processador CSS",
+      "en-US": "CSS preprocessor",
     },
     category: "frontend",
   },
@@ -121,8 +121,8 @@ export const technologies = [
     color: "#06B6D4",
     isReactIcon: true,
     description: {
-      "pt-BR": "Framework CSS utilitário para desenvolvimento rápido.",
-      "en-US": "Utility-first CSS framework for rapid development.",
+      "pt-BR": "Framework CSS utilitário",
+      "en-US": "Utility-first CSS",
     },
     category: "frontend",
   },
@@ -132,8 +132,8 @@ export const technologies = [
     color: "#DB7093",
     isReactIcon: true,
     description: {
-      "pt-BR": "Biblioteca para estilização de componentes com CSS-in-JS.",
-      "en-US": "Library for styling components with CSS-in-JS.",
+      "pt-BR": "CSS-in-JS",
+      "en-US": "CSS-in-JS",
     },
     category: "frontend",
   },
@@ -142,8 +142,8 @@ export const technologies = [
     icon: faCss3Alt,
     color: "#1572B6",
     description: {
-      "pt-BR": "Linguagem de estilo para descrever a apresentação de documentos.",
-      "en-US": "Style sheet language for describing document presentation.",
+      "pt-BR": "Estilização web",
+      "en-US": "Web styling",
     },
     category: "frontend",
   },
@@ -152,8 +152,8 @@ export const technologies = [
     icon: faFigma,
     color: "#F24E1E",
     description: {
-      "pt-BR": "Ferramenta de design de interface colaborativa baseada na web.",
-      "en-US": "Web-based collaborative interface design tool.",
+      "pt-BR": "Design colaborativo",
+      "en-US": "Collaborative design",
     },
     category: "design",
   },
@@ -164,8 +164,8 @@ export const technologies = [
     icon: faNode,
     color: "#339933",
     description: {
-      "pt-BR": "Ambiente de execução JavaScript server-side.",
-      "en-US": "Server-side JavaScript runtime environment.",
+      "pt-BR": "Runtime JavaScript server-side",
+      "en-US": "Server-side JavaScript runtime",
     },
     category: "backend",
   },
@@ -175,8 +175,8 @@ export const technologies = [
     color: "#000000",
     isReactIcon: true,
     description: {
-      "pt-BR": "Framework web minimalista para Node.js.",
-      "en-US": "Minimalist web framework for Node.js.",
+      "pt-BR": "Framework minimalista",
+      "en-US": "Minimalist framework",
     },
     category: "backend",
   },
@@ -186,8 +186,8 @@ export const technologies = [
     color: "#000000",
     isReactIcon: true,
     description: {
-      "pt-BR": "Framework web rápido e de baixo overhead para Node.js.",
-      "en-US": "Fast and low overhead web framework for Node.js.",
+      "pt-BR": "Framework de alta performance",
+      "en-US": "High-performance framework",
     },
     category: "backend",
   },
@@ -197,8 +197,8 @@ export const technologies = [
     color: "#E0234E",
     isReactIcon: true,
     description: {
-      "pt-BR": "Framework progressivo para construir aplicações server-side eficientes e escaláveis.",
-      "en-US": "Progressive framework for building efficient and scalable server-side applications.",
+      "pt-BR": "Framework escalável e modular",
+      "en-US": "Scalable and modular framework",
     },
     category: "backend",
   },
@@ -207,8 +207,8 @@ export const technologies = [
     icon: faLaravel,
     color: "#FF2D20",
     description: {
-      "pt-BR": "Framework PHP para desenvolvimento web com sintaxe elegante.",
-      "en-US": "PHP framework for web development with elegant syntax.",
+      "pt-BR": "Framework PHP elegante",
+      "en-US": "Elegant PHP framework",
     },
     category: "backend",
   },
@@ -217,8 +217,8 @@ export const technologies = [
     icon: faPython,
     color: "#3776AB",
     description: {
-      "pt-BR": "Linguagem de programação de alto nível, interpretada e de propósito geral.",
-      "en-US": "High-level, interpreted, general-purpose programming language.",
+      "pt-BR": "Linguagem de propósito geral",
+      "en-US": "General-purpose language",
     },
     category: "backend",
   },
@@ -227,8 +227,8 @@ export const technologies = [
     icon: faGolang,
     color: "#00ADD8",
     description: {
-      "pt-BR": "Linguagem de programação compilada e estaticamente tipada.",
-      "en-US": "Compiled, statically typed programming language.",
+      "pt-BR": "Linguagem compilada e concorrente",
+      "en-US": "Compiled concurrent language",
     },
     category: "backend",
   },
@@ -238,8 +238,8 @@ export const technologies = [
     color: "#85EA2D",
     isReactIcon: true,
     description: {
-      "pt-BR": "Arquitetura para desenvolvimento de web services.",
-      "en-US": "Architecture for developing web services.",
+      "pt-BR": "API-first",
+      "en-US": "API-first",
     },
     category: "backend",
   },
@@ -251,8 +251,8 @@ export const technologies = [
     color: "#336791",
     isReactIcon: true,
     description: {
-      "pt-BR": "Sistema de gerenciamento de banco de dados relacional.",
-      "en-US": "Relational database management system.",
+      "pt-BR": "SGBD relacional avançado",
+      "en-US": "Advanced relational DBMS",
     },
     category: "database",
   },
@@ -262,8 +262,8 @@ export const technologies = [
     color: "#4479A1",
     isReactIcon: true,
     description: {
-      "pt-BR": "Sistema de gerenciamento de banco de dados relacional.",
-      "en-US": "Relational database management system.",
+      "pt-BR": "SGBD relacional popular",
+      "en-US": "Popular relational DBMS",
     },
     category: "database",
   },
@@ -272,8 +272,8 @@ export const technologies = [
     icon: solidDatabase,
     color: "#336791",
     description: {
-      "pt-BR": "Sistemas de gerenciamento de dados estruturados.",
-      "en-US": "Structured data management systems.",
+      "pt-BR": "Gerenciamento de dados",
+      "en-US": "Data management",
     },
     category: "database",
   },
@@ -283,8 +283,8 @@ export const technologies = [
     color: "#3ECF8E",
     isReactIcon: true,
     description: {
-      "pt-BR": "Alternativa open source ao Firebase com PostgreSQL.",
-      "en-US": "Open source Firebase alternative with PostgreSQL.",
+      "pt-BR": "Backend-as-a-Service com PostgreSQL",
+      "en-US": "Backend-as-a-Service with PostgreSQL",
     },
     category: "database",
   },
@@ -295,8 +295,8 @@ export const technologies = [
     icon: faDocker,
     color: "#2496ED",
     description: {
-      "pt-BR": "Plataforma para desenvolvimento, envio e execução de aplicações em containers.",
-      "en-US": "Platform for developing, shipping, and running applications in containers.",
+      "pt-BR": "Containerização",
+      "en-US": "Containerization",
     },
     category: "devops",
   },
@@ -305,8 +305,8 @@ export const technologies = [
     icon: faLinux,
     color: "#FCC624",
     description: {
-      "pt-BR": "Sistema operacional de código aberto baseado em Unix.",
-      "en-US": "Open-source Unix-like operating system.",
+      "pt-BR": "Sistema operacional Unix-like",
+      "en-US": "Unix-like operating system",
     },
     category: "devops",
   },
@@ -316,8 +316,8 @@ export const technologies = [
     color: "#009639",
     isReactIcon: true,
     description: {
-      "pt-BR": "Servidor web de alto desempenho e proxy reverso.",
-      "en-US": "High-performance web server and reverse proxy.",
+      "pt-BR": "Servidor web e proxy reverso",
+      "en-US": "Web server and reverse proxy",
     },
     category: "devops",
   },
@@ -327,8 +327,8 @@ export const technologies = [
     color: "#2088FF",
     isReactIcon: true,
     description: {
-      "pt-BR": "Práticas de integração e entrega contínua de software.",
-      "en-US": "Continuous integration and continuous delivery practices.",
+      "pt-BR": "Integração e entrega contínua",
+      "en-US": "Continuous integration and delivery",
     },
     category: "devops",
   },
@@ -337,8 +337,8 @@ export const technologies = [
     icon: faAws,
     color: "#232F3E",
     description: {
-      "pt-BR": "Plataforma de serviços em nuvem da Amazon.",
-      "en-US": "Amazon's cloud services platform.",
+      "pt-BR": "Plataforma cloud da Amazon",
+      "en-US": "Amazon cloud platform",
     },
     category: "cloud",
   },
@@ -347,8 +347,8 @@ export const technologies = [
     icon: faDigitalOcean,
     color: "#0080FF",
     description: {
-      "pt-BR": "Provedor de infraestrutura em nuvem para desenvolvedores.",
-      "en-US": "Cloud infrastructure provider for developers.",
+      "pt-BR": "Infraestrutura cloud simplificada",
+      "en-US": "Simplified cloud infrastructure",
     },
     category: "cloud",
   },
@@ -358,8 +358,8 @@ export const technologies = [
     color: "#430098",
     isReactIcon: true,
     description: {
-      "pt-BR": "Plataforma em nuvem como serviço (PaaS).",
-      "en-US": "Cloud platform as a service (PaaS).",
+      "pt-BR": "PaaS para deploy rápido",
+      "en-US": "PaaS for rapid deployment",
     },
     category: "cloud",
   },
@@ -369,8 +369,8 @@ export const technologies = [
     color: "#000000",
     isReactIcon: true,
     description: {
-      "pt-BR": "Plataforma para implantação de sites estáticos e aplicações JAMstack.",
-      "en-US": "Platform for deploying static sites and JAMstack applications.",
+      "pt-BR": "Plataforma para frontend",
+      "en-US": "Frontend platform",
     },
     category: "cloud",
   },
@@ -381,8 +381,8 @@ export const technologies = [
     icon: faGitAlt,
     color: "#F05032",
     description: {
-      "pt-BR": "Sistema de controle de versão distribuído.",
-      "en-US": "Distributed version control system.",
+      "pt-BR": "Controle de versão distribuído",
+      "en-US": "Distributed version control",
     },
     category: "tools",
   },
@@ -391,8 +391,8 @@ export const technologies = [
     icon: faGitlab,
     color: "#FC6D26",
     description: {
-      "pt-BR": "Plataforma DevOps baseada em Git para desenvolvimento colaborativo.",
-      "en-US": "Git-based DevOps platform for collaborative development.",
+      "pt-BR": "Plataforma DevOps completa",
+      "en-US": "Complete DevOps platform",
     },
     category: "tools",
   },
@@ -401,8 +401,8 @@ export const technologies = [
     icon: faBitbucket,
     color: "#0052CC",
     description: {
-      "pt-BR": "Serviço de hospedagem de repositórios Git.",
-      "en-US": "Git repository hosting service.",
+      "pt-BR": "Hospedagem Git Atlassian",
+      "en-US": "Atlassian Git hosting",
     },
     category: "tools",
   },
@@ -411,8 +411,8 @@ export const technologies = [
     icon: faJira,
     color: "#0052CC",
     description: {
-      "pt-BR": "Software de gerenciamento de projetos e rastreamento de problemas.",
-      "en-US": "Project management and issue tracking software.",
+      "pt-BR": "Gerenciamento ágil de projetos",
+      "en-US": "Agile project management",
     },
     category: "tools",
   },
@@ -422,8 +422,8 @@ export const technologies = [
     color: "#729B1B",
     isReactIcon: true,
     description: {
-      "pt-BR": "Framework de testes unitários rápido para Vite.",
-      "en-US": "Fast unit test framework for Vite.",
+      "pt-BR": "Framework de testes rápido",
+      "en-US": "Fast testing framework",
     },
     category: "testing",
   },
@@ -433,8 +433,8 @@ export const technologies = [
     color: "#FF4154",
     isReactIcon: true,
     description: {
-      "pt-BR": "Solução de gerenciamento de estado minimalista para React.",
-      "en-US": "Minimalist state management solution for React.",
+      "pt-BR": "State management minimalista",
+      "en-US": "Minimalist state management",
     },
     category: "frontend",
   },
@@ -443,9 +443,111 @@ export const technologies = [
     icon: faNpm,
     color: "#CB3837",
     description: {
-      "pt-BR": "Gerenciador de pacotes para JavaScript.",
-      "en-US": "Package manager for JavaScript.",
+      "pt-BR": "Gerenciador de pacotes JS",
+      "en-US": "JS package manager",
     },
     category: "tools",
   },
 ]
+
+export const categoryMetadata = {
+  frontend: {
+    icon: "🎨",
+    title: {
+      "pt-BR": "Frontend",
+      "en-US": "Frontend",
+    },
+    description: {
+      "pt-BR": "Ferramentas de interface e experiência do usuário",
+      "en-US": "Interface and user experience tools",
+    },
+  },
+  backend: {
+    icon: "⚙️",
+    title: {
+      "pt-BR": "Backend",
+      "en-US": "Backend",
+    },
+    description: {
+      "pt-BR": "Ambiente e frameworks de servidor",
+      "en-US": "Server environment and frameworks",
+    },
+  },
+  database: {
+    icon: "🗄️",
+    title: {
+      "pt-BR": "Banco de Dados",
+      "en-US": "Database",
+    },
+    description: {
+      "pt-BR": "Sistemas de armazenamento e gerenciamento de dados",
+      "en-US": "Data storage and management systems",
+    },
+  },
+  cloud: {
+    icon: "☁️",
+    title: {
+      "pt-BR": "Nuvem",
+      "en-US": "Cloud",
+    },
+    description: {
+      "pt-BR": "Plataformas de hospedagem e infraestrutura",
+      "en-US": "Hosting and infrastructure platforms",
+    },
+  },
+  devops: {
+    icon: "🔧",
+    title: {
+      "pt-BR": "DevOps",
+      "en-US": "DevOps",
+    },
+    description: {
+      "pt-BR": "Ferramentas de deploy e automação",
+      "en-US": "Deployment and automation tools",
+    },
+  },
+  mobile: {
+    icon: "📱",
+    title: {
+      "pt-BR": "Mobile",
+      "en-US": "Mobile",
+    },
+    description: {
+      "pt-BR": "Desenvolvimento de aplicativos móveis",
+      "en-US": "Mobile application development",
+    },
+  },
+  design: {
+    icon: "✨",
+    title: {
+      "pt-BR": "Design",
+      "en-US": "Design",
+    },
+    description: {
+      "pt-BR": "Ferramentas de design e prototipagem",
+      "en-US": "Design and prototyping tools",
+    },
+  },
+  tools: {
+    icon: "🛠️",
+    title: {
+      "pt-BR": "Ferramentas",
+      "en-US": "Tools",
+    },
+    description: {
+      "pt-BR": "Controle de versão e gerenciamento de projetos",
+      "en-US": "Version control and project management",
+    },
+  },
+  testing: {
+    icon: "🧪",
+    title: {
+      "pt-BR": "Testes",
+      "en-US": "Testing",
+    },
+    description: {
+      "pt-BR": "Frameworks e ferramentas de teste",
+      "en-US": "Testing frameworks and tools",
+    },
+  },
+}

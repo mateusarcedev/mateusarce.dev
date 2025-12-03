@@ -13,4 +13,3 @@ const nextConfig: NextConfig = {
     ignoreBuildErrors: true,
   },
 } satisfies NextConfig
-

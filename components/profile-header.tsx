@@ -1,4 +1,4 @@
-import { Github, Linkedin, Briefcase, FileText } from "lucide-react"
+import { Github, Linkedin, FileText } from "lucide-react"
 
 type ProfileHeaderProps = {
   theme: string
@@ -23,7 +23,7 @@ export function ProfileHeader({ theme, t }: ProfileHeaderProps) {
           Mateus Silva Andrade Arce
         </h1>
         <h2 className="text-xl mb-4">{t.role}</h2>
-        <p className={`${theme === "dark" ? "text-[#E96479]" : "text-red-600"} mb-4`}>arcemateuss@gmail.com</p>
+        <p className={`${theme === "dark" ? "text-[#E96479]" : "text-red-600"} mb-4`}>contato@mateusarce.dev</p>
         <nav className="flex flex-wrap gap-4 justify-center md:justify-start">
           <a
             href="https://github.com/mateusarcedev"
@@ -46,18 +46,7 @@ export function ProfileHeader({ theme, t }: ProfileHeaderProps) {
             <span>linkedin</span>
           </a>
           <a
-            href="https://www.tools4.tech/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className={`${theme === "dark" ? "text-[#15F5BA] hover:text-[#22A39F]" : "text-blue-600 hover:text-blue-800"} transition-colors flex items-center gap-2`}
-            aria-label="Tools4.tech"
-          >
-            <Briefcase size={16} />
-            <span>Tools4.tech</span>
-          </a>
-          <a
             href="/resume"
-            target="_blank"
             rel="noopener noreferrer"
             className={`${theme === "dark" ? "text-[#15F5BA] hover:text-[#22A39F]" : "text-blue-600 hover:text-blue-800"} transition-colors flex items-center gap-2`}
             aria-label={t.curriculum}

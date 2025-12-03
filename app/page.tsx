@@ -7,11 +7,9 @@ import { ThemeLanguageSwitcher } from "@/components/theme-language-switcher"
 import { ProfileHeader } from "@/components/profile-header"
 import { BioSection } from "@/components/bio-section"
 import { GithubStats } from "@/components/github-stats"
-import { ProjectsSection } from "@/components/projects-section"
 import { TechnologiesSection } from "@/components/technologies-section"
 import { Footer } from "@/components/footer"
-import { projects } from "@/data/projects"
-import { technologies } from "@/data/technologies"
+import { technologies, categoryMetadata } from "@/data/technologies"
 import { experiences } from "@/data/experiences"
 import { ExperienceSection } from "@/components/experience-section"
 
@@ -39,7 +37,6 @@ export default function Portfolio() {
   const [lang, setLang] = useState<"pt-BR" | "en-US">("pt-BR")
   const [theme, setTheme] = useState("dark")
   const t = translations[lang]
-
 
   useEffect(() => {
     if (typeof window !== "undefined") {
@@ -71,17 +68,17 @@ export default function Portfolio() {
         <BioSection theme={theme} bio={t.bio} />
 
         {!isLoadingStats && githubStats && (
-          <GithubStats
-            theme={theme}
-            t={t}
-            githubStats={githubStats}
-            contributionData={contributionData ?? []}
-          />
+          <GithubStats theme={theme} t={t} githubStats={githubStats} contributionData={contributionData ?? []} />
         )}
 
         <ExperienceSection theme={theme} t={t} experiences={experiences} lang={lang} />
-        <ProjectsSection theme={theme} t={t} lang={lang} projects={projects} />
-        <TechnologiesSection theme={theme} t={t} technologies={technologies} lang={lang} />
+        <TechnologiesSection
+          theme={theme}
+          t={t}
+          technologies={technologies}
+          categoryMetadata={categoryMetadata}
+          lang={lang}
+        />
         <Footer theme={theme} />
       </div>
     </div>
