@@ -1,9 +1,8 @@
 import localFont from "next/font/local"
 import type { ReactNode } from "react"
 import "./globals.css"
-import { Analytics } from "@vercel/analytics/react"
-import { SpeedInsights } from "@vercel/speed-insights/next"
 import { Providers } from "./providers"
+import { LgpdBanner } from "@/components/lgpd-banner"
 
 export { metadata } from "./metadata"
 
@@ -52,8 +51,7 @@ export default function RootLayout({
       <body className="antialiased" suppressHydrationWarning>
         <Providers>
           {children}
-          <Analytics />
-          <SpeedInsights />
+          <LgpdBanner />
         </Providers>
       </body>
     </html>
