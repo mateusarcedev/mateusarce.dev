@@ -1,76 +1,44 @@
 "use client"
 
 import { useState, useEffect } from "react"
-import { useQuery } from "@tanstack/react-query"
+import { useTheme } from "next-themes"
 import { translations } from "@/data/translations"
 import { ThemeLanguageSwitcher } from "@/components/theme-language-switcher"
 import { ProfileHeader } from "@/components/profile-header"
 import { BioSection } from "@/components/bio-section"
-import { GithubStats } from "@/components/github-stats"
 import { TechnologiesSection } from "@/components/technologies-section"
 import { Footer } from "@/components/footer"
 import { technologies, categoryMetadata } from "@/data/technologies"
 import { experiences } from "@/data/experiences"
 import { ExperienceSection } from "@/components/experience-section"
-
-const generateMockContributions = () => {
-  return Array.from({ length: 12 }, (_, i) => ({
-    month: i + 1,
-    contributions: Math.floor(Math.random() * 200) + 50,
-  }))
-}
-
-const fetchGithubStats = async () => {
-  try {
-    const response = await fetch("https://api.github.com/users/mateusarcedev")
-    if (!response.ok) {
-      throw new Error("Network response was not ok")
-    }
-    return response.json()
-  } catch (error) {
-    console.error("Error fetching GitHub stats:", error)
-    return null
-  }
-}
+import { ProjectsSection } from "@/components/projects-section"
+import { projects } from "@/data/projects"
 
 export default function Portfolio() {
   const [lang, setLang] = useState<"pt-BR" | "en-US">("pt-BR")
-  const [theme, setTheme] = useState("dark")
+  const [mounted, setMounted] = useState(false)
+  const { resolvedTheme } = useTheme()
   const t = translations[lang]
 
   useEffect(() => {
-    if (typeof window !== "undefined") {
-      const systemPrefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches
-      setTheme(systemPrefersDark ? "dark" : "light")
-    }
+    setMounted(true)
   }, [])
 
-  const { data: githubStats, isLoading: isLoadingStats } = useQuery({
-    queryKey: ["githubStats"],
-    queryFn: fetchGithubStats,
-    retry: 1,
-    staleTime: 1000 * 60 * 5,
-  })
+  useEffect(() => {
+    document.documentElement.lang = lang
+  }, [lang])
 
-  const { data: contributionData } = useQuery({
-    queryKey: ["contributions"],
-    queryFn: generateMockContributions,
-    staleTime: Number.POSITIVE_INFINITY,
-  })
+  const theme = mounted ? (resolvedTheme ?? "dark") : "dark"
 
   return (
     <div
       className={`min-h-screen ${theme === "dark" ? "bg-[#151515] text-white" : "bg-gray-100 text-gray-800"} font-mono transition-colors duration-300`}
     >
       <div className="max-w-5xl mx-auto p-4 md:p-8">
-        <ThemeLanguageSwitcher theme={theme} setTheme={setTheme} lang={lang} setLang={setLang} />
+        <ThemeLanguageSwitcher lang={lang} setLang={setLang} theme={theme} />
         <ProfileHeader theme={theme} t={t} />
         <BioSection theme={theme} bio={t.bio} />
-
-        {!isLoadingStats && githubStats && (
-          <GithubStats theme={theme} t={t} githubStats={githubStats} contributionData={contributionData ?? []} />
-        )}
-
+        <ProjectsSection theme={theme} t={t} lang={lang} projects={projects} />
         <ExperienceSection theme={theme} t={t} experiences={experiences} lang={lang} />
         <TechnologiesSection
           theme={theme}

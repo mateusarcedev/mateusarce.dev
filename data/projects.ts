@@ -13,6 +13,7 @@ export const projects = [
     },
     url: "https://www.tools4.tech/",
     github: "https://github.com/mateusarcedev/tools4tech",
+    demo: "https://www.tools4.tech/",
     featured: true,
     category: "frontend",
     tags: ["React", "Node.js", "TypeScript"],

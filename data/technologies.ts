@@ -1,27 +1,4 @@
 import {
-  faJs,
-  faNode,
-  faReact,
-  faDocker,
-  faLaravel,
-  faLinux,
-  faPython,
-  faFigma,
-  faGolang,
-  faVuejs,
-  faGitAlt,
-  faBitbucket,
-  faDigitalOcean,
-  faJira,
-  faAws,
-  faGitlab,
-  faSass,
-  faReacteurope,
-  faCss3Alt,
-  faNpm,
-} from "@fortawesome/free-brands-svg-icons"
-import { faDatabase as solidDatabase } from "@fortawesome/free-solid-svg-icons"
-import {
   SiNginx,
   SiExpress,
   SiFastify,
@@ -39,13 +16,33 @@ import {
   SiVercel,
   SiReactquery,
   SiSwagger,
+  SiJavascript,
+  SiNodedotjs,
+  SiReact,
+  SiDocker,
+  SiLaravel,
+  SiLinux,
+  SiPython,
+  SiFigma,
+  SiGo,
+  SiVuedotjs,
+  SiGit,
+  SiBitbucket,
+  SiDigitalocean,
+  SiJira,
+  SiAmazonwebservices,
+  SiGitlab,
+  SiSass,
+  SiCss3,
+  SiNpm,
 } from "react-icons/si"
+import { FaDatabase } from "react-icons/fa"
 
 export const technologies = [
   // Frontend
   {
     name: "JavaScript",
-    icon: faJs,
+    icon: SiJavascript,
     color: "#F7DF1E",
     description: {
       "pt-BR": "Runtime JavaScript",
@@ -57,7 +54,6 @@ export const technologies = [
     name: "TypeScript",
     icon: SiTypescript,
     color: "#3178C6",
-    isReactIcon: true,
     description: {
       "pt-BR": "Tipagem estática para JS",
       "en-US": "Static typing for JS",
@@ -66,7 +62,7 @@ export const technologies = [
   },
   {
     name: "React",
-    icon: faReact,
+    icon: SiReact,
     color: "#61DAFB",
     description: {
       "pt-BR": "Biblioteca UI declarativa",
@@ -78,7 +74,6 @@ export const technologies = [
     name: "Next.js",
     icon: SiNextdotjs,
     color: "#000000",
-    isReactIcon: true,
     description: {
       "pt-BR": "Framework React com SSR/SSG",
       "en-US": "React framework with SSR/SSG",
@@ -87,7 +82,7 @@ export const technologies = [
   },
   {
     name: "Vue.js",
-    icon: faVuejs,
+    icon: SiVuedotjs,
     color: "#4FC08D",
     description: {
       "pt-BR": "Framework progressivo",
@@ -97,7 +92,7 @@ export const technologies = [
   },
   {
     name: "React Native",
-    icon: faReacteurope,
+    icon: SiReact,
     color: "#61DAFB",
     description: {
       "pt-BR": "Apps nativos multiplataforma",
@@ -107,7 +102,7 @@ export const technologies = [
   },
   {
     name: "SASS",
-    icon: faSass,
+    icon: SiSass,
     color: "#CC6699",
     description: {
       "pt-BR": "Pré-processador CSS",
@@ -119,7 +114,6 @@ export const technologies = [
     name: "Tailwind CSS",
     icon: SiTailwindcss,
     color: "#06B6D4",
-    isReactIcon: true,
     description: {
       "pt-BR": "Framework CSS utilitário",
       "en-US": "Utility-first CSS",
@@ -130,7 +124,6 @@ export const technologies = [
     name: "Styled Components",
     icon: SiStyledcomponents,
     color: "#DB7093",
-    isReactIcon: true,
     description: {
       "pt-BR": "CSS-in-JS",
       "en-US": "CSS-in-JS",
@@ -139,7 +132,7 @@ export const technologies = [
   },
   {
     name: "CSS",
-    icon: faCss3Alt,
+    icon: SiCss3,
     color: "#1572B6",
     description: {
       "pt-BR": "Estilização web",
@@ -149,7 +142,7 @@ export const technologies = [
   },
   {
     name: "Figma",
-    icon: faFigma,
+    icon: SiFigma,
     color: "#F24E1E",
     description: {
       "pt-BR": "Design colaborativo",
@@ -161,7 +154,7 @@ export const technologies = [
   // Backend
   {
     name: "Node.js",
-    icon: faNode,
+    icon: SiNodedotjs,
     color: "#339933",
     description: {
       "pt-BR": "Runtime JavaScript server-side",
@@ -173,7 +166,6 @@ export const technologies = [
     name: "Express",
     icon: SiExpress,
     color: "#000000",
-    isReactIcon: true,
     description: {
       "pt-BR": "Framework minimalista",
       "en-US": "Minimalist framework",
@@ -184,7 +176,6 @@ export const technologies = [
     name: "Fastify",
     icon: SiFastify,
     color: "#000000",
-    isReactIcon: true,
     description: {
       "pt-BR": "Framework de alta performance",
       "en-US": "High-performance framework",
@@ -195,7 +186,6 @@ export const technologies = [
     name: "Nest.js",
     icon: SiNestjs,
     color: "#E0234E",
-    isReactIcon: true,
     description: {
       "pt-BR": "Framework escalável e modular",
       "en-US": "Scalable and modular framework",
@@ -204,7 +194,7 @@ export const technologies = [
   },
   {
     name: "Laravel",
-    icon: faLaravel,
+    icon: SiLaravel,
     color: "#FF2D20",
     description: {
       "pt-BR": "Framework PHP elegante",
@@ -214,7 +204,7 @@ export const technologies = [
   },
   {
     name: "Python",
-    icon: faPython,
+    icon: SiPython,
     color: "#3776AB",
     description: {
       "pt-BR": "Linguagem de propósito geral",
@@ -224,7 +214,7 @@ export const technologies = [
   },
   {
     name: "Go",
-    icon: faGolang,
+    icon: SiGo,
     color: "#00ADD8",
     description: {
       "pt-BR": "Linguagem compilada e concorrente",
@@ -236,7 +226,6 @@ export const technologies = [
     name: "RESTful API",
     icon: SiSwagger,
     color: "#85EA2D",
-    isReactIcon: true,
     description: {
       "pt-BR": "API-first",
       "en-US": "API-first",
@@ -249,7 +238,6 @@ export const technologies = [
     name: "PostgreSQL",
     icon: SiPostgresql,
     color: "#336791",
-    isReactIcon: true,
     description: {
       "pt-BR": "SGBD relacional avançado",
       "en-US": "Advanced relational DBMS",
@@ -260,7 +248,6 @@ export const technologies = [
     name: "MySQL",
     icon: SiMysql,
     color: "#4479A1",
-    isReactIcon: true,
     description: {
       "pt-BR": "SGBD relacional popular",
       "en-US": "Popular relational DBMS",
@@ -269,7 +256,7 @@ export const technologies = [
   },
   {
     name: "Database",
-    icon: solidDatabase,
+    icon: FaDatabase,
     color: "#336791",
     description: {
       "pt-BR": "Gerenciamento de dados",
@@ -281,7 +268,6 @@ export const technologies = [
     name: "Supabase",
     icon: SiSupabase,
     color: "#3ECF8E",
-    isReactIcon: true,
     description: {
       "pt-BR": "Backend-as-a-Service com PostgreSQL",
       "en-US": "Backend-as-a-Service with PostgreSQL",
@@ -292,7 +278,7 @@ export const technologies = [
   // DevOps & Cloud
   {
     name: "Docker",
-    icon: faDocker,
+    icon: SiDocker,
     color: "#2496ED",
     description: {
       "pt-BR": "Containerização",
@@ -302,7 +288,7 @@ export const technologies = [
   },
   {
     name: "Linux",
-    icon: faLinux,
+    icon: SiLinux,
     color: "#FCC624",
     description: {
       "pt-BR": "Sistema operacional Unix-like",
@@ -314,7 +300,6 @@ export const technologies = [
     name: "Nginx",
     icon: SiNginx,
     color: "#009639",
-    isReactIcon: true,
     description: {
       "pt-BR": "Servidor web e proxy reverso",
       "en-US": "Web server and reverse proxy",
@@ -325,7 +310,6 @@ export const technologies = [
     name: "CI/CD",
     icon: SiGithubactions,
     color: "#2088FF",
-    isReactIcon: true,
     description: {
       "pt-BR": "Integração e entrega contínua",
       "en-US": "Continuous integration and delivery",
@@ -334,7 +318,7 @@ export const technologies = [
   },
   {
     name: "AWS",
-    icon: faAws,
+    icon: SiAmazonwebservices,
     color: "#232F3E",
     description: {
       "pt-BR": "Plataforma cloud da Amazon",
@@ -344,7 +328,7 @@ export const technologies = [
   },
   {
     name: "Digital Ocean",
-    icon: faDigitalOcean,
+    icon: SiDigitalocean,
     color: "#0080FF",
     description: {
       "pt-BR": "Infraestrutura cloud simplificada",
@@ -356,7 +340,6 @@ export const technologies = [
     name: "Heroku",
     icon: SiHeroku,
     color: "#430098",
-    isReactIcon: true,
     description: {
       "pt-BR": "PaaS para deploy rápido",
       "en-US": "PaaS for rapid deployment",
@@ -367,7 +350,6 @@ export const technologies = [
     name: "Vercel",
     icon: SiVercel,
     color: "#000000",
-    isReactIcon: true,
     description: {
       "pt-BR": "Plataforma para frontend",
       "en-US": "Frontend platform",
@@ -378,7 +360,7 @@ export const technologies = [
   // Tools & Others
   {
     name: "Git",
-    icon: faGitAlt,
+    icon: SiGit,
     color: "#F05032",
     description: {
       "pt-BR": "Controle de versão distribuído",
@@ -388,7 +370,7 @@ export const technologies = [
   },
   {
     name: "GitLab",
-    icon: faGitlab,
+    icon: SiGitlab,
     color: "#FC6D26",
     description: {
       "pt-BR": "Plataforma DevOps completa",
@@ -398,7 +380,7 @@ export const technologies = [
   },
   {
     name: "Bitbucket",
-    icon: faBitbucket,
+    icon: SiBitbucket,
     color: "#0052CC",
     description: {
       "pt-BR": "Hospedagem Git Atlassian",
@@ -408,7 +390,7 @@ export const technologies = [
   },
   {
     name: "Jira",
-    icon: faJira,
+    icon: SiJira,
     color: "#0052CC",
     description: {
       "pt-BR": "Gerenciamento ágil de projetos",
@@ -420,7 +402,6 @@ export const technologies = [
     name: "Vitest",
     icon: SiVitest,
     color: "#729B1B",
-    isReactIcon: true,
     description: {
       "pt-BR": "Framework de testes rápido",
       "en-US": "Fast testing framework",
@@ -431,7 +412,6 @@ export const technologies = [
     name: "Zustand",
     icon: SiReactquery,
     color: "#FF4154",
-    isReactIcon: true,
     description: {
       "pt-BR": "State management minimalista",
       "en-US": "Minimalist state management",
@@ -440,7 +420,7 @@ export const technologies = [
   },
   {
     name: "NPM",
-    icon: faNpm,
+    icon: SiNpm,
     color: "#CB3837",
     description: {
       "pt-BR": "Gerenciador de pacotes JS",

@@ -35,11 +35,11 @@ export const metadata: Metadata = {
     ],
     siteName: "Mateus Arce",
     locale: "pt_BR",
+    alternateLocale: ["en_US"],
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    site: "@SeuTwitter",
     title: "Mateus Arce | Portfólio",
     description:
       "Desenvolvedor full-stack e designer especializado em criação de sistemas personalizados.",
@@ -48,7 +48,7 @@ export const metadata: Metadata = {
         url: "/images/twitter-image.jpg",
         width: 1200,
         height: 630,
-        alt: "Portfólio de Mateus Arce no Twitter",
+        alt: "Portfólio de Mateus Arce",
       },
     ],
   },

@@ -2,15 +2,17 @@
 
 import { Moon, Sun, Languages } from "lucide-react"
 import { Button } from "@/components/ui/button"
+import { useTheme } from "next-themes"
 
 type ThemeLanguageSwitcherProps = {
   theme: string
-  setTheme: (theme: string) => void
   lang: "pt-BR" | "en-US"
   setLang: (lang: "pt-BR" | "en-US") => void
 }
 
-export function ThemeLanguageSwitcher({ theme, setTheme, lang, setLang }: ThemeLanguageSwitcherProps) {
+export function ThemeLanguageSwitcher({ theme, lang, setLang }: ThemeLanguageSwitcherProps) {
+  const { setTheme } = useTheme()
+
   return (
     <div className="sticky top-0 z-10 flex justify-end mb-4 space-x-4 p-2 backdrop-blur-sm bg-opacity-80 rounded-lg">
       <Button

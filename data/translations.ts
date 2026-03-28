@@ -14,6 +14,8 @@ export const translations = {
     featured: "Destaques",
     all: "Todos",
     viewProject: "Ver projeto",
+    viewCode: "Ver código",
+    liveDemo: "Demo ao vivo",
     monthNames: ["Jan", "Fev", "Mar", "Abr", "Mai", "Jun", "Jul", "Ago", "Set", "Out", "Nov", "Dez"],
     categories: {
       frontend: "Frontend",
@@ -44,6 +46,8 @@ export const translations = {
     featured: "Featured",
     all: "All",
     viewProject: "View project",
+    viewCode: "View code",
+    liveDemo: "Live demo",
     monthNames: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
     categories: {
       frontend: "Frontend",

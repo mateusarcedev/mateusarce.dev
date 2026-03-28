@@ -7,6 +7,23 @@ import { Providers } from "./providers"
 
 export { metadata } from "./metadata"
 
+const personJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  name: "Mateus Silva Andrade Arce",
+  url: "https://mateusarce.dev",
+  jobTitle: "Full Stack Software Developer",
+  worksFor: {
+    "@type": "Organization",
+    name: "Sidia Instituto de Tecnologia",
+  },
+  sameAs: [
+    "https://github.com/mateusarcedev",
+    "https://linkedin.com/in/mateus-arce",
+  ],
+  knowsAbout: ["React", "Next.js", "NestJS", "Node.js", "TypeScript", "PostgreSQL", "Docker"],
+}
+
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
   variable: "--font-geist-sans",
@@ -25,7 +42,13 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="pt-BR" suppressHydrationWarning className={`${geistSans.variable} ${geistMono.variable}`}>
-      <body className="antialiased">
+      <head>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(personJsonLd) }}
+        />
+      </head>
+      <body className="antialiased" suppressHydrationWarning>
         <Providers>
           {children}
           <Analytics />
