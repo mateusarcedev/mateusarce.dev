@@ -68,7 +68,7 @@ export function TechnologiesSection({ theme, t, technologies, categoryMetadata, 
   const visibleCategories = activeCategory === "all" ? categories : [activeCategory]
 
   return (
-    <section className="mb-16">
+    <section data-section="technologies" className="mb-16">
       <h2 className={`text-2xl font-bold mb-6 ${isDark ? "text-[#15F5BA]" : "text-blue-600"}`}>
         {t.technologies}
       </h2>
@@ -124,6 +124,7 @@ export function TechnologiesSection({ theme, t, technologies, categoryMetadata, 
                     <button
                       onMouseEnter={() => setTooltip(`${category}-${tech.name}`)}
                       onMouseLeave={() => setTooltip(null)}
+                      data-tech-chip
                       onFocus={() => setTooltip(`${category}-${tech.name}`)}
                       onBlur={() => setTooltip(null)}
                       className={`flex items-center gap-2 px-3 py-2 rounded-lg text-sm font-mono transition-all duration-200 group ${

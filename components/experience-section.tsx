@@ -40,12 +40,13 @@ type ExperienceSectionProps = {
 
 export function ExperienceSection({ theme, t, experiences, lang }: ExperienceSectionProps) {
   return (
-    <section className="mb-12">
+    <section data-section="experience" className="mb-12">
       <h2 className={`text-xl mb-8 ${theme === "dark" ? "text-[#15F5BA]" : "text-blue-600"}`}>{t.experience}</h2>
 
       <div className="relative">
         {/* Timeline vertical line */}
         <div
+          data-timeline-line
           className={`absolute left-8 top-0 bottom-0 w-0.5 ${
             theme === "dark" ? "bg-gray-700" : "bg-gray-300"
           } hidden md:block`}
@@ -53,7 +54,7 @@ export function ExperienceSection({ theme, t, experiences, lang }: ExperienceSec
 
         <div className="space-y-8">
           {experiences.map((exp, index) => (
-            <div key={index} className="relative flex flex-col md:flex-row gap-4 md:gap-8">
+            <div key={index} data-exp-item className="relative flex flex-col md:flex-row gap-4 md:gap-8">
               {/* Timeline dot and logo */}
               <div className="flex-shrink-0 flex items-start gap-4">
                 {/* Timeline dot */}

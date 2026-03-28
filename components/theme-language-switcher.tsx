@@ -3,15 +3,15 @@
 import { Moon, Sun, Languages } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { useTheme } from "next-themes"
+import { useAppStore } from "@/lib/store"
 
 type ThemeLanguageSwitcherProps = {
   theme: string
-  lang: "pt-BR" | "en-US"
-  setLang: (lang: "pt-BR" | "en-US") => void
 }
 
-export function ThemeLanguageSwitcher({ theme, lang, setLang }: ThemeLanguageSwitcherProps) {
+export function ThemeLanguageSwitcher({ theme }: ThemeLanguageSwitcherProps) {
   const { setTheme } = useTheme()
+  const { lang, setLang } = useAppStore()
 
   return (
     <div className="sticky top-0 z-10 flex justify-end mb-4 space-x-4 p-2 backdrop-blur-sm bg-opacity-80 rounded-lg">
