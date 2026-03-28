@@ -30,22 +30,46 @@ export function ProjectReadme({ repoName }: Props) {
   }, [])
 
   useEffect(() => {
-    Promise.all([
-      fetch(`https://api.github.com/repos/${GITHUB_USER}/${repoName}`, {
-        headers: { Accept: "application/vnd.github.v3+json" },
-      }).then((r) => (r.ok ? r.json() : null)),
-      fetch(`https://api.github.com/repos/${GITHUB_USER}/${repoName}/readme`, {
-        headers: { Accept: "application/vnd.github.v3+json" },
-      }).then((r) => (r.ok ? r.json() : null)),
-    ])
-      .then(([repoData, readmeData]) => {
-        setRepo(repoData)
-        if (readmeData?.content) {
-          setReadme(atob(readmeData.content.replace(/\n/g, "")))
-        }
-      })
-      .finally(() => setLoading(false))
+    fetch(`https://api.github.com/repos/${GITHUB_USER}/${repoName}`, {
+      headers: { Accept: "application/vnd.github.v3+json" },
+    })
+      .then((r) => (r.ok ? r.json() : null))
+      .then(setRepo)
   }, [repoName])
+
+  useEffect(() => {
+    setLoading(true)
+
+    const decodeReadme = (content: string) => {
+      const bytes = Uint8Array.from(atob(content.replace(/\n/g, "")), (c) => c.charCodeAt(0))
+      return new TextDecoder("utf-8").decode(bytes)
+    }
+
+    const fetchReadme = async () => {
+      if (lang === "en-US") {
+        const enRes = await fetch(
+          `https://api.github.com/repos/${GITHUB_USER}/${repoName}/contents/README.en.md`,
+          { headers: { Accept: "application/vnd.github.v3+json" } },
+        )
+        if (enRes.ok) {
+          const data = await enRes.json()
+          if (data?.content) return decodeReadme(data.content)
+        }
+      }
+      const res = await fetch(`https://api.github.com/repos/${GITHUB_USER}/${repoName}/readme`, {
+        headers: { Accept: "application/vnd.github.v3+json" },
+      })
+      if (res.ok) {
+        const data = await res.json()
+        if (data?.content) return decodeReadme(data.content)
+      }
+      return null
+    }
+
+    fetchReadme()
+      .then(setReadme)
+      .finally(() => setLoading(false))
+  }, [repoName, lang])
 
   const isDark = mounted ? resolvedTheme === "dark" : true
 
