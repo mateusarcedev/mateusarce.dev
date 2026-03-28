@@ -1,7 +1,7 @@
 export const translations = {
   "pt-BR": {
     role: "Desenvolvedor de software",
-    bio: "Desenvolvedor Full Stack e Engenheiro de Computação com ampla experiência na criação de soluções inovadoras. Trabalho com tecnologias como React.js, Next.js, NestJS e React Native para desenvolver APIs robustas, microserviços eficientes e interfaces interativas. Sempre em busca da evolução profissional, aprimoro meus conhecimentos para entregar sistemas escaláveis e de alta performance capazes de atender aos desafios do mercado.",
+    bio: "Desenvolvedor Full Stack atuando em sistemas internos e projetos de pesquisa e desenvolvimento. Nas horas vagas, construo projetos próprios para resolver problemas do dia a dia.",
     projects: "Projetos",
     technologies: "Tecnologias",
     stats: "Estatísticas do GitHub",
@@ -33,7 +33,7 @@ export const translations = {
   },
   "en-US": {
     role: "Software Developer",
-    bio: "Full Stack Developer & Computer Engineer with extensive experience in creating innovative solutions. I leverage technologies such as React.js, Next.js, NestJS, and React Native to develop robust APIs, efficient microservices, and interactive interfaces. Always striving for professional growth, I continuously enhance my skills to deliver scalable, high-performance systems that meet market challenges.",
+    bio: "Full Stack Developer working on internal systems and R&D projects. In my spare time, I build my own projects to solve everyday problems.",
     projects: "Projects",
     technologies: "Technologies",
     stats: "GitHub Stats",

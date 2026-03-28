@@ -41,7 +41,8 @@ export function ProjectsPageClient() {
   const isDark = mounted ? resolvedTheme === "dark" : true
 
   const languages = Array.from(new Set(repos.map((r) => r.language).filter(Boolean))) as string[]
-  const filtered = langFilter === "all" ? repos : repos.filter((r) => r.language === langFilter)
+  const filtered = (langFilter === "all" ? repos : repos.filter((r) => r.language === langFilter))
+    .sort((a, b) => a.name.localeCompare(b.name))
 
   const allLabel = lang === "pt-BR" ? "Todos" : "All"
   const reposLabel =

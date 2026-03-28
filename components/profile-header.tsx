@@ -4,7 +4,7 @@ import { useRef, useEffect } from "react"
 import { Github, Linkedin, FileText, FolderGit2 } from "lucide-react"
 import { gsap } from "gsap"
 
-const NAME_CHARS = "Mateus Silva Andrade Arce".split("")
+const NAME_CHARS = "Mateus Arce".split("")
 
 type ProfileHeaderProps = {
   theme: string

@@ -4,6 +4,7 @@ import { useState } from "react"
 import { ExternalLink, Github, Star } from "lucide-react"
 import Link from "next/link"
 import type { GithubRepo } from "@/lib/github"
+import { FEATURED_REPOS, COURSE_REPOS, HOMEPAGE_OVERRIDES } from "@/data/repo-config"
 
 type ProjectsSectionProps = {
   theme: string
@@ -24,7 +25,8 @@ export function ProjectsSection({ theme, t, lang, repos }: ProjectsSectionProps)
 
   const languages = Array.from(new Set(repos.map((r) => r.language).filter(Boolean))) as string[]
 
-  const filtered = langFilter === "all" ? repos : repos.filter((r) => r.language === langFilter)
+  const filtered = (langFilter === "all" ? repos : repos.filter((r) => r.language === langFilter))
+    .sort((a, b) => a.name.localeCompare(b.name))
   const displayed = showAll ? filtered : filtered.slice(0, 6)
 
   const allLabel = lang === "pt-BR" ? "Todos" : "All"
@@ -72,96 +74,142 @@ export function ProjectsSection({ theme, t, lang, repos }: ProjectsSectionProps)
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {displayed.map((repo) => (
-          <article
-            key={repo.id}
-            data-project-card
-            className={`rounded-xl border flex flex-col transition-all duration-300 hover:shadow-lg hover:-translate-y-0.5 ${
-              isDark
-                ? "bg-[#1a1a1a] border-gray-800 hover:border-[#15F5BA]/30 hover:shadow-[#15F5BA]/10"
-                : "bg-white border-gray-200 hover:border-blue-300 hover:shadow-blue-100"
-            }`}
-          >
-            <div className="p-5 flex flex-col flex-1">
-              <div className="flex items-start justify-between gap-2 mb-3">
-                <div className="min-w-0">
-                  <h3 className={`font-bold text-base truncate ${isDark ? "text-white" : "text-gray-900"}`}>
-                    {repo.name}
-                  </h3>
-                  {repo.language && (
-                    <p className={`text-xs mt-0.5 ${isDark ? "text-[#15F5BA]" : "text-blue-600"}`}>
-                      {repo.language}
-                    </p>
-                  )}
-                </div>
-                {repo.stargazers_count > 0 && (
-                  <span
-                    className={`flex items-center gap-1 text-xs px-2 py-0.5 rounded-full shrink-0 ${
-                      isDark ? "bg-gray-800 text-gray-400" : "bg-gray-100 text-gray-600"
-                    }`}
-                  >
-                    <Star className="h-3 w-3" />
-                    {repo.stargazers_count}
-                  </span>
-                )}
-              </div>
+        {displayed.map((repo) => {
+          const isFeatured = FEATURED_REPOS.includes(repo.name)
+          const isCourse = COURSE_REPOS.includes(repo.name)
+          const homepage = HOMEPAGE_OVERRIDES[repo.name] ?? repo.homepage
 
-              <p className={`text-sm leading-relaxed flex-1 ${isDark ? "text-gray-400" : "text-gray-600"}`}>
-                {repo.description ?? (lang === "pt-BR" ? "Sem descrição." : "No description.")}
-              </p>
-
-              {repo.topics.length > 0 && (
-                <div className="flex flex-wrap gap-1.5 mt-4">
-                  {repo.topics.slice(0, 5).map((topic) => (
+          return (
+            <article
+              key={repo.id}
+              data-project-card
+              className={`rounded-xl border flex flex-col transition-all duration-300 hover:shadow-xl hover:-translate-y-1 ${
+                isFeatured
+                  ? isDark
+                    ? "bg-[#1a1a1a] border-[#15F5BA]/40 hover:border-[#15F5BA] hover:shadow-[#15F5BA]/20"
+                    : "bg-white border-blue-400 hover:border-blue-600 hover:shadow-blue-200"
+                  : isDark
+                    ? "bg-[#1a1a1a] border-gray-800 hover:border-[#15F5BA]/50 hover:shadow-[#15F5BA]/10"
+                    : "bg-white border-gray-200 hover:border-blue-400 hover:shadow-blue-100"
+              }`}
+            >
+              <div className="p-5 flex flex-col flex-1">
+                <div className="flex items-start justify-between gap-2 mb-3">
+                  <div className="min-w-0 flex-1">
+                    <div className="flex items-center gap-2 flex-wrap">
+                      <h3 className={`font-bold text-base truncate ${isDark ? "text-white" : "text-gray-900"}`}>
+                        {repo.name}
+                      </h3>
+                      {isFeatured && (
+                        <span
+                          className={`text-xs px-2 py-0.5 rounded-full font-medium shrink-0 ${
+                            isDark
+                              ? "bg-[#15F5BA]/10 text-[#15F5BA] border border-[#15F5BA]/30"
+                              : "bg-blue-50 text-blue-600 border border-blue-200"
+                          }`}
+                        >
+                          {lang === "pt-BR" ? "destaque" : "featured"}
+                        </span>
+                      )}
+                      {isCourse && (
+                        <span
+                          className={`text-xs px-2 py-0.5 rounded-full font-medium shrink-0 ${
+                            isDark
+                              ? "bg-gray-800 text-gray-400 border border-gray-700"
+                              : "bg-gray-100 text-gray-500 border border-gray-200"
+                          }`}
+                        >
+                          Rocketseat
+                        </span>
+                      )}
+                    </div>
+                    {repo.language && (
+                      <p className={`text-xs mt-0.5 ${isDark ? "text-[#15F5BA]" : "text-blue-600"}`}>
+                        {repo.language}
+                      </p>
+                    )}
+                  </div>
+                  {repo.stargazers_count > 0 && (
                     <span
-                      key={topic}
-                      className={`text-xs px-2 py-0.5 rounded font-mono ${
-                        isDark ? "bg-[#252525] text-gray-400" : "bg-gray-100 text-gray-600"
+                      className={`flex items-center gap-1 text-xs px-2 py-0.5 rounded-full shrink-0 ${
+                        isFeatured
+                          ? isDark
+                            ? "bg-[#15F5BA]/10 text-[#15F5BA]"
+                            : "bg-blue-50 text-blue-600"
+                          : isDark
+                            ? "bg-gray-800 text-gray-400"
+                            : "bg-gray-100 text-gray-600"
                       }`}
                     >
-                      {topic}
+                      <Star className="h-3 w-3" />
+                      {repo.stargazers_count}
                     </span>
-                  ))}
+                  )}
                 </div>
-              )}
 
-              <div className={`flex gap-3 mt-5 pt-4 border-t ${isDark ? "border-gray-700" : "border-gray-200"}`}>
-                <Link
-                  href={`/projects/${repo.name}`}
-                  className={`flex items-center gap-1.5 text-xs font-medium transition-colors ${
-                    isDark ? "text-[#15F5BA] hover:text-[#22A39F]" : "text-blue-600 hover:text-blue-800"
-                  }`}
-                >
-                  README
-                </Link>
-                <a
-                  href={repo.html_url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className={`flex items-center gap-1.5 text-xs font-medium transition-colors ${
-                    isDark ? "text-gray-400 hover:text-white" : "text-gray-500 hover:text-gray-900"
-                  }`}
-                >
-                  <Github className="h-3.5 w-3.5" />
-                  {t.viewCode}
-                </a>
-                {repo.homepage && (
-                  <a
-                    href={repo.homepage}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className={`flex items-center gap-1.5 text-xs font-medium transition-colors ${
-                      isDark ? "text-[#15F5BA] hover:text-[#22A39F]" : "text-blue-600 hover:text-blue-800"
+                <p className={`text-sm leading-relaxed flex-1 ${isDark ? "text-gray-400" : "text-gray-600"}`}>
+                  {repo.description ?? (lang === "pt-BR" ? "Sem descrição." : "No description.")}
+                </p>
+
+                {repo.topics.length > 0 && (
+                  <div className="flex flex-wrap gap-1.5 mt-4">
+                    {repo.topics.slice(0, 5).map((topic) => (
+                      <span
+                        key={topic}
+                        className={`text-xs px-2 py-0.5 rounded font-mono ${
+                          isDark ? "bg-[#252525] text-gray-400" : "bg-gray-100 text-gray-600"
+                        }`}
+                      >
+                        {topic}
+                      </span>
+                    ))}
+                  </div>
+                )}
+
+                <div className={`flex flex-wrap gap-2 mt-5 pt-4 border-t ${isDark ? "border-gray-700" : "border-gray-200"}`}>
+                  <Link
+                    href={`/projects/${repo.name}`}
+                    className={`flex items-center gap-1.5 text-xs font-medium px-3 py-1.5 rounded-md transition-all ${
+                      isDark
+                        ? "bg-[#15F5BA]/10 text-[#15F5BA] border border-[#15F5BA]/20 hover:bg-[#15F5BA]/20"
+                        : "bg-blue-50 text-blue-600 border border-blue-200 hover:bg-blue-100"
                     }`}
                   >
-                    <ExternalLink className="h-3.5 w-3.5" />
-                    {t.liveDemo}
+                    README
+                  </Link>
+                  <a
+                    href={repo.html_url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={`flex items-center gap-1.5 text-xs font-medium px-3 py-1.5 rounded-md transition-all ${
+                      isDark
+                        ? "bg-gray-800 text-gray-300 border border-gray-700 hover:bg-gray-700 hover:text-white"
+                        : "bg-gray-100 text-gray-600 border border-gray-200 hover:bg-gray-200 hover:text-gray-900"
+                    }`}
+                  >
+                    <Github className="h-3.5 w-3.5" />
+                    {t.viewCode}
                   </a>
-                )}
+                  {homepage && (
+                    <a
+                      href={homepage}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className={`flex items-center gap-1.5 text-xs font-medium px-3 py-1.5 rounded-md transition-all ${
+                        isDark
+                          ? "bg-[#15F5BA]/10 text-[#15F5BA] border border-[#15F5BA]/20 hover:bg-[#15F5BA]/20"
+                          : "bg-blue-50 text-blue-600 border border-blue-200 hover:bg-blue-100"
+                      }`}
+                    >
+                      <ExternalLink className="h-3.5 w-3.5" />
+                      {t.liveDemo}
+                    </a>
+                  )}
+                </div>
               </div>
-            </div>
-          </article>
-        ))}
+            </article>
+          )
+        })}
       </div>
 
       {filtered.length > 6 && (

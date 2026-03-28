@@ -4,7 +4,7 @@ export const metadata: Metadata = {
   metadataBase: new URL("https://mateusarce.dev"),
   title: "Mateus Arce | Portfólio",
   description:
-    "Desenvolvedor full-stack e designer especializado em criação de sistemas personalizados. Conheça meus projetos e habilidades.",
+    "Desenvolvedor Full Stack atuando em sistemas internos e projetos de P&D. Conheça meus projetos e habilidades.",
   applicationName: "Mateus Arce",
   authors: [{ name: "Mateus Silva Andrade Arce", url: "https://mateusarce.dev" }],
   creator: "Mateus Silva Andrade Arce",
@@ -14,7 +14,7 @@ export const metadata: Metadata = {
     "developer portfolio",
     "Next.js",
     "React",
-    "designer de sistemas",
+    "software developer",
     "software engineer Brazil",
   ],
   alternates: {
@@ -23,7 +23,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Mateus Arce | Portfólio",
     description:
-      "Desenvolvedor full-stack e designer especializado em criação de sistemas personalizados. Conheça meus projetos e habilidades.",
+      "Desenvolvedor Full Stack atuando em sistemas internos e projetos de P&D. Conheça meus projetos e habilidades.",
     url: "https://mateusarce.dev/",
     images: [
       {
@@ -42,7 +42,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Mateus Arce | Portfólio",
     description:
-      "Desenvolvedor full-stack e designer especializado em criação de sistemas personalizados.",
+      "Desenvolvedor Full Stack atuando em sistemas internos e projetos de P&D.",
     images: [
       {
         url: "/images/twitter-image.jpg",
