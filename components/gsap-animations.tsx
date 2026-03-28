@@ -8,8 +8,7 @@ gsap.registerPlugin(ScrollTrigger)
 
 export function GsapAnimations() {
   useEffect(() => {
-    // Refresh after images/fonts settle
-    const timeout = setTimeout(() => ScrollTrigger.refresh(), 400)
+    let timeout: ReturnType<typeof setTimeout>
 
     const ctx = gsap.context(() => {
       // ── Bio section ──────────────────────────────────────────────────────────
@@ -80,20 +79,33 @@ export function GsapAnimations() {
       if (techSection) {
         const chips = techSection.querySelectorAll("[data-tech-chip]")
         if (chips.length) {
-          gsap.from(chips, {
-            scrollTrigger: {
-              trigger: techSection,
-              start: "top 75%",
-              once: true,
+          // Set initial state explicitly so chips are only hidden after
+          // GSAP has run — prevents chips from being permanently invisible
+          // if the ScrollTrigger fires before layout is stable.
+          gsap.set(chips, { opacity: 0, scale: 0.8 })
+          ScrollTrigger.create({
+            trigger: techSection,
+            start: "top 90%",
+            once: true,
+            onEnter: () => {
+              gsap.to(chips, {
+                opacity: 1,
+                scale: 1,
+                stagger: { amount: 0.9, from: "start" },
+                duration: 0.35,
+                ease: "back.out(1.5)",
+              })
             },
-            opacity: 0,
-            scale: 0.8,
-            stagger: { amount: 0.9, from: "start" },
-            duration: 0.35,
-            ease: "back.out(1.5)",
           })
         }
       }
+    })
+
+    // Refresh positions after fonts are ready, then again after a short
+    // delay for any remaining layout shifts (images, web fonts, etc.)
+    document.fonts.ready.then(() => {
+      ScrollTrigger.refresh()
+      timeout = setTimeout(() => ScrollTrigger.refresh(), 300)
     })
 
     return () => {

@@ -1,6 +1,7 @@
 "use client"
 
 import { useState, useEffect } from "react"
+import dynamic from "next/dynamic"
 import { useTheme } from "next-themes"
 import { useAppStore } from "@/lib/store"
 import { translations } from "@/data/translations"
@@ -12,8 +13,16 @@ import { Footer } from "@/components/footer"
 import { technologies, categoryMetadata } from "@/data/technologies"
 import { experiences } from "@/data/experiences"
 import { ExperienceSection } from "@/components/experience-section"
-import { GsapAnimations } from "@/components/gsap-animations"
-import { CustomCursor } from "@/components/custom-cursor"
+
+const GsapAnimations = dynamic(
+  () => import("@/components/gsap-animations").then((m) => m.GsapAnimations),
+  { ssr: false },
+)
+
+const CustomCursor = dynamic(
+  () => import("@/components/custom-cursor").then((m) => m.CustomCursor),
+  { ssr: false },
+)
 
 export function HomeClient() {
   const { lang } = useAppStore()

@@ -38,9 +38,10 @@ export function ProfileHeader({ theme, t }: ProfileHeaderProps) {
     <header ref={headerRef} className="mb-12 flex flex-col md:flex-row items-center md:items-start gap-8">
       <div data-hero="avatar" className="relative w-32 h-32 rounded-full overflow-hidden">
         <img
-          src="https://avatars.githubusercontent.com/u/96782284?v=4"
+          src="/images/avatar.webp"
           alt="Mateus Arce"
           className="w-full h-full object-cover"
+          fetchPriority="high"
         />
       </div>
 

@@ -33,7 +33,7 @@ export const experiences = [
       ],
     },
     technologies: ["NestJS", "ReactJS", "NextJS", "Keycloak", "Docker", "Kubernetes"],
-    logo: "/images/sidia_logo.png",
+    logo: "/images/sidia_logo.webp",
   },
   {
     title: {
@@ -72,7 +72,7 @@ export const experiences = [
       ],
     },
     technologies: ["NestJS", "ReactJS", "React Native", "Keycloak"],
-    logo: "/images/sidia_logo.png",
+    logo: "/images/sidia_logo.webp",
   },
   {
     title: {
@@ -111,6 +111,6 @@ export const experiences = [
       ],
     },
     technologies: ["PHP", "Node.js", "Python", "React", "Vue.js", "MySQL"],
-    logo: "/images/visteon_logo.jpg",
+    logo: "/images/visteon_logo.webp",
   },
 ];
