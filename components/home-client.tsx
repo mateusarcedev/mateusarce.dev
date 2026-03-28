@@ -44,7 +44,7 @@ export function HomeClient() {
     <>
       <GsapAnimations />
       <CustomCursor theme={theme} />
-      <div
+      <main
         id="main-content"
         className={`min-h-screen ${theme === "dark" ? "bg-[#151515] text-white" : "bg-gray-100 text-gray-800"} font-mono transition-colors duration-300`}
       >
@@ -62,7 +62,7 @@ export function HomeClient() {
           />
           <Footer theme={theme} />
         </div>
-      </div>
+      </main>
     </>
   )
 }
