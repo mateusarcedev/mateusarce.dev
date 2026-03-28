@@ -97,7 +97,7 @@ export default function ResumePage() {
             <h1
               className={`${isDark ? "text-[#15F5BA]" : "text-blue-600"} text-3xl md:text-4xl font-bold mb-2`}
             >
-              MATEUS SILVA ANDRADE ARCE
+              MATEUS ARCE
             </h1>
             <p className="text-lg md:text-xl mb-4">
               {isPtBr
@@ -318,7 +318,7 @@ export default function ResumePage() {
                 <p className="text-sm whitespace-nowrap">2020 – 2025</p>
               </div>
               <p className="text-sm italic">
-                {isPtBr ? "Conclusão prevista: Dez/2025" : "Expected graduation: Dec/2025"}
+                {isPtBr ? "Concluído" : "Completed"}
               </p>
             </div>
 

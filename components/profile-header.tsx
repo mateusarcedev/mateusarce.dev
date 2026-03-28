@@ -102,7 +102,7 @@ export function ProfileHeader({ theme, t }: ProfileHeaderProps) {
             aria-label={t.projects}
           >
             <FolderGit2 size={16} />
-            <span>{t.projects}</span>
+            <span>{t.projects.toLowerCase()}</span>
           </a>
         </nav>
       </div>

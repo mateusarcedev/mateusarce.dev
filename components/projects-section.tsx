@@ -119,7 +119,7 @@ export function ProjectsSection({ theme, t, lang, repos }: ProjectsSectionProps)
                               : "bg-gray-100 text-gray-500 border border-gray-200"
                           }`}
                         >
-                          Rocketseat
+                          {lang === "pt-BR" ? "curso" : "course"}
                         </span>
                       )}
                     </div>
