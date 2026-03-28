@@ -49,6 +49,12 @@ export default function RootLayout({
         />
       </head>
       <body className="antialiased" suppressHydrationWarning>
+        <a
+          href="#main-content"
+          className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-50 focus:px-4 focus:py-2 focus:bg-[#15F5BA] focus:text-black focus:rounded focus:font-mono focus:text-sm"
+        >
+          Pular para o conteúdo
+        </a>
         <Providers>
           {children}
           <LgpdBanner />

@@ -7,7 +7,7 @@ import { Github, ExternalLink, Star, ArrowLeft, Moon, Sun, Languages } from "luc
 import { useTheme } from "next-themes"
 import { useAppStore } from "@/lib/store"
 import { Button } from "@/components/ui/button"
-import type { GithubRepo } from "@/lib/github"
+import { type GithubRepo, GITHUB_USER } from "@/lib/github"
 
 export function ProjectsPageClient() {
   const { resolvedTheme, setTheme } = useTheme()
@@ -24,7 +24,7 @@ export function ProjectsPageClient() {
   }, [])
 
   useEffect(() => {
-    fetch("https://api.github.com/users/mateusarcedev/repos?type=public&sort=pushed&per_page=100", {
+    fetch(`https://api.github.com/users/${GITHUB_USER}/repos?type=public&sort=pushed&per_page=100`, {
       headers: { Accept: "application/vnd.github.v3+json" },
     })
       .then((r) => {

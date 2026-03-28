@@ -9,9 +9,8 @@ import { Button } from "@/components/ui/button"
 import ReactMarkdown from "react-markdown"
 import remarkGfm from "remark-gfm"
 import rehypeRaw from "rehype-raw"
-import type { GithubRepo } from "@/lib/github"
-
-const GITHUB_USER = "mateusarcedev"
+import rehypeSanitize from "rehype-sanitize"
+import { type GithubRepo, GITHUB_USER } from "@/lib/github"
 
 type Props = {
   repoName: string
@@ -215,7 +214,7 @@ export function ProjectReadme({ repoName }: Props) {
                 >
                   <ReactMarkdown
                     remarkPlugins={[remarkGfm]}
-                    rehypePlugins={[rehypeRaw]}
+                    rehypePlugins={[rehypeRaw, rehypeSanitize]}
                     components={{
                       img: ({ src, alt }) => (
                         // eslint-disable-next-line @next/next/no-img-element

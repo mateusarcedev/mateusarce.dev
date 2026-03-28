@@ -1,6 +1,15 @@
 import type { MetadataRoute } from "next"
+import { getPublicRepos } from "@/lib/github"
 
-export default function sitemap(): MetadataRoute.Sitemap {
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
+  const repos = await getPublicRepos().catch(() => [])
+  const projectEntries: MetadataRoute.Sitemap = repos.map((repo) => ({
+    url: `https://mateusarce.dev/projects/${repo.name}`,
+    lastModified: new Date(repo.pushed_at),
+    changeFrequency: "monthly",
+    priority: 0.7,
+  }))
+
   return [
     {
       url: "https://mateusarce.dev",
@@ -20,5 +29,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "weekly",
       priority: 0.9,
     },
+    ...projectEntries,
   ]
 }

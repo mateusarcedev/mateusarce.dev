@@ -12,7 +12,7 @@ export type GithubRepo = {
   default_branch: string
 }
 
-const GITHUB_USER = "mateusarcedev"
+export const GITHUB_USER = "mateusarcedev"
 
 export async function getPublicRepos(): Promise<GithubRepo[]> {
   const res = await fetch(
