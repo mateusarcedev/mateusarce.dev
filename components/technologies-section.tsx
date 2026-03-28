@@ -55,6 +55,10 @@ export function TechnologiesSection({ theme, t, technologies, categoryMetadata, 
     {} as Record<string, Technology[]>,
   )
 
+  Object.keys(categorizedTech).forEach((cat) => {
+    categorizedTech[cat].sort((a, b) => a.name.localeCompare(b.name))
+  })
+
   const categories = CATEGORY_ORDER.filter((c) => categorizedTech[c])
 
   const allLabel = lang === "pt-BR" ? "Todos" : "All"
