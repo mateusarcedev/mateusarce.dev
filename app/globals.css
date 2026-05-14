@@ -675,6 +675,71 @@ section:last-of-type {
   border-color: var(--mint-edge);
 }
 
+/* Collapsible experience */
+.exp-collapsed {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.5s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.4s ease;
+  opacity: 0;
+}
+
+.exp-collapsed.open {
+  max-height: 2000px;
+  opacity: 1;
+}
+
+.exp-toggle {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  width: 100%;
+  padding: 18px 0 4px;
+  cursor: pointer;
+  margin-top: 4px;
+}
+
+.exp-toggle-line {
+  flex: 1;
+  height: 1px;
+  background: var(--line);
+  transition: background 0.15s;
+}
+
+.exp-toggle:hover .exp-toggle-line {
+  background: var(--mint-edge);
+}
+
+.exp-toggle-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  color: var(--fg-dim);
+  padding: 5px 14px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: var(--surface);
+  transition: all 0.15s ease;
+  white-space: nowrap;
+}
+
+.exp-toggle:hover .exp-toggle-label {
+  color: var(--mint);
+  border-color: var(--mint-edge);
+  background: var(--mint-dim);
+}
+
+.exp-toggle-arrow {
+  width: 14px;
+  height: 14px;
+  transition: transform 0.3s ease;
+}
+
+.exp-toggle-arrow.up {
+  transform: rotate(180deg);
+}
+
 .stack-filters {
   display: flex;
   flex-wrap: wrap;

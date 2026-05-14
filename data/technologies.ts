@@ -60,6 +60,13 @@ export const TECH: Tech[] = [
   // ai
   { name: "LangGraph", slug: "langchain", color: "1C3C3C", cat: "ai", desc: { pt: "Agentes de IA orquestrados", en: "Orchestrated AI agents" } },
   { name: "LangChain", slug: "langchain", color: "1C3C3C", cat: "ai", desc: { pt: "Framework para LLMs", en: "Framework for LLMs" } },
+  { name: "Cursor", slug: "cursor", color: "000000", cat: "ai", invertible: true, desc: { pt: "IDE com IA integrada", en: "AI-powered IDE" } },
+  { name: "Claude Code", slug: "anthropic", color: "191919", cat: "ai", invertible: true, desc: { pt: "Assistente de código Anthropic", en: "Anthropic code assistant" } },
+  { name: "OpenCode", slug: "openai", color: "412991", cat: "ai", desc: { pt: "Assistente de código open-source", en: "Open-source code assistant" } },
+  { name: "OpenRouter", slug: "openai", color: "412991", cat: "ai", desc: { pt: "Gateway unificado de LLMs", en: "Unified LLM gateway" } },
+  { name: "N8N", slug: "n8n", color: "EA4B71", cat: "ai", desc: { pt: "Automação de workflows", en: "Workflow automation" } },
+  { name: "Codex", slug: "openai", color: "412991", cat: "ai", desc: { pt: "Agente de código OpenAI", en: "OpenAI code agent" } },
+  { name: "LiteLLM", slug: "openai", color: "412991", cat: "ai", desc: { pt: "Proxy unificado para LLMs", en: "Unified LLM proxy" } },
   // design
   { name: "Figma", slug: "figma", color: "F24E1E", cat: "design", desc: { pt: "Design colaborativo", en: "Collaborative design" } },
 ]

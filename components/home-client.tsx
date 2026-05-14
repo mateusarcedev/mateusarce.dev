@@ -44,6 +44,7 @@ export function HomeClient() {
   const lk = lang === "pt-BR" ? "pt" : "en"
   const clock = useClock()
   const [curCat, setCurCat] = useState("all")
+  const [showAllExp, setShowAllExp] = useState(false)
 
   const grouped = useMemo(() => {
     const g: Record<string, typeof TECH> = {}
@@ -131,36 +132,26 @@ export function HomeClient() {
             <span className="sec-count">0{experiences.length}</span>
           </div>
           <div className="exp-list">
-            {experiences.map((exp, i) => (
-              <article className="exp" key={i}>
-                <div className={`exp-logo ${exp.logoClass || ""}`}>
-                  <img src={exp.logo} alt={exp.company} />
-                </div>
-                <div className="exp-body">
-                  <div className="exp-dates">
-                    {exp.current && <span className="now">● now</span>}
-                    <span lang="pt-BR">{exp.dateRange.pt}</span>
-                    <span lang="en-US">{exp.dateRange.en}</span>
-                    {exp.current && exp.startDate ? (
-                      <DurationBadge startDate={exp.startDate} />
-                    ) : exp.duration ? (
-                      <span className="dur">{exp.duration}</span>
-                    ) : null}
-                  </div>
-                  <h3><span lang="pt-BR">{exp.title.pt}</span><span lang="en-US">{exp.title.en}</span></h3>
-                  <div className="exp-co"><b>{exp.company}</b><span className="at">·</span>{exp.location}</div>
-                  <ul className="exp-bullets" lang="pt-BR">
-                    {exp.bullets.pt.map((b, j) => <li key={j} dangerouslySetInnerHTML={{ __html: b }} />)}
-                  </ul>
-                  <ul className="exp-bullets" lang="en-US">
-                    {exp.bullets.en.map((b, j) => <li key={j} dangerouslySetInnerHTML={{ __html: b }} />)}
-                  </ul>
-                  <div className="exp-tech">
-                    {exp.tech.map((t) => <span className="t" key={t}>{t}</span>)}
-                  </div>
-                </div>
-              </article>
+            {experiences.slice(0, 2).map((exp, i) => (
+              <ExpCard key={i} exp={exp} />
             ))}
+            <div className={`exp-collapsed${showAllExp ? " open" : ""}`}>
+              {experiences.slice(2).map((exp, i) => (
+                <ExpCard key={i + 2} exp={exp} />
+              ))}
+            </div>
+            <button className="exp-toggle" onClick={() => setShowAllExp((v) => !v)} aria-expanded={showAllExp}>
+              <span className="exp-toggle-line" />
+              <span className="exp-toggle-label">
+                {showAllExp ? (
+                  <><span lang="pt-BR">ver menos</span><span lang="en-US">show less</span></>
+                ) : (
+                  <><span lang="pt-BR">ver mais · +{experiences.length - 2} anteriores</span><span lang="en-US">show more · +{experiences.length - 2} previous</span></>
+                )}
+                <svg className={`exp-toggle-arrow${showAllExp ? " up" : ""}`} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8"><path d="M6 9l6 6 6-6" /></svg>
+              </span>
+              <span className="exp-toggle-line" />
+            </button>
           </div>
         </section>
 
@@ -312,4 +303,37 @@ export function HomeClient() {
 function DurationBadge({ startDate }: { startDate: string }) {
   const dur = useDuration(startDate)
   return <span className="dur">{dur}</span>
+}
+
+function ExpCard({ exp }: { exp: (typeof experiences)[number] }) {
+  return (
+    <article className="exp">
+      <div className={`exp-logo ${exp.logoClass || ""}`}>
+        <img src={exp.logo} alt={exp.company} />
+      </div>
+      <div className="exp-body">
+        <div className="exp-dates">
+          {exp.current && <span className="now">● now</span>}
+          <span lang="pt-BR">{exp.dateRange.pt}</span>
+          <span lang="en-US">{exp.dateRange.en}</span>
+          {exp.current && exp.startDate ? (
+            <DurationBadge startDate={exp.startDate} />
+          ) : exp.duration ? (
+            <span className="dur">{exp.duration}</span>
+          ) : null}
+        </div>
+        <h3><span lang="pt-BR">{exp.title.pt}</span><span lang="en-US">{exp.title.en}</span></h3>
+        <div className="exp-co"><b>{exp.company}</b><span className="at">·</span>{exp.location}</div>
+        <ul className="exp-bullets" lang="pt-BR">
+          {exp.bullets.pt.map((b, j) => <li key={j} dangerouslySetInnerHTML={{ __html: b }} />)}
+        </ul>
+        <ul className="exp-bullets" lang="en-US">
+          {exp.bullets.en.map((b, j) => <li key={j} dangerouslySetInnerHTML={{ __html: b }} />)}
+        </ul>
+        <div className="exp-tech">
+          {exp.tech.map((t) => <span className="t" key={t}>{t}</span>)}
+        </div>
+      </div>
+    </article>
+  )
 }
