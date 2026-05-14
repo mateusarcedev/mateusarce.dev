@@ -1,13 +1,31 @@
-type FooterProps = {
-  theme: string
-}
+"use client"
 
-export function Footer({ theme }: FooterProps) {
+export function Footer({ variant = "home" }: { variant?: "home" | "projects" | "resume" }) {
   return (
-    <footer className={`text-center py-6 border-t ${theme === "dark" ? "border-gray-800" : "border-gray-200"}`}>
-      <p className={`text-sm ${theme === "dark" ? "text-gray-400" : "text-gray-600"}`}>
-        © {new Date().getFullYear()} Mateus Arce
-      </p>
+    <footer>
+      <div>
+        <span>© {new Date().getFullYear()} Mateus Arce</span>
+      </div>
+      <div>
+        {variant === "home" && (
+          <>
+            <span lang="pt-BR">feito com <span className="h">♥</span> e muito café em Manaus</span>
+            <span lang="en-US">built with <span className="h">♥</span> and lots of coffee in Manaus</span>
+          </>
+        )}
+        {variant === "projects" && (
+          <>
+            <span lang="pt-BR">dados ao vivo do GitHub</span>
+            <span lang="en-US">live data from GitHub</span>
+          </>
+        )}
+        {variant === "resume" && (
+          <>
+            <span lang="pt-BR">atualizado em mai 2026</span>
+            <span lang="en-US">updated may 2026</span>
+          </>
+        )}
+      </div>
     </footer>
   )
 }

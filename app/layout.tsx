@@ -14,13 +14,13 @@ const personJsonLd = {
   jobTitle: "Full Stack Software Developer",
   worksFor: {
     "@type": "Organization",
-    name: "Sidia Instituto de Tecnologia",
+    name: "Supertrans",
   },
   sameAs: [
     "https://github.com/mateusarcedev",
     "https://linkedin.com/in/mateus-arce",
   ],
-  knowsAbout: ["React", "Next.js", "NestJS", "Node.js", "TypeScript", "PostgreSQL", "Docker"],
+  knowsAbout: ["React", "Next.js", "NestJS", "Node.js", "Go", "TypeScript", "PostgreSQL", "Docker", "LangGraph"],
 }
 
 const geistSans = localFont({
@@ -40,12 +40,17 @@ export default function RootLayout({
   children: ReactNode
 }>) {
   return (
-    <html lang="pt-BR" suppressHydrationWarning className={`${geistSans.variable} ${geistMono.variable}`}>
+    <html lang="pt-BR" data-lang="pt-BR" suppressHydrationWarning className={`${geistSans.variable} ${geistMono.variable}`}>
       <head>
         <link rel="preload" href="/images/avatar.webp" as="image" type="image/webp" />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(personJsonLd) }}
+        />
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `try{var s=JSON.parse(localStorage.getItem("portfolio-lang")||"{}");if(s.state&&s.state.lang){document.documentElement.setAttribute("data-lang",s.state.lang);document.documentElement.setAttribute("lang",s.state.lang)}}catch(e){}`
+          }}
         />
       </head>
       <body className="antialiased" suppressHydrationWarning>
