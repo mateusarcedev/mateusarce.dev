@@ -92,7 +92,7 @@ export function HomeClient() {
           <HeroOrbit />
           <div className="hero-grid reveal">
             <div className="avatar">
-              <img src="/images/avatar.webp" alt="Mateus Arce" />
+              <img src="https://avatars.githubusercontent.com/u/96782284?v=4" alt="Mateus Arce" referrerPolicy="no-referrer" />
             </div>
             <div className="hero-meta">
               <h1>Mateus <span className="accent">Arce</span></h1>
