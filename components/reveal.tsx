@@ -33,7 +33,7 @@ export function RevealObserver() {
                 ".avatar, .hero-meta > h1, .hero-role, .hero-info > span, .quick-links .ql, .bio"
               )
             : target.querySelectorAll(
-                ".sec-head > *, .exp, .cat-head, .now-cell, .proj-link, .contact-row"
+                ".sec-head > *, .exp, .cat-head, .now-cell, .workflow-intro, .workflow-stage, .workflow-toolbelt, .learning-copy, .electronics-lab-visual, .proj-link, .contact-row"
               )
 
           if (details.length) {
