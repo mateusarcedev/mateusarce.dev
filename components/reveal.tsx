@@ -9,7 +9,7 @@ export function RevealObserver() {
     if (reducedMotion) return
 
     document.documentElement.classList.add("motion-ready")
-    const running = []
+    const running: Array<{ revert: () => unknown }> = []
 
     const io = new IntersectionObserver(
       (entries) => {
@@ -59,7 +59,9 @@ export function RevealObserver() {
     return () => {
       io.disconnect()
       document.documentElement.classList.remove("motion-ready")
-      running.forEach((animation) => animation.revert())
+      running.forEach((animation) => {
+        animation.revert()
+      })
     }
   }, [])
 
