@@ -125,7 +125,7 @@ export function HeroDevConsole({ lang, clock, totalExperience }: HeroDevConsoleP
               </span>
 
               {totalExperience && (
-                <span className="dev-console-meta-item">
+                <span className="dev-console-meta-item dev-console-meta-xp">
                   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" aria-hidden="true"><path d="M8 7V5a4 4 0 0 1 8 0v2" /><path d="M5 7h14v12H5z" /></svg>
                   <b>{totalExperience}</b>
                   <span lang="pt-BR">de experiência</span>
