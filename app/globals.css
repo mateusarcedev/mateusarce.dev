@@ -1644,7 +1644,7 @@ footer .h {
 
 .lab-board {
   height: 100%;
-  min-height: 250px;
+  min-height: 286px;
   padding: 14px;
   border: 1px solid var(--line);
   border-radius: var(--radius);
@@ -1656,8 +1656,7 @@ footer .h {
   overflow: hidden;
 }
 
-.lab-board-head,
-.lab-scope-head {
+.lab-board-head {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -1671,7 +1670,8 @@ footer .h {
   gap: 6px;
 }
 
-.lab-led {
+.lab-led,
+.board-led {
   width: 6px;
   height: 6px;
   border-radius: 50%;
@@ -1679,178 +1679,396 @@ footer .h {
   box-shadow: 0 0 8px var(--mint);
 }
 
-.lab-circuit {
+.board-led.alt {
+  background: var(--pink);
+  box-shadow: 0 0 8px var(--pink);
+}
+
+.electronics-bench {
   position: relative;
-  height: 112px;
-  margin: 12px 0;
+  height: 238px;
+  margin-top: 14px;
+  overflow: hidden;
+  border: 1px solid var(--line-soft);
+  border-radius: 10px;
+  background:
+    radial-gradient(circle at 51% 38%, var(--mint-dim), transparent 22%),
+    radial-gradient(circle at 25% 72%, var(--pink-dim), transparent 21%),
+    color-mix(in srgb, var(--bg) 89%, transparent);
 }
 
-.lab-chip {
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  z-index: 2;
-  width: 92px;
-  height: 62px;
-  transform: translate(-50%, -50%);
-  display: grid;
-  place-items: center;
-  border: 1px solid var(--mint-edge);
-  border-radius: 6px;
-  background: color-mix(in srgb, var(--bg) 88%, var(--mint) 12%);
-  box-shadow: 0 0 28px var(--mint-dim);
-}
-
-.lab-chip::before,
-.lab-chip::after {
-  content: "";
-  position: absolute;
-  left: -12px;
-  right: -12px;
-  height: 1px;
-  background: repeating-linear-gradient(90deg, var(--mint-edge) 0 5px, transparent 5px 9px);
-}
-
-.lab-chip::before { top: 10px; }
-.lab-chip::after { bottom: 10px; }
-
-.lab-chip small {
-  color: var(--fg-faint);
-  font: 7px/1 var(--mono);
-  letter-spacing: 0.1em;
-}
-
-.lab-chip strong {
-  color: var(--mint);
-  font: 600 16px/1 var(--mono);
-}
-
-.lab-chip span {
-  color: var(--fg-dim);
-  font: 7px/1 var(--mono);
-}
-
-.circuit-track {
+.pcb-trace {
   position: absolute;
   z-index: 1;
   height: 1px;
   background: var(--mint-edge);
 }
 
-.track-a { left: 3%; right: 50%; top: 28%; }
-.track-b { left: 50%; right: 3%; top: 62%; }
-.track-c { left: 12%; right: 15%; top: 84%; background: var(--pink); opacity: 0.45; }
-
-.circuit-track::before,
-.circuit-track::after {
+.pcb-trace::before,
+.pcb-trace::after {
   content: "";
   position: absolute;
   top: -2px;
   width: 5px;
   height: 5px;
-  border: 1px solid currentColor;
+  border: 1px solid var(--mint-edge);
   border-radius: 50%;
   background: var(--surface);
 }
 
-.circuit-track::before { left: 0; }
-.circuit-track::after { right: 0; }
+.pcb-trace::before { left: 0; }
+.pcb-trace::after { right: 0; }
 
-.circuit-pulse {
+.pcb-trace-a { left: 4%; top: 20%; width: 34%; }
+.pcb-trace-b { left: 61%; top: 25%; width: 32%; }
+.pcb-trace-c { left: 30%; top: 48%; width: 22%; }
+.pcb-trace-d { left: 9%; top: 70%; width: 30%; background: color-mix(in srgb, var(--pink) 55%, transparent); }
+.pcb-trace-e { left: 55%; top: 72%; width: 36%; }
+.pcb-trace-f { left: 47%; top: 88%; width: 26%; background: color-mix(in srgb, var(--pink) 42%, transparent); }
+
+.pcb-trace-pulse {
   position: absolute;
-  z-index: 3;
-  width: 7px;
-  height: 7px;
+  z-index: 5;
+  width: 8px;
+  height: 8px;
   border-radius: 50%;
   background: var(--mint);
   box-shadow: 0 0 10px var(--mint);
 }
 
-.pulse-a { left: 18%; top: calc(28% - 3px); }
-.pulse-b { right: 18%; top: calc(62% - 3px); }
-.pulse-c { left: 28%; top: calc(84% - 3px); background: var(--pink); box-shadow: 0 0 10px var(--pink); }
+.pcb-pulse-a { left: 19%; top: calc(20% - 4px); }
+.pcb-pulse-b { left: 76%; top: calc(25% - 4px); }
+.pcb-pulse-c { left: 36%; top: calc(70% - 4px); background: var(--pink); box-shadow: 0 0 10px var(--pink); }
+.pcb-pulse-d { left: 72%; top: calc(72% - 4px); }
 
-.lab-port {
+.dev-board {
   position: absolute;
-  left: 5%;
-  top: 18%;
-  padding: 3px 5px;
-  border: 1px solid var(--line);
-  border-radius: 3px;
-  background: var(--surface);
-  color: var(--fg-faint);
-  font: 7px/1 var(--mono);
+  z-index: 3;
+  border: 1px solid var(--mint-edge);
+  border-radius: 10px;
+  background: color-mix(in srgb, var(--bg) 86%, var(--mint) 14%);
+  box-shadow: 0 0 24px var(--mint-dim);
 }
 
-.lab-port.secondary {
-  left: auto;
-  right: 5%;
-  top: 54%;
-}
-
-.lab-scope {
-  padding: 10px;
-  border: 1px solid var(--line);
-  border-radius: 6px;
-  background: color-mix(in srgb, var(--bg) 90%, transparent);
-}
-
-.lab-scope-head {
+.board-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
   margin-bottom: 8px;
 }
 
-.lab-scope-head span {
+.board-chip-label {
+  color: var(--fg-faint);
+  font: 7px/1 var(--mono);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.board-chip {
+  display: grid;
+  place-items: center;
+  min-height: 54px;
+  padding: 8px 10px;
+  border: 1px solid var(--mint-edge);
+  border-radius: 7px;
+  background: color-mix(in srgb, var(--bg) 82%, var(--mint) 18%);
+}
+
+.board-chip small {
+  color: var(--fg-faint);
+  font: 7px/1 var(--mono);
+  letter-spacing: 0.08em;
+}
+
+.board-chip strong {
+  margin: 4px 0;
   color: var(--mint);
+  font: 700 17px/1 var(--mono);
 }
 
-.scope-screen {
-  position: relative;
-  height: 64px;
-  overflow: hidden;
-  border: 1px solid var(--line-soft);
-  background: var(--bg);
+.board-chip span {
+  color: var(--fg-dim);
+  font: 7px/1 var(--mono);
 }
 
-.scope-grid {
+.esp32-board {
+  left: 42%;
+  top: 25px;
+  width: 164px;
+  padding: 11px;
+}
+
+.arduino-board {
+  left: 12%;
+  bottom: 24px;
+  width: 188px;
+  padding: 11px;
+  border-color: color-mix(in srgb, var(--pink) 40%, var(--line));
+  background: color-mix(in srgb, var(--bg) 86%, var(--pink) 14%);
+  box-shadow: 0 0 24px var(--pink-dim);
+}
+
+.arduino-board .board-chip {
+  border-color: color-mix(in srgb, var(--pink) 42%, var(--line));
+  background: color-mix(in srgb, var(--bg) 83%, var(--pink) 17%);
+}
+
+.arduino-board .board-chip strong {
+  color: var(--pink);
+  font-size: 15px;
+}
+
+.board-pins {
   position: absolute;
-  inset: 0;
-  background:
-    linear-gradient(var(--mint-dim) 1px, transparent 1px),
-    linear-gradient(90deg, var(--mint-dim) 1px, transparent 1px);
-  background-size: 16px 16px;
+  display: grid;
+  gap: 4px;
 }
 
-.scope-scan {
-  position: absolute;
-  z-index: 3;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  width: 1px;
-  background: var(--mint);
-  box-shadow: 0 0 10px var(--mint);
+.board-pins i {
+  width: 6px;
+  height: 6px;
+  border-radius: 2px;
+  background: color-mix(in srgb, var(--fg-faint) 82%, var(--fg) 18%);
+  box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--fg) 12%, transparent);
 }
 
-.scope-wave {
-  position: absolute;
-  inset: 8px 10px;
+.pins-left {
+  left: -10px;
+  top: 22px;
+}
+
+.pins-right {
+  right: -10px;
+  top: 22px;
+}
+
+.horizontal {
   display: flex;
-  align-items: center;
   gap: 5px;
 }
 
-.scope-bar {
-  flex: 1;
-  min-width: 2px;
-  max-width: 5px;
-  transform-origin: center;
-  border-radius: 99px;
-  background: var(--mint);
-  opacity: 0.68;
+.pins-top {
+  top: -10px;
+  left: 17px;
 }
 
-[data-theme="light"] .dev-console-window,
-[data-theme="light"] .lab-scope {
+.pins-bottom {
+  bottom: -10px;
+  left: 24px;
+}
+
+.board-port {
+  position: absolute;
+  z-index: 4;
+  padding: 4px 6px;
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  background: var(--surface);
+  color: var(--fg-faint);
+  font: 7px/1 var(--mono);
+  letter-spacing: 0.07em;
+}
+
+.usb-c {
+  right: -15px;
+  top: 42%;
+}
+
+.usb-mini {
+  left: -13px;
+  top: 37%;
+}
+
+.board-silk {
+  position: absolute;
+  color: color-mix(in srgb, var(--mint) 58%, var(--fg-faint));
+  font: 6px/1 var(--mono);
+  letter-spacing: 0.05em;
+}
+
+.silk-a { left: 12px; bottom: 8px; }
+.silk-b { left: 52px; bottom: 8px; }
+.silk-c { right: 10px; bottom: 8px; }
+.arduino-silk { right: 10px; bottom: 8px; color: color-mix(in srgb, var(--pink) 60%, var(--fg-faint)); }
+
+.sensor-node {
+  position: absolute;
+  z-index: 4;
+  right: 8%;
+  top: 101px;
+  width: 78px;
+}
+
+.sensor-body {
+  padding: 8px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--surface);
+  text-align: center;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.13);
+}
+
+.sensor-body small {
+  color: var(--fg-faint);
+  font: 7px/1 var(--mono);
+  text-transform: uppercase;
+}
+
+.sensor-body strong {
+  display: block;
+  margin: 4px 0;
+  color: var(--fg);
+  font: 600 12px/1 var(--mono);
+}
+
+.sensor-body span {
+  color: var(--fg-faint);
+  font: 6px/1 var(--mono);
+}
+
+.sensor-pins {
+  display: flex;
+  justify-content: center;
+  gap: 7px;
+  margin-top: 5px;
+}
+
+.sensor-pins i {
+  width: 4px;
+  height: 12px;
+  border-radius: 2px;
+  background: var(--fg-faint);
+}
+
+.mini-breadboard {
+  position: absolute;
+  z-index: 2;
+  right: 8%;
+  bottom: 16px;
+  width: 132px;
+  height: 59px;
+  padding: 8px 10px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: color-mix(in srgb, var(--surface) 94%, transparent);
+}
+
+.breadboard-rail {
+  position: absolute;
+  left: 9px;
+  right: 9px;
+  height: 1px;
+  opacity: 0.7;
+}
+
+.rail-positive { top: 6px; background: var(--pink); }
+.rail-negative { bottom: 6px; background: var(--mint); }
+
+.breadboard-grid {
+  display: grid;
+  grid-template-columns: repeat(10, 1fr);
+  gap: 5px 6px;
+  align-content: center;
+  height: 100%;
+}
+
+.breadboard-grid span {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--line);
+  box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--fg-faint) 28%, transparent);
+}
+
+.bench-label {
+  position: absolute;
+  z-index: 2;
+  color: var(--fg-faint);
+  font: 7px/1 var(--mono);
+  letter-spacing: 0.08em;
+}
+
+.label-gpio { left: 5%; top: 15%; }
+.label-i2c { right: 24%; top: 18%; }
+.label-5v { left: 44%; bottom: 7%; }
+
+[data-theme="light"] .lab-board {
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.05);
+}
+
+@media (max-width: 980px) {
+  .electronics-bench {
+    height: 258px;
+  }
+
+  .esp32-board {
+    left: 45%;
+    width: 150px;
+  }
+
+  .arduino-board {
+    left: 8%;
+    width: 168px;
+  }
+
+  .sensor-node {
+    right: 5%;
+  }
+
+  .mini-breadboard {
+    right: 5%;
+    width: 116px;
+  }
+}
+
+@media (max-width: 640px) {
+  .lab-board {
+    min-height: 360px;
+  }
+
+  .electronics-bench {
+    height: 314px;
+  }
+
+  .esp32-board {
+    left: auto;
+    right: 16px;
+    top: 22px;
+    width: 132px;
+  }
+
+  .arduino-board {
+    left: 15px;
+    bottom: 26px;
+    width: 146px;
+  }
+
+  .sensor-node {
+    right: 18px;
+    top: 134px;
+    width: 68px;
+  }
+
+  .mini-breadboard {
+    right: 14px;
+    bottom: 22px;
+    width: 105px;
+  }
+
+  .board-chip strong {
+    font-size: 14px;
+  }
+
+  .arduino-board .board-chip strong {
+    font-size: 12px;
+  }
+
+  .board-silk {
+    display: none;
+  }
+}
+
+[data-theme="light"] .dev-console-window {
   box-shadow: 0 12px 32px rgba(0, 0, 0, 0.08);
 }
 
@@ -1987,7 +2205,8 @@ footer .h {
   .dev-console-status-dot,
   .agent-packet,
   .lab-led,
-  .circuit-pulse {
+  .board-led,
+  .pcb-trace-pulse {
     box-shadow: none;
   }
 }
