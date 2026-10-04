@@ -19,7 +19,7 @@ export const experiences: Experience[] = [
     current: true,
     startDate: "2026-05-01",
     dateRange: { pt: "mai 2026 → presente", en: "may 2026 → present" },
-    title: { pt: "Desenvolvedor Full Stack Pleno", en: "Mid-level Full Stack Developer" },
+    title: { pt: "Desenvolvedor Full Stack Sênior", en: "Senior Full Stack Developer" },
     company: "Supertrans",
     location: "Manaus, BR",
     bullets: {
@@ -44,6 +44,7 @@ export const experiences: Experience[] = [
   },
   {
     logo: "/images/sidia_logo.webp",
+    startDate: "2024-11-01",
     dateRange: { pt: "nov 2024 → abr 2026", en: "nov 2024 → apr 2026" },
     duration: "1 yr 5 mo",
     title: { pt: "Desenvolvedor de Software I", en: "Software Developer I" },
@@ -67,6 +68,7 @@ export const experiences: Experience[] = [
   },
   {
     logo: "/images/sidia_logo.webp",
+    startDate: "2024-04-01",
     dateRange: { pt: "abr 2024 → nov 2024", en: "apr 2024 → nov 2024" },
     duration: "7 mo",
     title: { pt: "Estagiário", en: "Intern" },
@@ -90,6 +92,7 @@ export const experiences: Experience[] = [
   },
   {
     logo: "/images/visteon_logo.webp",
+    startDate: "2022-02-01",
     dateRange: { pt: "fev 2022 → dez 2023", en: "feb 2022 → dec 2023" },
     duration: "1 yr 11 mo",
     title: { pt: "Estagiário de TI", en: "IT Intern" },
