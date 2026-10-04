@@ -7,7 +7,8 @@ import { useAppStore } from "@/lib/store"
 import { Topbar } from "@/components/topbar"
 import { Footer } from "@/components/footer"
 import { RevealObserver } from "@/components/reveal"
-import { HeroOrbit } from "@/components/hero-orbit"
+import { HeroDevConsole } from "@/components/hero-dev-console"
+import { ElectronicsLabVisual } from "@/components/electronics-lab-visual"
 import { TECH, CAT_LABEL, CAT_ORDER } from "@/data/technologies"
 import { experiences } from "@/data/experiences"
 
@@ -27,9 +28,7 @@ function useClock() {
   return time
 }
 
-function useDuration(startDate: string) {
-  const { lang } = useAppStore()
-  const lk = lang === "pt-BR" ? "pt" : "en"
+function formatDuration(startDate: string, lk: "pt" | "en") {
   const start = new Date(startDate)
   const now = new Date()
   const months = (now.getFullYear() - start.getFullYear()) * 12 + (now.getMonth() - start.getMonth())
@@ -39,6 +38,12 @@ function useDuration(startDate: string) {
   if (yrs > 0) parts.push(yrs + (lk === "pt" ? (yrs > 1 ? " anos" : " ano") : (yrs > 1 ? " yrs" : " yr")))
   if (mos > 0) parts.push(mos + (lk === "pt" ? (mos > 1 ? " meses" : " mês") : " mo"))
   return parts.join(" ")
+}
+
+function useDuration(startDate: string) {
+  const { lang } = useAppStore()
+  const lk = lang === "pt-BR" ? "pt" : "en"
+  return formatDuration(startDate, lk)
 }
 
 export function HomeClient() {
@@ -80,6 +85,15 @@ export function HomeClient() {
     return c
   }, [])
 
+  const firstExperienceStart = useMemo(
+    () =>
+      experiences
+        .map((experience) => experience.startDate)
+        .filter((date): date is string => Boolean(date))
+        .sort((a, b) => new Date(a).getTime() - new Date(b).getTime())[0],
+    []
+  )
+  const totalExperience = firstExperienceStart ? formatDuration(firstExperienceStart, lk) : null
   const todayDate = new Date().toLocaleString(lk === "pt" ? "pt-BR" : "en-US", { month: "short", year: "numeric" })
 
   return (
@@ -89,7 +103,6 @@ export function HomeClient() {
       <main className="page-main" id="main-content">
         {/* HERO */}
         <section className="hero">
-          <HeroOrbit />
           <div className="hero-grid reveal">
             <div className="avatar">
               <img src="https://avatars.githubusercontent.com/u/96782284?v=4" alt="Mateus Arce" referrerPolicy="no-referrer" />
@@ -97,8 +110,8 @@ export function HomeClient() {
             <div className="hero-meta">
               <h1>Mateus <span className="accent">Arce</span></h1>
               <p className="hero-role">
-                <span lang="pt-BR">Desenvolvedor Full Stack <span className="pink">·</span> agentes de IA, automações e sistemas distribuídos</span>
-                <span lang="en-US">Full Stack Developer <span className="pink">·</span> AI agents, automation and distributed systems</span>
+                <span lang="pt-BR">Desenvolvedor de Software Full Stack <span className="pink">·</span> front-end, back-end, mobile e agentes de IA</span>
+                <span lang="en-US">Full Stack Software Developer <span className="pink">·</span> front-end, back-end, mobile and AI agents</span>
               </p>
               <div className="hero-info">
                 <span>
@@ -114,6 +127,14 @@ export function HomeClient() {
                   <span lang="pt-BR">na <b>Supertrans</b></span>
                   <span lang="en-US">at <b>Supertrans</b></span>
                 </span>
+                {totalExperience && (
+                  <span>
+                    <svg className="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6"><path d="M8 7V5a4 4 0 0 1 8 0v2" /><path d="M5 7h14v12H5z" /></svg>
+                    <b>{totalExperience}</b>
+                    <span lang="pt-BR">de experiência</span>
+                    <span lang="en-US">experience</span>
+                  </span>
+                )}
               </div>
               <div className="quick-links">
                 <a className="ql" href="https://github.com/mateusarcedev" target="_blank" rel="noopener">
@@ -138,10 +159,11 @@ export function HomeClient() {
                 </a>
               </div>
               <div className="bio">
-                <p lang="pt-BR">Atualmente desenvolvendo plataformas distribuídas na <b>Supertrans</b>, com foco em <em>arquitetura backend, agentes de IA e automações</em>. Antes, sistemas internos e P&amp;D na Sidia.</p>
-                <p lang="en-US">Currently building distributed platforms at <b>Supertrans</b>, focused on <em>backend architecture, AI agents and automation</em>. Previously, internal systems and R&amp;D at Sidia.</p>
+                <p lang="pt-BR">Atualmente desenvolvendo software na <b>Supertrans</b>, transitando entre <em>front-end, back-end, mobile, automações e workflows com agentes de IA</em>. Antes, sistemas internos e P&amp;D na Sidia.</p>
+                <p lang="en-US">Currently building software at <b>Supertrans</b> across <em>front-end, back-end, mobile, automation and AI-agent workflows</em>. Previously, internal systems and R&amp;D at Sidia.</p>
               </div>
             </div>
+            <HeroDevConsole />
           </div>
         </section>
 
@@ -246,39 +268,112 @@ export function HomeClient() {
             <div className="now-cell">
               <div className="now-label"><span className="marker" /><span lang="pt-BR">Construindo</span><span lang="en-US">Building</span></div>
               <div className="now-val">
-                <span lang="pt-BR">backends em <span className="h">Go</span> e <span className="h">NestJS</span> na Supertrans</span>
-                <span lang="en-US"><span className="h">Go</span> and <span className="h">NestJS</span> backends at Supertrans</span>
+                <span lang="pt-BR">produtos e sistemas em <span className="h">front-end</span>, <span className="h">back-end</span> e <span className="h">mobile</span></span>
+                <span lang="en-US">products and systems across <span className="h">front-end</span>, <span className="h">back-end</span> and <span className="h">mobile</span></span>
               </div>
             </div>
             <div className="now-cell">
-              <div className="now-label"><span className="marker" /><span lang="pt-BR">Brincando com</span><span lang="en-US">Playing with</span></div>
+              <div className="now-label"><span className="marker" /><span lang="pt-BR">Com IA</span><span lang="en-US">With AI</span></div>
               <div className="now-val">
-                <span lang="pt-BR">agentes de IA via <span className="h">LangGraph</span> e automações em Python</span>
-                <span lang="en-US">AI agents with <span className="h">LangGraph</span> and Python automation</span>
+                <span lang="pt-BR">workflows com <span className="h">agentes de IA</span>, skills de código e automações</span>
+                <span lang="en-US"><span className="h">AI-agent</span> workflows, coding skills and automation</span>
               </div>
             </div>
             <div className="now-cell">
-              <div className="now-label"><span className="marker" /><span lang="pt-BR">Aprendendo</span><span lang="en-US">Learning</span></div>
+              <div className="now-label"><span className="marker" /><span lang="pt-BR">Evoluindo</span><span lang="en-US">Improving</span></div>
               <div className="now-val">
-                <span lang="pt-BR">arquitetura distribuída — filas, cache, observabilidade</span>
-                <span lang="en-US">distributed architecture — queues, cache, observability</span>
+                <span lang="pt-BR">arquitetura distribuída — filas, cache, observabilidade e integração</span>
+                <span lang="en-US">distributed architecture — queues, cache, observability and integration</span>
               </div>
             </div>
             <div className="now-cell">
-              <div className="now-label"><span className="marker" /><span lang="pt-BR">Bebendo</span><span lang="en-US">Drinking</span></div>
+              <div className="now-label"><span className="marker" /><span lang="pt-BR">Combustível</span><span lang="en-US">Fuel</span></div>
               <div className="now-val">
                 <span className="p">☕</span>
-                <span lang="pt-BR">café preto, sempre</span>
-                <span lang="en-US">black coffee, always</span>
+                <span lang="pt-BR">café preto e curiosidade técnica</span>
+                <span lang="en-US">black coffee and technical curiosity</span>
               </div>
             </div>
+          </div>
+        </section>
+
+        {/* WORKFLOW */}
+        <section id="workflow" className="reveal">
+          <div className="sec-head">
+            <span className="sec-num">04</span>
+            <h2 className="sec-title"><span lang="pt-BR">Workflow</span><span lang="en-US">Workflow</span></h2>
+            <span className="sec-rule" />
+            <span className="sec-count"><span lang="pt-BR">humano + agentes</span><span lang="en-US">human + agents</span></span>
+          </div>
+
+          <div className="workflow-intro">
+            <p lang="pt-BR">Uso agentes como uma camada de execução e revisão do meu trabalho: eu defino contexto, restrições e direção técnica; os agentes ajudam a decompor, implementar, testar e revisar com ciclos curtos.</p>
+            <p lang="en-US">I use agents as an execution and review layer: I define context, constraints and technical direction; agents help break down, implement, test and review work in short cycles.</p>
+          </div>
+
+          <div className="workflow-board">
+            <article className="workflow-stage">
+              <span className="workflow-stage-num">01</span>
+              <div>
+                <strong><span lang="pt-BR">Contexto & direção</span><span lang="en-US">Context & direction</span></strong>
+                <p lang="pt-BR">Requisitos, arquitetura, regras e definição do que significa “pronto”.</p>
+                <p lang="en-US">Requirements, architecture, rules and a clear definition of done.</p>
+              </div>
+              <span className="workflow-stage-status">human</span>
+            </article>
+            <div className="workflow-connector"><span /></div>
+            <article className="workflow-stage">
+              <span className="workflow-stage-num">02</span>
+              <div>
+                <strong><span lang="pt-BR">Agentes em paralelo</span><span lang="en-US">Agents in parallel</span></strong>
+                <p lang="pt-BR">Planejamento, código, busca no repositório, testes e revisão de diff.</p>
+                <p lang="en-US">Planning, coding, repository search, tests and diff review.</p>
+              </div>
+              <span className="workflow-stage-status active">agents</span>
+            </article>
+            <div className="workflow-connector"><span /></div>
+            <article className="workflow-stage">
+              <span className="workflow-stage-num">03</span>
+              <div>
+                <strong><span lang="pt-BR">Validação & entrega</span><span lang="en-US">Validate & ship</span></strong>
+                <p lang="pt-BR">Eu reviso decisões, valido o comportamento e fecho o ciclo com deploy e feedback.</p>
+                <p lang="en-US">I review decisions, validate behavior and close the loop with deployment and feedback.</p>
+              </div>
+              <span className="workflow-stage-status">ship</span>
+            </article>
+          </div>
+
+          <div className="workflow-toolbelt">
+            <span className="workflow-toolbelt-label"><span lang="pt-BR">modo de trabalho</span><span lang="en-US">working mode</span></span>
+            <span>frontend</span><span>backend</span><span>mobile</span><span>automation</span><span>agentic coding</span><span>review loops</span>
+          </div>
+        </section>
+
+        {/* LEARNING LAB */}
+        <section id="learning" className="reveal">
+          <div className="sec-head">
+            <span className="sec-num">05</span>
+            <h2 className="sec-title"><span lang="pt-BR">Aprendendo</span><span lang="en-US">Learning</span></h2>
+            <span className="sec-rule" />
+            <span className="sec-count"><span lang="pt-BR">hobby / curiosidade</span><span lang="en-US">hobby / curiosity</span></span>
+          </div>
+
+          <div className="learning-grid">
+            <div className="learning-copy">
+              <span className="learning-eyebrow"><span lang="pt-BR">fora do trabalho</span><span lang="en-US">outside work</span></span>
+              <h3><span lang="pt-BR">Eletrônica básica, Arduino e ESP32.</span><span lang="en-US">Basic electronics, Arduino and ESP32.</span></h3>
+              <p lang="pt-BR">Não é meu foco profissional — é um laboratório pessoal para entender melhor sensores, sinais, GPIO, microcontroladores e o caminho entre software e hardware.</p>
+              <p lang="en-US">It is not my professional focus — it is a personal lab for understanding sensors, signals, GPIO, microcontrollers and the bridge between software and hardware.</p>
+              <div className="learning-tags"><span>Arduino</span><span>ESP32</span><span>GPIO</span><span>sensores</span><span>eletrônica básica</span></div>
+            </div>
+            <ElectronicsLabVisual />
           </div>
         </section>
 
         {/* PROJECTS LINK */}
         <section id="projects-link" className="reveal">
           <div className="sec-head">
-            <span className="sec-num">04</span>
+            <span className="sec-num">06</span>
             <h2 className="sec-title"><span lang="pt-BR">Projetos</span><span lang="en-US">Projects</span></h2>
             <span className="sec-rule" />
           </div>
@@ -296,7 +391,7 @@ export function HomeClient() {
         {/* CONTACT */}
         <section id="contact" className="reveal">
           <div className="sec-head">
-            <span className="sec-num">05</span>
+            <span className="sec-num">07</span>
             <h2 className="sec-title"><span lang="pt-BR">Contato</span><span lang="en-US">Contact</span></h2>
             <span className="sec-rule" />
             <span className="sec-count"><span lang="pt-BR">resposta em ~24h</span><span lang="en-US">~24h response</span></span>
