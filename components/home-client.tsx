@@ -62,7 +62,9 @@ export function HomeClient() {
       ease: "out(3)",
     })
 
-    return () => animation.revert()
+    return () => {
+      animation.revert()
+    }
   }, [curCat])
 
   const grouped = useMemo(() => {
