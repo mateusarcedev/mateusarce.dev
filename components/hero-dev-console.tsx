@@ -10,8 +10,15 @@ const agentSteps = [
   { id: "test", label: "tester", meta: "validate" },
 ]
 
-export function HeroDevConsole() {
+type HeroDevConsoleProps = {
+  lang: "pt-BR" | "en-US"
+  clock: string
+  totalExperience: string | null
+}
+
+export function HeroDevConsole({ lang, clock, totalExperience }: HeroDevConsoleProps) {
   const rootRef = useRef<HTMLDivElement>(null)
+  const isPt = lang === "pt-BR"
 
   useEffect(() => {
     const root = rootRef.current
@@ -82,31 +89,67 @@ export function HeroDevConsole() {
   }, [])
 
   return (
-    <div ref={rootRef} className="hero-dev-console" aria-hidden="true">
+    <aside ref={rootRef} className="hero-dev-console" aria-label={isPt ? "Resumo profissional e workflow de agentes" : "Professional summary and agent workflow"}>
       <div className="dev-console-window">
         <div className="dev-console-top">
-          <div className="dev-console-lights"><span /><span /><span /></div>
+          <div className="dev-console-lights" aria-hidden="true"><span /><span /><span /></div>
           <span className="dev-console-path">~/agent-workflow</span>
           <span className="dev-console-live">
-            <i className="dev-console-status-dot" />
+            <i className="dev-console-status-dot" aria-hidden="true" />
             online
           </span>
         </div>
 
         <div className="dev-console-body">
+          <div className="dev-console-profile">
+            <div className="dev-console-role">
+              <span lang="pt-BR">Desenvolvedor de Software Full Stack <i>·</i> front-end, back-end, mobile e agentes de IA</span>
+              <span lang="en-US">Full Stack Software Developer <i>·</i> front-end, back-end, mobile and AI agents</span>
+            </div>
+
+            <div className="dev-console-meta">
+              <span className="dev-console-meta-item">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" aria-hidden="true"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0z" /><circle cx="12" cy="10" r="3" /></svg>
+                <b>Manaus, BR</b>
+              </span>
+
+              <span className="dev-console-meta-item">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" aria-hidden="true"><circle cx="12" cy="12" r="9" /><path d="M12 7v5l3 2" /></svg>
+                <b>UTC−4</b><span className="dev-console-meta-sep">·</span>{clock}
+              </span>
+
+              <span className="dev-console-meta-item">
+                <span className="dev-console-company-dot" aria-hidden="true" />
+                <span lang="pt-BR">na <b>Supertrans</b></span>
+                <span lang="en-US">at <b>Supertrans</b></span>
+              </span>
+
+              {totalExperience && (
+                <span className="dev-console-meta-item">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" aria-hidden="true"><path d="M8 7V5a4 4 0 0 1 8 0v2" /><path d="M5 7h14v12H5z" /></svg>
+                  <b>{totalExperience}</b>
+                  <span lang="pt-BR">de experiência</span>
+                  <span lang="en-US">experience</span>
+                </span>
+              )}
+            </div>
+          </div>
+
+          <div className="dev-console-divider" />
+
           <div className="dev-console-command">
             <span className="dev-console-prompt">mateus@dev:~$</span>
             <span> run workflow --task=&quot;ship feature&quot;</span>
           </div>
 
-          <div className="dev-console-stack">
+          <div className="dev-console-stack" aria-label="Current focus">
             <span>web</span>
             <span>api</span>
             <span>mobile</span>
             <span>agents</span>
           </div>
 
-          <div className="agent-flow">
+          <div className="agent-flow" aria-label="Agent workflow">
             <div className="agent-origin">
               <span className="agent-origin-icon">&gt;_</span>
               <span>task</span>
@@ -138,6 +181,6 @@ export function HeroDevConsole() {
           </div>
         </div>
       </div>
-    </div>
+    </aside>
   )
 }
