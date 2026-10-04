@@ -4,10 +4,34 @@ import { useEffect, useRef } from "react"
 import { animate, stagger } from "animejs"
 
 const agentSteps = [
-  { id: "plan", label: "planner", meta: "scope + tasks" },
-  { id: "code", label: "coder", meta: "implement" },
-  { id: "review", label: "reviewer", meta: "inspect diff" },
-  { id: "test", label: "tester", meta: "validate" },
+  { id: "plan", label: "planejar", en: "plan" },
+  { id: "code", label: "implementar", en: "build" },
+  { id: "review", label: "revisar", en: "review" },
+  { id: "test", label: "validar", en: "validate" },
+]
+
+const skillGroups = [
+  {
+    key: "frontend",
+    title: "Front-end",
+    items: ["React", "Next.js", "TypeScript"],
+  },
+  {
+    key: "backend",
+    title: "Back-end",
+    items: ["Go", "NestJS", "Python", "PostgreSQL"],
+  },
+  {
+    key: "mobile",
+    title: "Mobile",
+    items: ["React Native"],
+  },
+  {
+    key: "ai",
+    title: "IA & automação",
+    enTitle: "AI & automation",
+    items: ["LangGraph", "AI agents", "workflows"],
+  },
 ]
 
 type HeroDevConsoleProps = {
@@ -24,17 +48,16 @@ export function HeroDevConsole({ lang, clock, totalExperience }: HeroDevConsoleP
     const root = rootRef.current
     if (!root || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return
 
-    const logs = root.querySelectorAll(".dev-log")
     const nodes = root.querySelectorAll(".agent-node")
     const packets = root.querySelectorAll(".agent-packet")
-    const cursor = root.querySelector(".dev-console-cursor")
+    const skillCards = root.querySelectorAll(".dev-skill-card")
     const status = root.querySelector(".dev-console-status-dot")
 
     const animations = [
-      animate(logs, {
+      animate(skillCards, {
         opacity: { from: 0 },
-        x: { from: 8 },
-        delay: stagger(90),
+        y: { from: 8 },
+        delay: stagger(70),
         duration: 420,
         ease: "out(3)",
       }),
@@ -47,26 +70,14 @@ export function HeroDevConsole({ lang, clock, totalExperience }: HeroDevConsoleP
         ease: "inOut(2)",
       }),
       animate(packets, {
-        x: [0, 30],
+        x: [0, 44],
         opacity: [0, 1, 0],
-        delay: stagger(260),
-        duration: 1400,
+        delay: stagger(240),
+        duration: 1500,
         loop: true,
         ease: "inOut(2)",
       }),
     ]
-
-    if (cursor) {
-      animations.push(
-        animate(cursor, {
-          opacity: [1, 0],
-          duration: 620,
-          loop: true,
-          alternate: true,
-          ease: "steps(1)",
-        })
-      )
-    }
 
     if (status) {
       animations.push(
@@ -89,14 +100,18 @@ export function HeroDevConsole({ lang, clock, totalExperience }: HeroDevConsoleP
   }, [])
 
   return (
-    <aside ref={rootRef} className="hero-dev-console" aria-label={isPt ? "Resumo profissional e workflow de agentes" : "Professional summary and agent workflow"}>
+    <aside
+      ref={rootRef}
+      className="hero-dev-console"
+      aria-label={isPt ? "Resumo profissional e workflow com agentes" : "Professional summary and agent workflow"}
+    >
       <div className="dev-console-window">
         <div className="dev-console-top">
           <div className="dev-console-lights" aria-hidden="true"><span /><span /><span /></div>
-          <span className="dev-console-path">~/agent-workflow</span>
+          <span className="dev-console-path">~/mateus/profile</span>
           <span className="dev-console-live">
             <i className="dev-console-status-dot" aria-hidden="true" />
-            online
+            available
           </span>
         </div>
 
@@ -120,12 +135,12 @@ export function HeroDevConsole({ lang, clock, totalExperience }: HeroDevConsoleP
 
               <span className="dev-console-meta-item">
                 <span className="dev-console-company-dot" aria-hidden="true" />
-                <span lang="pt-BR">na <b>Supertrans</b></span>
-                <span lang="en-US">at <b>Supertrans</b></span>
+                <span lang="pt-BR">Desenvolvedor Full Stack Sênior na <b>Supertrans</b></span>
+                <span lang="en-US">Senior Full Stack Developer at <b>Supertrans</b></span>
               </span>
 
               {totalExperience && (
-                <span className="dev-console-meta-item dev-console-meta-xp">
+                <span className="dev-console-meta-item">
                   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" aria-hidden="true"><path d="M8 7V5a4 4 0 0 1 8 0v2" /><path d="M5 7h14v12H5z" /></svg>
                   <b>{totalExperience}</b>
                   <span lang="pt-BR">de experiência</span>
@@ -137,22 +152,33 @@ export function HeroDevConsole({ lang, clock, totalExperience }: HeroDevConsoleP
 
           <div className="dev-console-divider" />
 
-          <div className="dev-console-command">
-            <span className="dev-console-prompt">mateus@dev:~$</span>
-            <span> run workflow --task=&quot;ship feature&quot;</span>
+          <div className="dev-console-section-head">
+            <span>01</span>
+            <strong><span lang="pt-BR">Habilidades principais</span><span lang="en-US">Core skills</span></strong>
           </div>
 
-          <div className="dev-console-stack" aria-label="Current focus">
-            <span>web</span>
-            <span>api</span>
-            <span>mobile</span>
-            <span>agents</span>
+          <div className="dev-skills-grid">
+            {skillGroups.map((group) => (
+              <div className="dev-skill-card" key={group.key}>
+                <strong>{isPt ? group.title : group.enTitle || group.title}</strong>
+                <div className="dev-skill-tags">
+                  {group.items.map((item) => <span key={item}>{item}</span>)}
+                </div>
+              </div>
+            ))}
           </div>
 
-          <div className="agent-flow" aria-label="Agent workflow">
+          <div className="dev-console-divider" />
+
+          <div className="dev-console-section-head">
+            <span>02</span>
+            <strong><span lang="pt-BR">Como uso agentes de IA</span><span lang="en-US">How I use AI agents</span></strong>
+          </div>
+
+          <div className="agent-flow" aria-label={isPt ? "Workflow com agentes" : "Agent workflow"}>
             <div className="agent-origin">
               <span className="agent-origin-icon">&gt;_</span>
-              <span>task</span>
+              <span>{isPt ? "contexto" : "context"}</span>
             </div>
 
             <div className="agent-flow-line"><span className="agent-packet" /></div>
@@ -162,9 +188,8 @@ export function HeroDevConsole({ lang, clock, totalExperience }: HeroDevConsoleP
                 <div className="agent-node">
                   <div className="agent-node-top">
                     <span className="agent-node-dot" />
-                    <strong>{step.label}</strong>
+                    <strong>{isPt ? step.label : step.en}</strong>
                   </div>
-                  <small>{step.meta}</small>
                 </div>
                 {index < agentSteps.length - 1 && (
                   <div className="agent-flow-line"><span className="agent-packet" /></div>
@@ -173,12 +198,10 @@ export function HeroDevConsole({ lang, clock, totalExperience }: HeroDevConsoleP
             ))}
           </div>
 
-          <div className="dev-console-logs">
-            <div className="dev-log"><span>✓</span> context loaded <b>skills/code</b></div>
-            <div className="dev-log"><span>✓</span> implementation ready <b>frontend + api</b></div>
-            <div className="dev-log"><span>✓</span> review passed <b>0 blockers</b></div>
-            <div className="dev-log"><span>→</span> shipping <b>production</b><i className="dev-console-cursor">█</i></div>
-          </div>
+          <p className="dev-console-agent-note">
+            <span lang="pt-BR">Eu defino contexto, arquitetura e critérios; os agentes aceleram implementação, revisão e validação.</span>
+            <span lang="en-US">I define context, architecture and criteria; agents accelerate implementation, review and validation.</span>
+          </p>
         </div>
       </div>
     </aside>
