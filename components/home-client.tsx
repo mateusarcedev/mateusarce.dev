@@ -109,33 +109,6 @@ export function HomeClient() {
             </div>
             <div className="hero-meta">
               <h1>Mateus <span className="accent">Arce</span></h1>
-              <p className="hero-role">
-                <span lang="pt-BR">Desenvolvedor de Software Full Stack <span className="pink">·</span> front-end, back-end, mobile e agentes de IA</span>
-                <span lang="en-US">Full Stack Software Developer <span className="pink">·</span> front-end, back-end, mobile and AI agents</span>
-              </p>
-              <div className="hero-info">
-                <span>
-                  <svg className="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0z" /><circle cx="12" cy="10" r="3" /></svg>
-                  <b>Manaus, BR</b>
-                </span>
-                <span>
-                  <svg className="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6"><circle cx="12" cy="12" r="9" /><path d="M12 7v5l3 2" /></svg>
-                  <b>UTC−4</b> · {clock}
-                </span>
-                <span>
-                  <span className="dot" aria-hidden="true" />
-                  <span lang="pt-BR">na <b>Supertrans</b></span>
-                  <span lang="en-US">at <b>Supertrans</b></span>
-                </span>
-                {totalExperience && (
-                  <span>
-                    <svg className="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6"><path d="M8 7V5a4 4 0 0 1 8 0v2" /><path d="M5 7h14v12H5z" /></svg>
-                    <b>{totalExperience}</b>
-                    <span lang="pt-BR">de experiência</span>
-                    <span lang="en-US">experience</span>
-                  </span>
-                )}
-              </div>
               <div className="quick-links">
                 <a className="ql" href="https://github.com/mateusarcedev" target="_blank" rel="noopener">
                   <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .3a12 12 0 0 0-3.8 23.4c.6.1.8-.3.8-.6v-2.2c-3.3.7-4-1.4-4-1.4-.6-1.4-1.4-1.8-1.4-1.8-1.1-.7.1-.7.1-.7 1.2.1 1.9 1.3 1.9 1.3 1.1 1.9 2.9 1.4 3.6 1 .1-.8.4-1.4.8-1.7-2.7-.3-5.5-1.3-5.5-6 0-1.3.5-2.4 1.3-3.2-.1-.4-.6-1.6.1-3.3 0 0 1-.3 3.3 1.2a11.5 11.5 0 0 1 6 0c2.3-1.5 3.3-1.2 3.3-1.2.7 1.7.2 2.9.1 3.3.8.8 1.3 1.9 1.3 3.2 0 4.7-2.8 5.7-5.5 6 .4.4.8 1.1.8 2.3v3.3c0 .3.2.7.8.6A12 12 0 0 0 12 .3" /></svg>
@@ -163,7 +136,11 @@ export function HomeClient() {
                 <p lang="en-US">Currently building software at <b>Supertrans</b> across <em>front-end, back-end, mobile, automation and AI-agent workflows</em>. Previously, internal systems and R&amp;D at Sidia.</p>
               </div>
             </div>
-            <HeroDevConsole />
+            <HeroDevConsole
+              lang={lang}
+              clock={clock}
+              totalExperience={totalExperience}
+            />
           </div>
         </section>
 
