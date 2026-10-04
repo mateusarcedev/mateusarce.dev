@@ -1,11 +1,13 @@
 "use client"
 
 import { useState, useEffect, useMemo } from "react"
+import { animate, stagger } from "animejs"
 import Link from "next/link"
 import { useAppStore } from "@/lib/store"
 import { Topbar } from "@/components/topbar"
 import { Footer } from "@/components/footer"
 import { RevealObserver } from "@/components/reveal"
+import { HeroOrbit } from "@/components/hero-orbit"
 import { TECH, CAT_LABEL, CAT_ORDER } from "@/data/technologies"
 import { experiences } from "@/data/experiences"
 
@@ -46,6 +48,23 @@ export function HomeClient() {
   const [curCat, setCurCat] = useState("all")
   const [showAllExp, setShowAllExp] = useState(false)
 
+  useEffect(() => {
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return
+
+    const chips = document.querySelectorAll(".stack-cat:not([hidden]) .chip")
+    if (!chips.length) return
+
+    const animation = animate(chips, {
+      opacity: { from: 0 },
+      y: { from: 6 },
+      duration: 420,
+      delay: stagger(18),
+      ease: "out(3)",
+    })
+
+    return () => animation.revert()
+  }, [curCat])
+
   const grouped = useMemo(() => {
     const g: Record<string, typeof TECH> = {}
     TECH.forEach((t) => { (g[t.cat] = g[t.cat] || []).push(t) })
@@ -68,6 +87,7 @@ export function HomeClient() {
       <main className="page-main" id="main-content">
         {/* HERO */}
         <section className="hero">
+          <HeroOrbit />
           <div className="hero-grid reveal">
             <div className="avatar">
               <img src="/images/avatar.webp" alt="Mateus Arce" />
