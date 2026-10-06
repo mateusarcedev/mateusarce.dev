@@ -80,7 +80,7 @@ export default function ResumePage() {
               <span className="loc">Manaus, BR</span>
             </div>
             <div className="cv-job-body">
-              <h3><span lang="pt-BR">Desenvolvedor Full Stack Pleno</span><span lang="en-US">Mid-level Full Stack Developer</span> — <span className="co">Supertrans</span></h3>
+              <h3><span lang="pt-BR">Desenvolvedor Full Stack Sênior</span><span lang="en-US">Senior Full Stack Developer</span> — <span className="co">Supertrans</span></h3>
               <div className="cv-job-sub"><span lang="pt-BR">Backend, IA e infraestrutura</span><span lang="en-US">Backend, AI and infrastructure</span></div>
               <ul lang="pt-BR">
                 <li>Backends em <b>Go</b>, <b>Node.js</b> (NestJS) e <b>Python</b> — APIs, workers e integrações</li>
