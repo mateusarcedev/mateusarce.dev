@@ -6,7 +6,8 @@
     "build": "next build",
     "dev": "next dev --turbopack",
     "lint": "eslint .",
-    "start": "next start"
+    "start": "serve out --listen 3000 --no-clipboard",
+    "test:e2e": "playwright test"
   },
   "dependencies": {
     "@radix-ui/react-select": "2.2.6",
@@ -42,6 +43,8 @@
     "eslint-config-next": "16.3.8",
     "postcss": "^8.5",
     "tailwindcss": "^4.2.2",
-    "typescript": "^5"
+    "typescript": "^5",
+    "@playwright/test": "1.63.0",
+    "serve": "14.2.6"
   }
 }
