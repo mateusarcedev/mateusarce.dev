@@ -1,6 +1,8 @@
 import type { MetadataRoute } from "next"
 import { getPublicRepos } from "@/lib/github"
 
+export const dynamic = "force-static"
+
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const repos = await getPublicRepos().catch(() => [])
   const projectEntries: MetadataRoute.Sitemap = repos.map((repo) => ({
