@@ -358,8 +358,8 @@ export function HomeClient() {
             <div className="proj-link-text">
               <strong lang="pt-BR">Ver todos os projetos →</strong>
               <strong lang="en-US">See all projects →</strong>
-              <span lang="pt-BR">repositórios públicos do GitHub, com READMEs renderizados e demos ao vivo</span>
-              <span lang="en-US">public GitHub repositories, rendered READMEs and live demos</span>
+              <span lang="pt-BR">repositórios públicos do GitHub, com READMEs renderizados e links externos quando disponíveis</span>
+              <span lang="en-US">public GitHub repositories, rendered READMEs and external links when available</span>
             </div>
             <svg className="arrow" viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" strokeWidth="1.6"><path d="M5 12h14M13 5l7 7-7 7" /></svg>
           </Link>

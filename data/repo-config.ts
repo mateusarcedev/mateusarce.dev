@@ -4,7 +4,7 @@
  */
 
 /** Repos that will be featured with special visual treatment */
-export const FEATURED_REPOS = ["devlist"]
+export const FEATURED_REPOS = ["sql-vault", "devlist", "tcc", "prompt-manager"]
 
 /** Repos built during Rocketseat courses */
 export const COURSE_REPOS = ["clean-DDD", "api-forum", "interviews_questions"]
@@ -18,3 +18,12 @@ export const COURSE_REPOS = ["clean-DDD", "api-forum", "interviews_questions"]
  * "sql-vault": "https://sql-vault.mateusarce.dev",
  */
 export const HOMEPAGE_OVERRIDES: Record<string, string> = {}
+
+export const EXTERNAL_REPO_LINKS: Record<string, { label: string; url: string }[]> = {
+  "sql-vault": [
+    {
+      label: "VS Code",
+      url: "https://marketplace.visualstudio.com/items?itemName=mateusarcedev.sqlvault",
+    },
+  ],
+}
