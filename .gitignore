@@ -31,3 +31,7 @@ yarn-error.log*
 next-env.d.ts
 
 claude.md
+
+# Playwright
+/playwright-report/
+/test-results/
