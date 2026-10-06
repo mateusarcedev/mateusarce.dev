@@ -4,7 +4,12 @@ import { getPublicRepos } from "@/lib/github"
 // generateStaticParams runs only at build time on Vercel (not in dev).
 // Returns empty in dev; project pages are rendered on-demand.
 export async function generateStaticParams() {
-  const repos = await getPublicRepos().catch(() => [])
+  const repos = await getPublicRepos()
+
+  if (repos.length === 0) {
+    throw new Error("GitHub API returned no public repositories for static project generation.")
+  }
+
   return repos.map((r) => ({ slug: r.name }))
 }
 
