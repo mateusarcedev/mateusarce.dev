@@ -15,8 +15,10 @@ type Props = { repoName: string }
 export function ProjectReadme({ repoName }: Props) {
   const { lang } = useAppStore()
   const [repo, setRepo] = useState<GithubRepo | null>(null)
-  const [readme, setReadme] = useState<string | null>(null)
-  const [loading, setLoading] = useState(true)
+  const [readmeState, setReadmeState] = useState<{ key: string; content: string | null } | null>(null)
+  const requestKey = `${repoName}:${lang}`
+  const loading = readmeState?.key !== requestKey
+  const readme = loading ? null : readmeState.content
 
   useEffect(() => {
     fetch(`https://api.github.com/repos/${GITHUB_USER}/${repoName}`, {
@@ -27,7 +29,7 @@ export function ProjectReadme({ repoName }: Props) {
   }, [repoName])
 
   useEffect(() => {
-    setLoading(true)
+    let cancelled = false
     const decode = (c: string) => {
       const b = Uint8Array.from(atob(c.replace(/\n/g, "")), (ch) => ch.charCodeAt(0))
       return new TextDecoder("utf-8").decode(b)
@@ -41,8 +43,14 @@ export function ProjectReadme({ repoName }: Props) {
       if (res.ok) { const d = await res.json(); if (d?.content) return decode(d.content) }
       return null
     }
-    fetchReadme().then(setReadme).finally(() => setLoading(false))
-  }, [repoName, lang])
+    fetchReadme().then((content) => {
+      if (!cancelled) setReadmeState({ key: requestKey, content })
+    })
+
+    return () => {
+      cancelled = true
+    }
+  }, [repoName, lang, requestKey])
 
   function resolveImg(src: string | undefined): string {
     if (!src || src.startsWith("http") || src.startsWith("//")) return src ?? ""
