@@ -7,3 +7,5 @@ const nextConfig: NextConfig = {
   },
   output: 'export',
 } satisfies NextConfig
+
+export default nextConfig
