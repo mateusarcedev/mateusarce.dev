@@ -27,6 +27,8 @@ pnpm exec playwright install chromium
 pnpm test:e2e
 ```
 
+The E2E suite includes smoke coverage and automated axe checks for serious or critical accessibility violations.
+
 Keep changes focused, avoid unrelated formatting churn and update documentation when behavior or project metadata changes.
 
 ## Pull requests

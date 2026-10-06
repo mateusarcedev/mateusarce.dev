@@ -13,6 +13,7 @@ Personal portfolio for **Mateus Arce**, Software Engineer · Full Stack, focused
 - Featured projects with external links when available
 - Dark/light theme
 - Responsive layout and reduced-motion support
+- Automated browser smoke tests and axe accessibility checks
 - SEO metadata, Open Graph, sitemap and robots configuration
 - Vercel Analytics and Speed Insights behind the site's consent flow
 

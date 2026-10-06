@@ -11,7 +11,7 @@
   --line-soft: #1c1c1c;
   --fg: #f4f4f4;
   --fg-dim: #a8a8a8;
-  --fg-faint: #666;
+  --fg-faint: #909090;
   --mint: #15F5BA;
   --mint-dim: rgba(21, 245, 186, 0.10);
   --mint-edge: rgba(21, 245, 186, 0.28);
@@ -35,12 +35,12 @@
   --line-soft: #e3dfd4;
   --fg: #1a1a17;
   --fg-dim: #5a5a52;
-  --fg-faint: #9a958a;
-  --mint: #0a8a4a;
-  --mint-dim: rgba(10, 138, 74, 0.10);
-  --mint-edge: rgba(10, 138, 74, 0.28);
-  --pink: #b73c7c;
-  --pink-dim: rgba(183, 60, 124, 0.10);
+  --fg-faint: #5a5852;
+  --mint: #076b39;
+  --mint-dim: rgba(7, 107, 57, 0.10);
+  --mint-edge: rgba(7, 107, 57, 0.28);
+  --pink: #a02f69;
+  --pink-dim: rgba(160, 47, 105, 0.10);
 }
 
 *,
@@ -776,10 +776,12 @@ section:last-of-type {
 
 .pill .c {
   font-size: 10px;
-  opacity: 0.6;
+  color: var(--fg-dim);
+  opacity: 1;
 }
 
 .pill[aria-pressed="true"] .c {
+  color: var(--bg);
   opacity: 1;
 }
 
@@ -1775,7 +1777,7 @@ footer .h {
 }
 
 .board-chip small {
-  color: var(--fg-faint);
+  color: var(--fg-dim);
   font: 7px/1 var(--mono);
   letter-spacing: 0.08em;
 }

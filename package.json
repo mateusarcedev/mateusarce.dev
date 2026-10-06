@@ -45,6 +45,7 @@
     "tailwindcss": "^4.2.2",
     "typescript": "^5",
     "@playwright/test": "1.63.0",
-    "serve": "14.2.6"
+    "serve": "14.2.6",
+    "@axe-core/playwright": "4.13.0"
   }
 }
