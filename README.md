@@ -95,6 +95,12 @@ The portfolio domain and canonical URLs use **mateusarce.dev** throughout the ap
 - GitHub: https://github.com/mateusarcedev
 - LinkedIn: https://linkedin.com/in/mateus-arce
 
+## Contributing and security
+
+Contributions are welcome. See [CONTRIBUTING.md](CONTRIBUTING.md) for the local workflow and pull request expectations.
+
+Please report suspected vulnerabilities privately as described in [SECURITY.md](SECURITY.md).
+
 ## License
 
-MIT © Mateus Silva Andrade Arce
+MIT © Mateus Silva Andrade Arce. See [LICENSE](LICENSE).
