@@ -1,9 +1,9 @@
 name: Toolchain sync
 
 on:
-  push:
+  pull_request:
     branches:
-      - chore/modernize-toolchain
+      - main
 
 permissions:
   contents: write
