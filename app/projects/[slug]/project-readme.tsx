@@ -117,7 +117,7 @@ export function ProjectReadme({ repoName }: Props) {
                     components={{
                       img: ({ src, alt }) => (
                         // eslint-disable-next-line @next/next/no-img-element
-                        <img src={resolveImg(src)} alt={alt ?? ""} className="max-w-full rounded" />
+                        <img src={typeof src === "string" ? resolveImg(src) : undefined} alt={alt ?? ""} className="max-w-full rounded" />
                       ),
                     }}
                   >
