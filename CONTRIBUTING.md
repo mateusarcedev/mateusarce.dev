@@ -23,6 +23,8 @@ Run:
 ```bash
 pnpm lint
 pnpm build
+pnpm exec playwright install chromium
+pnpm test:e2e
 ```
 
 Keep changes focused, avoid unrelated formatting churn and update documentation when behavior or project metadata changes.
