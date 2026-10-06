@@ -24,8 +24,8 @@ export function Topbar({ variant = "home", backHref = "/", backLabel = "mateus a
               <span className="brand-dot" aria-hidden="true" />
               <strong>mateus arce</strong>
               <span className="sep">·</span>
-              <span className="dim" lang="pt-BR">desenvolvedor full stack</span>
-              <span className="dim" lang="en-US">full stack developer</span>
+              <span className="dim" lang="pt-BR">engenheiro de software · full stack</span>
+              <span className="dim" lang="en-US">software engineer · full stack</span>
             </>
           ) : (
             <>

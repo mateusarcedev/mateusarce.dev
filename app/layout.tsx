@@ -11,7 +11,7 @@ const personJsonLd = {
   "@type": "Person",
   name: "Mateus Silva Andrade Arce",
   url: "https://mateusarce.dev",
-  jobTitle: "Full Stack Software Developer",
+  jobTitle: "Software Engineer · Full Stack",
   worksFor: {
     "@type": "Organization",
     name: "Supertrans",
