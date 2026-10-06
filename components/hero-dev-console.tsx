@@ -118,8 +118,8 @@ export function HeroDevConsole({ lang, clock, totalExperience }: HeroDevConsoleP
         <div className="dev-console-body">
           <div className="dev-console-profile">
             <div className="dev-console-role">
-              <span lang="pt-BR">Desenvolvedor de Software Full Stack <i>·</i> front-end, back-end, mobile e agentes de IA</span>
-              <span lang="en-US">Full Stack Software Developer <i>·</i> front-end, back-end, mobile and AI agents</span>
+              <span lang="pt-BR">Engenheiro de Software <i>·</i> Full Stack <i>·</i> sistemas backend, ferramentas para devs e automação</span>
+              <span lang="en-US">Software Engineer <i>·</i> Full Stack <i>·</i> backend systems, developer tools and automation</span>
             </div>
 
             <div className="dev-console-meta">
