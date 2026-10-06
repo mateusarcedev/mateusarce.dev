@@ -20,8 +20,8 @@ export default function ResumePage() {
         <div className="cv-head reveal">
           <h1>Mateus <span className="accent">Arce</span></h1>
           <p className="role">
-            <span lang="pt-BR">Desenvolvedor Full Stack <span className="pink">·</span> NestJS / React / Go</span>
-            <span lang="en-US">Full Stack Developer <span className="pink">·</span> NestJS / React / Go</span>
+            <span lang="pt-BR">Engenheiro de Software <span className="pink">·</span> Full Stack</span>
+            <span lang="en-US">Software Engineer <span className="pink">·</span> Full Stack</span>
           </p>
           <div className="cv-meta">
             <span>
@@ -61,8 +61,8 @@ export default function ResumePage() {
             <span className="sec-rule" />
           </div>
           <div className="summary">
-            <p lang="pt-BR">Desenvolvedor Full Stack com experiência em arquitetar <b>backends escaláveis</b> e construir <b>front-ends responsivos</b>. Atuação em projetos web de P&amp;D e sistemas internos, liderando pequenos times e definindo padrões de código, contratos de API e integrações com infraestrutura corporativa. <em>Forte atuação com NestJS/Node, React/Next.js, Go e Docker.</em></p>
-            <p lang="en-US">Full Stack Software Engineer with experience architecting <b>scalable backends</b> and building <b>responsive web frontends</b>. Hands-on in web R&amp;D projects and internal systems, providing technical leadership for small teams and defining coding standards, API contracts, and integrations with corporate infrastructure. <em>Strong experience with NestJS/Node, React/Next.js, Go and Docker.</em></p>
+            <p lang="pt-BR">Engenheiro de Software Full Stack com experiência em <b>sistemas backend</b>, interfaces web, integrações e automação. Atuação em projetos de P&amp;D e sistemas internos, liderando pequenos times e definindo padrões de código, contratos de API e integrações com infraestrutura corporativa. <em>Forte atuação com NestJS/Node, React/Next.js, PostgreSQL e Docker.</em></p>
+            <p lang="en-US">Full Stack Software Engineer experienced in <b>backend systems</b>, web interfaces, integrations and automation. Hands-on in R&amp;D projects and internal systems, providing technical leadership for small teams and defining coding standards, API contracts, and integrations with corporate infrastructure. <em>Strong experience with NestJS/Node, React/Next.js, PostgreSQL and Docker.</em></p>
           </div>
         </section>
 
