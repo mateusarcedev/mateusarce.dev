@@ -38,7 +38,7 @@ export const metadata: Metadata = {
         url: "/images/og-image.png",
         width: 1200,
         height: 630,
-        alt: "Mateus Arce — Software Engineer · Full Stack · AI agents · NestJS · Go · React",
+        alt: "Mateus Arce — Software Engineer · Full Stack · backend systems · developer tools · automation",
       },
     ],
     siteName: "Mateus Arce",
@@ -50,7 +50,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Mateus Arce — Software Engineer · Full Stack",
     description:
-      "Building scalable backends, AI agents and distributed systems with Go, NestJS, React and Python.",
+      "Building backend systems, developer tools and automation with TypeScript, NestJS, React, Next.js, PostgreSQL and Docker.",
     images: [
       {
         url: "/images/og-image.png",
