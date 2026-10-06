@@ -137,8 +137,8 @@ export function HomeClient() {
                 </a>
               </div>
               <div className="bio">
-                <p lang="pt-BR">Atualmente desenvolvendo software na <b>Supertrans</b>, transitando entre <em>front-end, back-end, mobile, automações e workflows com agentes de IA</em>. Antes, sistemas internos e P&amp;D na Sidia.</p>
-                <p lang="en-US">Currently building software at <b>Supertrans</b> across <em>front-end, back-end, mobile, automation and AI-agent workflows</em>. Previously, internal systems and R&amp;D at Sidia.</p>
+                <p lang="pt-BR">Atualmente construindo <em>sistemas backend, automações e plataformas internas</em> na <b>Supertrans</b>. Antes, sistemas internos e P&amp;D na Sidia.</p>
+                <p lang="en-US">Currently building <em>backend systems, automation and internal platforms</em> at <b>Supertrans</b>. Previously, internal systems and R&amp;D at Sidia.</p>
               </div>
             </div>
           </div>
@@ -245,22 +245,22 @@ export function HomeClient() {
             <div className="now-cell">
               <div className="now-label"><span className="marker" /><span lang="pt-BR">Construindo</span><span lang="en-US">Building</span></div>
               <div className="now-val">
-                <span lang="pt-BR">produtos e sistemas em <span className="h">front-end</span>, <span className="h">back-end</span> e <span className="h">mobile</span></span>
-                <span lang="en-US">products and systems across <span className="h">front-end</span>, <span className="h">back-end</span> and <span className="h">mobile</span></span>
+                <span lang="pt-BR"><span className="h">sistemas backend</span> e automações na Supertrans</span>
+                <span lang="en-US"><span className="h">backend systems</span> and automation at Supertrans</span>
               </div>
             </div>
             <div className="now-cell">
-              <div className="now-label"><span className="marker" /><span lang="pt-BR">Com IA</span><span lang="en-US">With AI</span></div>
+              <div className="now-label"><span className="marker" /><span lang="pt-BR">Publicando</span><span lang="en-US">Shipping</span></div>
               <div className="now-val">
-                <span lang="pt-BR">workflows com <span className="h">agentes de IA</span>, skills de código e automações</span>
-                <span lang="en-US"><span className="h">AI-agent</span> workflows, coding skills and automation</span>
+                <span lang="pt-BR"><span className="h">ferramentas para desenvolvedores</span> e projetos open source</span>
+                <span lang="en-US"><span className="h">developer tools</span> and open-source side projects</span>
               </div>
             </div>
             <div className="now-cell">
-              <div className="now-label"><span className="marker" /><span lang="pt-BR">Evoluindo</span><span lang="en-US">Improving</span></div>
+              <div className="now-label"><span className="marker" /><span lang="pt-BR">Aprendendo</span><span lang="en-US">Learning</span></div>
               <div className="now-val">
-                <span lang="pt-BR">arquitetura distribuída — filas, cache, observabilidade e integração</span>
-                <span lang="en-US">distributed architecture — queues, cache, observability and integration</span>
+                <span lang="pt-BR"><span className="h">Go</span>, LangGraph e arquiteturas orientadas a eventos</span>
+                <span lang="en-US"><span className="h">Go</span>, LangGraph and event-driven architectures</span>
               </div>
             </div>
             <div className="now-cell">
