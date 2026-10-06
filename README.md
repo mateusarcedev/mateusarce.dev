@@ -63,11 +63,21 @@ pnpm dev
 
 Open http://localhost:3000.
 
-To validate a production build:
+To validate and preview the static production export:
 
 ```bash
+pnpm lint
 pnpm build
 pnpm start
+```
+
+`pnpm start` serves the generated `out/` directory at http://localhost:3000.
+
+To run the browser smoke tests:
+
+```bash
+pnpm exec playwright install chromium
+pnpm test:e2e
 ```
 
 ## Main routes
