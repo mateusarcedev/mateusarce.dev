@@ -36,14 +36,14 @@
     "animejs": "^4.5.0"
   },
   "devDependencies": {
-    "@types/node": "^22",
+    "@types/node": "^26",
     "@types/react": "19.3.0",
     "@types/react-dom": "19.3.0",
-    "eslint": "9.39.5",
+    "eslint": "10.12.0",
     "eslint-config-next": "16.3.8",
     "postcss": "^8.5",
-    "tailwindcss": "^4.2.2",
-    "typescript": "^5",
+    "tailwindcss": "^4.3.3",
+    "typescript": "^7",
     "@playwright/test": "1.63.0",
     "serve": "14.2.6",
     "@axe-core/playwright": "4.13.0"
