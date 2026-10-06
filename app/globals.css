@@ -11,7 +11,7 @@
   --line-soft: #1c1c1c;
   --fg: #f4f4f4;
   --fg-dim: #a8a8a8;
-  --fg-faint: #666;
+  --fg-faint: #808080;
   --mint: #15F5BA;
   --mint-dim: rgba(21, 245, 186, 0.10);
   --mint-edge: rgba(21, 245, 186, 0.28);
@@ -35,8 +35,8 @@
   --line-soft: #e3dfd4;
   --fg: #1a1a17;
   --fg-dim: #5a5a52;
-  --fg-faint: #9a958a;
-  --mint: #0a8a4a;
+  --fg-faint: #716e66;
+  --mint: #087d43;
   --mint-dim: rgba(10, 138, 74, 0.10);
   --mint-edge: rgba(10, 138, 74, 0.28);
   --pink: #b73c7c;
