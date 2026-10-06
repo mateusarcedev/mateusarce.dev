@@ -781,6 +781,7 @@ section:last-of-type {
 }
 
 .pill[aria-pressed="true"] .c {
+  color: var(--bg);
   opacity: 1;
 }
 
@@ -1776,7 +1777,7 @@ footer .h {
 }
 
 .board-chip small {
-  color: var(--fg-faint);
+  color: var(--fg-dim);
   font: 7px/1 var(--mono);
   letter-spacing: 0.08em;
 }
