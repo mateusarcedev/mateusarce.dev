@@ -4,7 +4,7 @@ import { getPublicRepos } from "@/lib/github"
 export const dynamic = "force-static"
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const repos = await getPublicRepos().catch(() => [])
+  const repos = await getPublicRepos()
   const projectEntries: MetadataRoute.Sitemap = repos.map((repo) => ({
     url: `https://mateusarce.dev/projects/${repo.name}`,
     lastModified: new Date(repo.pushed_at),
