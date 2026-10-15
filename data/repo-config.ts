@@ -4,7 +4,7 @@
  */
 
 /** Repos that will be featured with special visual treatment */
-export const FEATURED_REPOS = ["sql-vault", "devlist", "tcc", "prompt-manager"]
+export const FEATURED_REPOS = ["sql-vault", "devlist", "tcc"]
 
 /** Repos built during Rocketseat courses */
 export const COURSE_REPOS = ["clean-DDD", "api-forum", "interviews_questions"]
@@ -26,4 +26,16 @@ export const EXTERNAL_REPO_LINKS: Record<string, { label: string; url: string }[
       url: "https://marketplace.visualstudio.com/items?itemName=mateusarcedev.sqlvault",
     },
   ],
+}
+
+/** Configured repo names that are not in the given list of public repos. */
+export function findMissingConfiguredRepos(publicRepoNames: string[]): string[] {
+  const available = new Set(publicRepoNames)
+  const configured = new Set([
+    ...FEATURED_REPOS,
+    ...COURSE_REPOS,
+    ...Object.keys(HOMEPAGE_OVERRIDES),
+    ...Object.keys(EXTERNAL_REPO_LINKS),
+  ])
+  return [...configured].filter((name) => !available.has(name))
 }

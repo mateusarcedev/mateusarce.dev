@@ -24,7 +24,6 @@ The portfolio currently highlights:
 - [SQL Vault](https://github.com/mateusarcedev/sql-vault) — self-hosted SQL knowledge manager with versioning, AI integrations and a VS Code extension
 - [Devlist](https://github.com/mateusarcedev/devlist) — open-source directory for discovering and saving developer tools
 - [TCC](https://github.com/mateusarcedev/tcc) — computer vision + FastAPI + Arduino conveyor automation system
-- [Prompt Manager](https://github.com/mateusarcedev/prompt-manager) — prompt library built with Vue, Pinia, Express and SQLite
 
 SQL Vault also has a published [VS Code extension](https://marketplace.visualstudio.com/items?itemName=mateusarcedev.sqlvault).
 
