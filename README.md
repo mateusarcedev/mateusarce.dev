@@ -96,6 +96,8 @@ Repository-specific presentation rules live in `data/repo-config.ts`, including:
 - homepage overrides
 - external project links
 
+The build fails if any repository named in that file is not a public, non-fork repository on GitHub, so deleted or renamed repositories must be removed from it before deploying.
+
 The portfolio domain and canonical URLs use **mateusarce.dev** throughout the application.
 
 ## Contact
