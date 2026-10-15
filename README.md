@@ -24,7 +24,6 @@ The portfolio currently highlights:
 - [SQL Vault](https://github.com/mateusarcedev/sql-vault) — self-hosted SQL knowledge manager with versioning, AI integrations and a VS Code extension
 - [Devlist](https://github.com/mateusarcedev/devlist) — open-source directory for discovering and saving developer tools
 - [TCC](https://github.com/mateusarcedev/tcc) — computer vision + FastAPI + Arduino conveyor automation system
-- [Prompt Manager](https://github.com/mateusarcedev/prompt-manager) — prompt library built with Vue, Pinia, Express and SQLite
 
 SQL Vault also has a published [VS Code extension](https://marketplace.visualstudio.com/items?itemName=mateusarcedev.sqlvault).
 
@@ -96,6 +95,8 @@ Repository-specific presentation rules live in `data/repo-config.ts`, including:
 - course repositories
 - homepage overrides
 - external project links
+
+The build fails if any repository named in that file is not a public, non-fork repository on GitHub, so deleted or renamed repositories must be removed from it before deploying.
 
 The portfolio domain and canonical URLs use **mateusarce.dev** throughout the application.
 
