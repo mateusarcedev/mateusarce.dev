@@ -6,7 +6,7 @@ import { useAppStore } from "@/lib/store"
 import { Topbar } from "@/components/topbar"
 import { Footer } from "@/components/footer"
 import { RevealObserver } from "@/components/reveal"
-import { HeroStack3D } from "@/components/hero-stack-3d"
+import { HeroOrb } from "@/components/hero-orb"
 import { RoleRotator } from "@/components/role-rotator"
 import { PublishedProjects } from "@/components/published-projects"
 import { MARQUEE, STACK_GROUPS } from "@/data/published"
@@ -69,14 +69,18 @@ export function HomeClient() {
               <span>·</span>
               <span>Manaus, BR · UTC-4 · {clock}</span>
             </div>
-            <h1>Mateus <span className="accent">Arce</span></h1>
+            <h1>
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img className="hero-avatar" src="https://github.com/mateusarcedev.png?size=160" alt="Mateus Arce" width={56} height={56} />
+              <span>Mateus</span> <span className="accent">Arce</span>
+            </h1>
             <p className="hero-3d-role">
               <span lang="pt-BR">Construo </span><span lang="en-US">I build </span>
               <RoleRotator />
             </p>
             <p className="hero-3d-sub">
-              <span lang="pt-BR">Full stack sênior na <b>Supertrans</b>. Antes, sistemas internos e P&amp;D na Sidia.{totalExperience ? ` ${totalExperience} de experiência.` : ""}</span>
-              <span lang="en-US">Senior full stack at <b>Supertrans</b>. Previously, internal systems and R&amp;D at Sidia.{totalExperience ? ` ${totalExperience} of experience.` : ""}</span>
+              <span lang="pt-BR">Full stack sênior na <a href="https://supertranstransportes.com.br/" target="_blank" rel="noopener">Supertrans Transportes</a>, desenvolvendo de ponta a ponta: backend, web, mobile nativo e IA.</span>
+              <span lang="en-US">Senior full stack at <a href="https://supertranstransportes.com.br/" target="_blank" rel="noopener">Supertrans Transportes</a>, building end to end: backend, web, native mobile and AI.</span>
             </p>
             <div className="quick-links">
               <a className="ql primary" href="#published">
@@ -101,7 +105,7 @@ export function HomeClient() {
               </a>
             </div>
           </div>
-          <HeroStack3D />
+          <HeroOrb />
         </section>
 
         <div className="marquee" aria-hidden="true">
@@ -125,8 +129,8 @@ export function HomeClient() {
             <div className="proj-link-text">
               <strong lang="pt-BR">Todos os projetos →</strong>
               <strong lang="en-US">All projects →</strong>
-              <span lang="pt-BR">publicados + repositórios open source</span>
-              <span lang="en-US">published + open source repositories</span>
+              <span lang="pt-BR">publicados + repositórios (README e código-fonte)</span>
+              <span lang="en-US">published + repositories (README and source code)</span>
             </div>
           </Link>
         </section>

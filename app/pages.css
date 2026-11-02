@@ -279,10 +279,16 @@ section.repos { padding: 32px 0 96px; border-bottom: 0; }
 }
 
 /* ---- Redesign: 3D hero, marquee, published projects ---- */
-.hero-3d { display:grid; grid-template-columns:minmax(0,1fr) 580px; gap:32px; align-items:center; padding:72px 0 80px; }
+.hero-3d { display:grid; grid-template-columns:minmax(0,1fr) 500px; gap:24px; align-items:center; padding:80px 0 72px; }
 .hero-3d-copy { display:flex; flex-direction:column; gap:22px; min-width:0; position:relative; z-index:1; }
 .hero-3d h1 { font-family:var(--mono); font-size:64px; line-height:1; letter-spacing:-.04em; margin:0; color:var(--fg); }
 .hero-3d h1 .accent { color:var(--mint); }
+.hero-3d h1 { display:flex; flex-wrap:wrap; align-items:center; gap:0 .25em; }
+.hero-avatar { width:56px; height:56px; border-radius:50%; border:1px solid var(--line); object-fit:cover; margin-right:.1em; }
+.hero-3d-sub a { color:var(--fg-dim); }
+.hero-3d-sub a:hover { color:var(--fg); }
+.hero-orb { position:relative; height:460px; min-width:0; }
+.hero-orb canvas { position:absolute; inset:0; width:100%; height:100%; display:block; }
 .hero-3d-role { margin:0; font-size:20px; line-height:1.5; color:var(--fg-dim); }
 .role-rot { display:inline-flex; align-items:baseline; gap:2px; color:var(--fg); }
 .role-word { display:inline-block; }
@@ -345,6 +351,8 @@ section.repos { padding: 32px 0 96px; border-bottom: 0; }
 @media (max-width: 980px) {
   .hero-3d { grid-template-columns:1fr; }
   .hero-3d h1 { font-size:44px; }
+  .hero-orb { height:340px; }
+  .hero-avatar { width:44px; height:44px; }
   .stack3d { height:300px; }
   .stack3d-card { width:340px; }
   .pub-grid { grid-template-columns:1fr; }
@@ -456,6 +464,8 @@ section.repos { padding: 32px 0 96px; border-bottom: 0; }
   .hero-3d { padding:28px 0 36px; gap:24px; }
   .hero-3d-copy { gap:18px; }
   .hero-3d h1 { font-size:38px; }
+  .hero-orb { height:280px; }
+  .hero-avatar { width:38px; height:38px; }
   .hero-3d-role { font-size:17px; }
   .hero-status { flex-wrap:wrap; gap:6px 10px; font-size:10px; }
   .quick-links { flex-wrap:wrap; gap:8px; }

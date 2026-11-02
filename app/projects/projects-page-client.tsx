@@ -102,9 +102,9 @@ export function ProjectsPageClient() {
 
         <div className="sec-head reveal">
           <span className="sec-num">02</span>
-          <h2 className="sec-title">Open source</h2>
+          <h2 className="sec-title"><span lang="pt-BR">Repositórios</span><span lang="en-US">Repositories</span></h2>
           <span className="sec-rule" />
-          <span className="sec-count"><span lang="pt-BR">via GitHub API</span><span lang="en-US">via GitHub API</span></span>
+          <span className="sec-count"><span lang="pt-BR">README + código-fonte · via GitHub API</span><span lang="en-US">README + source code · via GitHub API</span></span>
         </div>
 
         {!loading && (
