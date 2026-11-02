@@ -153,6 +153,17 @@ export function HomeClient() {
                 <div className="exp-row-range">
                   <span lang="pt-BR">{exp.dateRange.pt}</span><span lang="en-US">{exp.dateRange.en}</span>
                 </div>
+                <div className="exp-row-detail">
+                  <ul lang="pt-BR">
+                    {exp.bullets.pt.map((b, j) => <li key={j} dangerouslySetInnerHTML={{ __html: b }} />)}
+                  </ul>
+                  <ul lang="en-US">
+                    {exp.bullets.en.map((b, j) => <li key={j} dangerouslySetInnerHTML={{ __html: b }} />)}
+                  </ul>
+                  <div className="exp-tech" aria-label={lk === "pt" ? "Tecnologias" : "Technologies"}>
+                    {exp.tech.map((t) => <span key={t}>{t}</span>)}
+                  </div>
+                </div>
               </div>
             ))}
           </div>

@@ -5,8 +5,7 @@ import { PUBLISHED } from "@/data/published"
 import { useAppStore } from "@/lib/store"
 
 const CYCLE_MS = 5000
-const CARD_W = 440
-const FRAME_SCALE = CARD_W / 1440
+const FRAME_W = 1440
 
 type Pose = { x: number; y: number; z: number; o: number }
 
@@ -55,6 +54,8 @@ export function HeroStack3D() {
           const bob = live && slot === 0 ? Math.sin(t * 1.2) * 5 : 0
           el.style.transform = `translate3d(${c.x}px, ${c.y + bob}px, ${c.z}px)`
           el.style.opacity = c.o.toFixed(3)
+          const fr = el.querySelector<HTMLElement>("iframe")
+          if (fr) fr.style.transform = `scale(${el.clientWidth / FRAME_W})`
           el.style.zIndex = String(n - slot)
           el.style.borderColor = slot === 0 ? "var(--mint-edge)" : "var(--line)"
         })
@@ -103,12 +104,12 @@ export function HeroStack3D() {
                 <a href={p.url} target="_blank" rel="noopener" tabIndex={i === front ? 0 : -1} aria-label={p.name}>↗</a>
               </div>
               <div className="stack3d-shot">
-                <iframe
-                  src={p.url}
-                  title={p.name}
-                  tabIndex={-1}
-                  style={{ transform: `scale(${FRAME_SCALE})` }}
-                />
+                {p.noEmbed && p.img ? (
+                  // eslint-disable-next-line @next/next/no-img-element
+                  <img src={p.img} alt="" style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover" }} />
+                ) : (
+                  <iframe src={p.url} title={p.name} tabIndex={-1} />
+                )}
               </div>
             </div>
           ))}

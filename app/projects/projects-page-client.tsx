@@ -7,10 +7,17 @@ import { Topbar } from "@/components/topbar"
 import { Footer } from "@/components/footer"
 import Link from "next/link"
 import { ScaledFrame } from "@/components/scaled-frame"
-import { PUBLISHED } from "@/data/published"
+import { PUBLISHED, type PublishedProject } from "@/data/published"
 import { RevealObserver } from "@/components/reveal"
 import { type GithubRepo, GITHUB_USER } from "@/lib/github"
 import { FEATURED_REPOS, COURSE_REPOS, HOMEPAGE_OVERRIDES, EXTERNAL_REPO_LINKS } from "@/data/repo-config"
+
+function PubRowLink({ p, children }: { p: PublishedProject; children: React.ReactNode }) {
+  if (p.private) {
+    return <a className="pub-row" href={p.url} target="_blank" rel="noopener">{children}</a>
+  }
+  return <Link className="pub-row" href={`/projects/${p.repoName}`}>{children}</Link>
+}
 
 export function ProjectsPageClient() {
   const { lang } = useAppStore()
@@ -65,7 +72,7 @@ export function ProjectsPageClient() {
           </div>
           <div className="pub-list">
             {PUBLISHED.map((p) => (
-              <Link className="pub-row" key={p.slug} href={`/projects/${p.repoName}`}>
+              <PubRowLink p={p} key={p.slug}>
                 <span className="pub-row-n">{p.n}</span>
                 <div className="pub-row-shot">
                   {p.img ? (
@@ -82,13 +89,13 @@ export function ProjectsPageClient() {
                 </div>
                 <div className="pub-row-status">
                   {p.live && <span className="pub-live"><span />online</span>}
-                  <span className="pub-ver">{p.version}</span>
+                  {p.version && <span className="pub-ver">{p.version}</span>}
                 </div>
                 <div className="pub-row-links">
                   <span className="pub-main">{p.host} ↗</span>
-                  <span>{p.repoName}</span>
+                  {!p.private && <span>{p.repoName}</span>}
                 </div>
-              </Link>
+              </PubRowLink>
             ))}
           </div>
         </section>

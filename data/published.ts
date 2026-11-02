@@ -12,6 +12,10 @@ export type PublishedProject = {
   img: string
   version: string
   live: boolean
+  /** repo is private: no repo link, no detail page */
+  private?: boolean
+  /** site blocks iframes: use img as the preview in the hero */
+  noEmbed?: boolean
   desc: { pt: string; en: string }
 }
 
@@ -48,6 +52,25 @@ export const PUBLISHED: PublishedProject[] = [
     desc: {
       pt: "A suíte desktop definitiva para edição de mídias, conversão de documentos, pôsteres e estúdio criativo com IA. 100% offline-first, seguro e sem assinaturas.",
       en: "The ultimate desktop suite for media editing, document conversion, posters and an AI creative studio. 100% offline-first, secure, no subscriptions.",
+    },
+  },
+  {
+    n: "03",
+    slug: "financeiro",
+    name: "Meu Financeiro",
+    kind: { pt: "finanças pessoais · open source", en: "personal finance · open source" },
+    host: "meufinanceiro.mateusarce.dev",
+    url: "https://meufinanceiro.mateusarce.dev/",
+    repo: `${GH}/meu-financeiro`,
+    repoName: "meu-financeiro",
+    img: "/images/meufinanceiro.png",
+    version: "",
+    live: true,
+    private: true,
+    noEmbed: true,
+    desc: {
+      pt: "App de finanças pessoais de código aberto. Explore uma demo fictícia sem conectar seu banco.",
+      en: "Open-source personal finance app. Explore a fictional demo without connecting your bank.",
     },
   },
 ]

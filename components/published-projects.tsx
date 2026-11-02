@@ -49,13 +49,13 @@ export function PublishedProjects() {
             <div className="pub-title">
               <strong>{p.name}</strong>
               {p.live && <span className="pub-live"><span />online</span>}
-              <span className="pub-ver">{p.version}</span>
+              {p.version && <span className="pub-ver">{p.version}</span>}
             </div>
             <span className="pub-kind">{p.kind[lk]}</span>
             <p>{p.desc[lk]}</p>
             <div className="pub-links">
               <a href={p.url} target="_blank" rel="noopener" className="pub-main">{p.host} ↗</a>
-              <a href={p.repo} target="_blank" rel="noopener">repo</a>
+              {!p.private && <a href={p.repo} target="_blank" rel="noopener">repo</a>}
             </div>
           </div>
           <div className="pub-glare" data-glare />
