@@ -7,7 +7,10 @@ import { useAppStore } from "@/lib/store"
 import { Topbar } from "@/components/topbar"
 import { Footer } from "@/components/footer"
 import { RevealObserver } from "@/components/reveal"
-import { HeroDevConsole } from "@/components/hero-dev-console"
+import { HeroStack3D } from "@/components/hero-stack-3d"
+import { RoleRotator } from "@/components/role-rotator"
+import { PublishedProjects } from "@/components/published-projects"
+import { MARQUEE } from "@/data/published"
 import { ElectronicsLabVisual } from "@/components/electronics-lab-visual"
 import { TECH, CAT_LABEL, CAT_ORDER } from "@/data/technologies"
 import { experiences } from "@/data/experiences"
@@ -102,52 +105,80 @@ export function HomeClient() {
       <Topbar variant="home" />
       <main className="page-main" id="main-content">
         {/* HERO */}
-        <section className="hero">
-          <div className="hero-grid reveal">
-            <div className="avatar">
-              <img src="https://avatars.githubusercontent.com/u/96782284?v=4" alt="Mateus Arce" referrerPolicy="no-referrer" />
+        <section className="hero-3d">
+          <div className="hero-3d-copy reveal">
+            <div className="hero-status">
+              <i />
+              <em><span lang="pt-BR">disponível</span><span lang="en-US">available</span></em>
+              <span>·</span>
+              <span>Manaus, BR · UTC-4 · {clock}</span>
             </div>
-            <div className="hero-meta">
-              <h1>Mateus <span className="accent">Arce</span></h1>
-              <HeroDevConsole
-                lang={lang}
-                clock={clock}
-                totalExperience={totalExperience}
-              />
-              <div className="quick-links">
-                <a className="ql" href="https://github.com/mateusarcedev" target="_blank" rel="noopener">
-                  <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .3a12 12 0 0 0-3.8 23.4c.6.1.8-.3.8-.6v-2.2c-3.3.7-4-1.4-4-1.4-.6-1.4-1.4-1.8-1.4-1.8-1.1-.7.1-.7.1-.7 1.2.1 1.9 1.3 1.9 1.3 1.1 1.9 2.9 1.4 3.6 1 .1-.8.4-1.4.8-1.7-2.7-.3-5.5-1.3-5.5-6 0-1.3.5-2.4 1.3-3.2-.1-.4-.6-1.6.1-3.3 0 0 1-.3 3.3 1.2a11.5 11.5 0 0 1 6 0c2.3-1.5 3.3-1.2 3.3-1.2.7 1.7.2 2.9.1 3.3.8.8 1.3 1.9 1.3 3.2 0 4.7-2.8 5.7-5.5 6 .4.4.8 1.1.8 2.3v3.3c0 .3.2.7.8.6A12 12 0 0 0 12 .3" /></svg>
-                  github
-                </a>
-                <a className="ql" href="https://www.linkedin.com/in/mateus-arce/" target="_blank" rel="noopener">
-                  <svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2zM8.3 18H5.7v-8.4h2.6V18zM7 8.4a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm11 9.6h-2.6V14c0-1-.4-1.6-1.3-1.6-.7 0-1.1.5-1.3 1V18h-2.6V9.6h2.6v1.2a2.7 2.7 0 0 1 2.4-1.3c1.7 0 2.8 1.1 2.8 3.5V18z" /></svg>
-                  linkedin
-                </a>
-                <Link className="ql" href="/resume">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" /><path d="M14 2v6h6M16 13H8M16 17H8M10 9H8" /></svg>
-                  <span lang="pt-BR">currículo</span><span lang="en-US">resume</span>
-                </Link>
-                <a className="ql" href="#projects-link">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z" /></svg>
-                  <span lang="pt-BR">projetos</span><span lang="en-US">projects</span>
-                </a>
-                <a className="ql email" href="mailto:contato@mateusarce.dev">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6"><path d="M4 4h16a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2z" /><path d="m22 6-10 7L2 6" /></svg>
-                  email
-                </a>
-              </div>
-              <div className="bio">
-                <p lang="pt-BR">Atualmente construindo <em>sistemas backend, automações e plataformas internas</em> na <b>Supertrans</b>. Antes, sistemas internos e P&amp;D na Sidia.</p>
-                <p lang="en-US">Currently building <em>backend systems, automation and internal platforms</em> at <b>Supertrans</b>. Previously, internal systems and R&amp;D at Sidia.</p>
-              </div>
+            <h1>Mateus <span className="accent">Arce</span></h1>
+            <p className="hero-3d-role">
+              <span lang="pt-BR">Construo </span><span lang="en-US">I build </span>
+              <RoleRotator />
+            </p>
+            <p className="hero-3d-sub">
+              <span lang="pt-BR">Full stack sênior na <b>Supertrans</b>. Antes, sistemas internos e P&amp;D na Sidia.{totalExperience ? ` ${totalExperience} de experiência.` : ""}</span>
+              <span lang="en-US">Senior full stack at <b>Supertrans</b>. Previously, internal systems and R&amp;D at Sidia.{totalExperience ? ` ${totalExperience} of experience.` : ""}</span>
+            </p>
+            <div className="quick-links">
+              <a className="ql primary" href="#published">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z" /></svg>
+                <span lang="pt-BR">projetos</span><span lang="en-US">projects</span>
+              </a>
+              <a className="ql" href="https://github.com/mateusarcedev" target="_blank" rel="noopener">
+                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .3a12 12 0 0 0-3.8 23.4c.6.1.8-.3.8-.6v-2.2c-3.3.7-4-1.4-4-1.4-.6-1.4-1.4-1.8-1.4-1.8-1.1-.7.1-.7.1-.7 1.2.1 1.9 1.3 1.9 1.3 1.1 1.9 2.9 1.4 3.6 1 .1-.8.4-1.4.8-1.7-2.7-.3-5.5-1.3-5.5-6 0-1.3.5-2.4 1.3-3.2-.1-.4-.6-1.6.1-3.3 0 0 1-.3 3.3 1.2a11.5 11.5 0 0 1 6 0c2.3-1.5 3.3-1.2 3.3-1.2.7 1.7.2 2.9.1 3.3.8.8 1.3 1.9 1.3 3.2 0 4.7-2.8 5.7-5.5 6 .4.4.8 1.1.8 2.3v3.3c0 .3.2.7.8.6A12 12 0 0 0 12 .3" /></svg>
+                github
+              </a>
+              <a className="ql" href="https://www.linkedin.com/in/mateus-arce/" target="_blank" rel="noopener">
+                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2zM8.3 18H5.7v-8.4h2.6V18zM7 8.4a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm11 9.6h-2.6V14c0-1-.4-1.6-1.3-1.6-.7 0-1.1.5-1.3 1V18h-2.6V9.6h2.6v1.2a2.7 2.7 0 0 1 2.4-1.3c1.7 0 2.8 1.1 2.8 3.5V18z" /></svg>
+                linkedin
+              </a>
+              <Link className="ql" href="/resume">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" /><path d="M14 2v6h6M16 13H8M16 17H8M10 9H8" /></svg>
+                <span lang="pt-BR">currículo</span><span lang="en-US">resume</span>
+              </Link>
+              <a className="ql email" href="mailto:contato@mateusarce.dev">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6"><path d="M4 4h16a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2z" /><path d="m22 6-10 7L2 6" /></svg>
+                email
+              </a>
             </div>
           </div>
+          <HeroStack3D />
+        </section>
+
+        <div className="marquee" aria-hidden="true">
+          <div className="marquee-track">
+            {[...MARQUEE, ...MARQUEE].map((m, i) => (
+              <span key={i}>{m}<i>◆</i></span>
+            ))}
+          </div>
+        </div>
+
+        {/* PUBLISHED */}
+        <section id="published" className="reveal" style={{ paddingTop: 80 }}>
+          <div className="sec-head">
+            <span className="sec-num">01</span>
+            <h2 className="sec-title"><span lang="pt-BR">Publicados</span><span lang="en-US">Published</span></h2>
+            <span className="sec-rule" />
+            <span className="sec-count"><span lang="pt-BR">no ar</span><span lang="en-US">live</span> · *.mateusarce.dev</span>
+          </div>
+          <PublishedProjects />
+          <Link className="proj-link" href="/projects" style={{ marginTop: 20 }}>
+            <div className="proj-link-text">
+              <strong lang="pt-BR">Todos os projetos →</strong>
+              <strong lang="en-US">All projects →</strong>
+              <span lang="pt-BR">publicados + repositórios open source</span>
+              <span lang="en-US">published + open source repositories</span>
+            </div>
+          </Link>
         </section>
 
         {/* EXPERIENCE */}
         <section id="experience" className="reveal">
           <div className="sec-head">
-            <span className="sec-num">01</span>
+            <span className="sec-num">02</span>
             <h2 className="sec-title"><span lang="pt-BR">Experiência</span><span lang="en-US">Experience</span></h2>
             <span className="sec-rule" />
             <span className="sec-count">0{experiences.length}</span>
@@ -179,7 +210,7 @@ export function HomeClient() {
         {/* STACK */}
         <section id="stack" className="reveal">
           <div className="sec-head">
-            <span className="sec-num">02</span>
+            <span className="sec-num">03</span>
             <h2 className="sec-title"><span lang="pt-BR">Tecnologias</span><span lang="en-US">Technologies</span></h2>
             <span className="sec-rule" />
             <span className="sec-count">{TECH.length} {lk === "pt" ? "tecnologias" : "techs"}</span>
@@ -236,7 +267,7 @@ export function HomeClient() {
         {/* NOW */}
         <section id="now" className="reveal">
           <div className="sec-head">
-            <span className="sec-num">03</span>
+            <span className="sec-num">04</span>
             <h2 className="sec-title"><span lang="pt-BR">Agora</span><span lang="en-US">Now</span></h2>
             <span className="sec-rule" />
             <span className="sec-count">{todayDate}</span>
@@ -277,7 +308,7 @@ export function HomeClient() {
         {/* WORKFLOW */}
         <section id="workflow" className="reveal">
           <div className="sec-head">
-            <span className="sec-num">04</span>
+            <span className="sec-num">05</span>
             <h2 className="sec-title"><span lang="pt-BR">Workflow</span><span lang="en-US">Workflow</span></h2>
             <span className="sec-rule" />
             <span className="sec-count"><span lang="pt-BR">humano + agentes</span><span lang="en-US">human + agents</span></span>
@@ -329,7 +360,7 @@ export function HomeClient() {
         {/* LEARNING LAB */}
         <section id="learning" className="reveal">
           <div className="sec-head">
-            <span className="sec-num">05</span>
+            <span className="sec-num">06</span>
             <h2 className="sec-title"><span lang="pt-BR">Aprendendo</span><span lang="en-US">Learning</span></h2>
             <span className="sec-rule" />
             <span className="sec-count"><span lang="pt-BR">hobby / curiosidade</span><span lang="en-US">hobby / curiosity</span></span>
@@ -350,7 +381,7 @@ export function HomeClient() {
         {/* PROJECTS LINK */}
         <section id="projects-link" className="reveal">
           <div className="sec-head">
-            <span className="sec-num">06</span>
+            <span className="sec-num">07</span>
             <h2 className="sec-title"><span lang="pt-BR">Projetos</span><span lang="en-US">Projects</span></h2>
             <span className="sec-rule" />
           </div>
@@ -368,7 +399,7 @@ export function HomeClient() {
         {/* CONTACT */}
         <section id="contact" className="reveal">
           <div className="sec-head">
-            <span className="sec-num">07</span>
+            <span className="sec-num">08</span>
             <h2 className="sec-title"><span lang="pt-BR">Contato</span><span lang="en-US">Contact</span></h2>
             <span className="sec-rule" />
             <span className="sec-count"><span lang="pt-BR">resposta em ~24h</span><span lang="en-US">~24h response</span></span>

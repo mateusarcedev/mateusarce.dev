@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation"
 import { useAppStore } from "@/lib/store"
 import { Topbar } from "@/components/topbar"
 import { Footer } from "@/components/footer"
+import { PublishedProjects } from "@/components/published-projects"
 import { RevealObserver } from "@/components/reveal"
 import { type GithubRepo, GITHUB_USER } from "@/lib/github"
 import { FEATURED_REPOS, COURSE_REPOS, HOMEPAGE_OVERRIDES, EXTERNAL_REPO_LINKS } from "@/data/repo-config"
@@ -49,6 +50,23 @@ export function ProjectsPageClient() {
           ) : (
             <p><b>{repos.length}</b> <span lang="pt-BR">repositórios públicos</span><span lang="en-US">public repositories</span></p>
           )}
+        </div>
+
+        <section className="reveal" style={{ paddingBottom: 48 }}>
+          <div className="sec-head">
+            <span className="sec-num">01</span>
+            <h2 className="sec-title"><span lang="pt-BR">Publicados</span><span lang="en-US">Published</span></h2>
+            <span className="sec-rule" />
+            <span className="sec-count"><span lang="pt-BR">no ar</span><span lang="en-US">live</span></span>
+          </div>
+          <PublishedProjects />
+        </section>
+
+        <div className="sec-head reveal">
+          <span className="sec-num">02</span>
+          <h2 className="sec-title">Open source</h2>
+          <span className="sec-rule" />
+          <span className="sec-count">GitHub</span>
         </div>
 
         {!loading && (
