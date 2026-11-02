@@ -5,7 +5,9 @@ import { useRouter } from "next/navigation"
 import { useAppStore } from "@/lib/store"
 import { Topbar } from "@/components/topbar"
 import { Footer } from "@/components/footer"
-import { PublishedProjects } from "@/components/published-projects"
+import Link from "next/link"
+import { ScaledFrame } from "@/components/scaled-frame"
+import { PUBLISHED } from "@/data/published"
 import { RevealObserver } from "@/components/reveal"
 import { type GithubRepo, GITHUB_USER } from "@/lib/github"
 import { FEATURED_REPOS, COURSE_REPOS, HOMEPAGE_OVERRIDES, EXTERNAL_REPO_LINKS } from "@/data/repo-config"
@@ -38,7 +40,7 @@ export function ProjectsPageClient() {
       <RevealObserver />
       <Topbar variant="sub" backHref="/" backLabel="mateus arce" subLabel={{ pt: "projetos", en: "projects" }} />
       <main className="page-main" id="main-content">
-        <div className="page-head reveal">
+        <div className="page-head reveal projects-head">
           <h1><span lang="pt-BR">Projeto<span className="accent">s</span></span><span lang="en-US">Project<span className="accent">s</span></span></h1>
           {loading ? (
             <p><span lang="pt-BR">Carregando...</span><span lang="en-US">Loading...</span></p>
@@ -48,25 +50,54 @@ export function ProjectsPageClient() {
               <span lang="en-US">GitHub API rate limit reached. Try again in a few minutes.</span>
             </p>
           ) : (
-            <p><b>{repos.length}</b> <span lang="pt-BR">repositórios públicos</span><span lang="en-US">public repositories</span></p>
+            <p>
+              <b>{PUBLISHED.length}</b> <span lang="pt-BR">publicados</span><span lang="en-US">published</span> · <b>{repos.length}</b> <span lang="pt-BR">repositórios públicos</span><span lang="en-US">public repositories</span>
+            </p>
           )}
         </div>
 
-        <section className="reveal" style={{ paddingBottom: 48 }}>
+        <section className="reveal projects-published">
           <div className="sec-head">
             <span className="sec-num">01</span>
             <h2 className="sec-title"><span lang="pt-BR">Publicados</span><span lang="en-US">Published</span></h2>
             <span className="sec-rule" />
             <span className="sec-count"><span lang="pt-BR">no ar</span><span lang="en-US">live</span></span>
           </div>
-          <PublishedProjects />
+          <div className="pub-list">
+            {PUBLISHED.map((p) => (
+              <Link className="pub-row" key={p.slug} href={`/projects/${p.repoName}`}>
+                <span className="pub-row-n">{p.n}</span>
+                <div className="pub-row-shot">
+                  {p.img ? (
+                    // eslint-disable-next-line @next/next/no-img-element
+                    <img src={p.img} alt="" loading="lazy" />
+                  ) : (
+                    <ScaledFrame src={p.url} title={p.name} />
+                  )}
+                </div>
+                <div className="pub-row-main">
+                  <strong>{p.name}</strong>
+                  <span className="pub-kind">{p.kind[lk]}</span>
+                  <span className="pub-row-desc">{p.desc[lk]}</span>
+                </div>
+                <div className="pub-row-status">
+                  {p.live && <span className="pub-live"><span />online</span>}
+                  <span className="pub-ver">{p.version}</span>
+                </div>
+                <div className="pub-row-links">
+                  <span className="pub-main">{p.host} ↗</span>
+                  <span>{p.repoName}</span>
+                </div>
+              </Link>
+            ))}
+          </div>
         </section>
 
         <div className="sec-head reveal">
           <span className="sec-num">02</span>
           <h2 className="sec-title">Open source</h2>
           <span className="sec-rule" />
-          <span className="sec-count">GitHub</span>
+          <span className="sec-count"><span lang="pt-BR">via GitHub API</span><span lang="en-US">via GitHub API</span></span>
         </div>
 
         {!loading && (
@@ -102,7 +133,7 @@ export function ProjectsPageClient() {
             </div>
           )}
           {!loading && filtered.length > 0 && (
-            <div className="grid">
+            <div className="grid grid-3">
               {filtered.map((repo) => {
                 const isFeatured = FEATURED_REPOS.includes(repo.name)
                 const isCourse = COURSE_REPOS.includes(repo.name)
@@ -127,35 +158,15 @@ export function ProjectsPageClient() {
                         )}
                       </div>
                     </div>
-                    {repo.language && <div className="card-lang">{repo.language}</div>}
                     <p className="card-desc">{repo.description ?? (lk === "pt" ? "Sem descrição." : "No description.")}</p>
-                    {repo.topics.length > 0 && (
-                      <div className="card-topics">{repo.topics.slice(0, 5).map((t) => <span key={t}>{t}</span>)}</div>
-                    )}
-                    <div className="card-actions">
-                      <a className="card-action" href={repo.html_url} target="_blank" rel="noopener" onClick={(e) => e.stopPropagation()}>
-                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .3a12 12 0 0 0-3.8 23.4c.6.1.8-.3.8-.6v-2.2c-3.3.7-4-1.4-4-1.4-.6-1.4-1.4-1.8-1.4-1.8-1.1-.7.1-.7.1-.7 1.2.1 1.9 1.3 1.9 1.3 1.1 1.9 2.9 1.4 3.6 1 .1-.8.4-1.4.8-1.7-2.7-.3-5.5-1.3-5.5-6 0-1.3.5-2.4 1.3-3.2-.1-.4-.6-1.6.1-3.3 0 0 1-.3 3.3 1.2a11.5 11.5 0 0 1 6 0c2.3-1.5 3.3-1.2 3.3-1.2.7 1.7.2 2.9.1 3.3.8.8 1.3 1.9 1.3 3.2 0 4.7-2.8 5.7-5.5 6 .4.4.8 1.1.8 2.3v3.3c0 .3.2.7.8.6A12 12 0 0 0 12 .3" /></svg>
-                        github
-                      </a>
-                      {homepage && (
-                        <a className="card-action primary" href={homepage} target="_blank" rel="noopener" onClick={(e) => e.stopPropagation()}>
-                          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6M15 3h6v6M10 14 21 3" /></svg>
-                          demo
-                        </a>
-                      )}
+                    <div className="card-foot">
+                      {repo.language && <span className="card-lang">{repo.language}</span>}
                       {externalLinks.map((link) => (
-                        <a
-                          key={link.url}
-                          className="card-action"
-                          href={link.url}
-                          target="_blank"
-                          rel="noopener"
-                          onClick={(e) => e.stopPropagation()}
-                        >
-                          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6M15 3h6v6M10 14 21 3" /></svg>
-                          {link.label}
-                        </a>
+                        <a key={link.url} className="card-ext" href={link.url} target="_blank" rel="noopener" onClick={(e) => e.stopPropagation()}>{link.label} ↗</a>
                       ))}
+                      {homepage && (
+                        <a className="card-ext" href={homepage} target="_blank" rel="noopener" onClick={(e) => e.stopPropagation()}>demo ↗</a>
+                      )}
                     </div>
                   </article>
                 )

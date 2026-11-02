@@ -9,6 +9,8 @@ import remarkGfm from "remark-gfm"
 import rehypeRaw from "rehype-raw"
 import rehypeSanitize from "rehype-sanitize"
 import { type GithubRepo, GITHUB_USER } from "@/lib/github"
+import { ScaledFrame } from "@/components/scaled-frame"
+import { PUBLISHED_BY_REPO } from "@/data/published"
 
 type Props = { repoName: string }
 
@@ -19,6 +21,8 @@ export function ProjectReadme({ repoName }: Props) {
   const requestKey = `${repoName}:${lang}`
   const loading = readmeState?.key !== requestKey
   const readme = loading ? null : readmeState.content
+  const pub = PUBLISHED_BY_REPO[repoName]
+  const lk = lang === "pt-BR" ? "pt" : "en"
 
   useEffect(() => {
     fetch(`https://api.github.com/repos/${GITHUB_USER}/${repoName}`, {
@@ -70,6 +74,33 @@ export function ProjectReadme({ repoName }: Props) {
           </div>
         ) : (
           <>
+            {pub ? (
+              <div className="page-head pub-detail-head">
+                <span className="readme-tag">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z" /></svg>
+                  <span lang="pt-BR">publicado</span><span lang="en-US">published</span>
+                </span>
+                <div className="pub-detail-row">
+                  <div className="pub-detail-title">
+                    <h1 className="repo-name">{pub.name}</h1>
+                    <p className="repo-desc">{pub.desc[lk]}</p>
+                  </div>
+                  <div className="repo-actions" style={{ margin: 0 }}>
+                    <a className="ql" href={pub.repo} target="_blank" rel="noopener">github</a>
+                    <a className="ql primary" href={pub.url} target="_blank" rel="noopener">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6M15 3h6v6M10 14 21 3" /></svg>
+                      <span lang="pt-BR">abrir site</span><span lang="en-US">open site</span>
+                    </a>
+                  </div>
+                </div>
+                <div className="pub-browser">
+                  <div className="pub-browser-bar"><span><i /><i /><i /></span>{pub.host}</div>
+                  <div className="pub-browser-shot">
+                    <ScaledFrame src={pub.url} title={pub.name} />
+                  </div>
+                </div>
+              </div>
+            ) : (
             <div className="page-head" style={{ paddingBottom: 0 }}>
               <span className="readme-tag">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z" /></svg>
@@ -104,7 +135,9 @@ export function ProjectReadme({ repoName }: Props) {
                 )}
               </div>
             </div>
-            <div className="readme-wrap">
+            )}
+            <div className={pub ? "readme-wrap pub-detail-body" : "readme-wrap"}>
+              <div>
               <span className="readme-tag" style={{ marginBottom: 20 }}>
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" /><path d="M14 2v6h6M16 13H8M16 17H8M10 9H8" /></svg>
                 README.md
@@ -129,6 +162,15 @@ export function ProjectReadme({ repoName }: Props) {
                   <strong lang="pt-BR">Nenhum README encontrado.</strong>
                   <strong lang="en-US">No README found for this repository.</strong>
                 </div>
+              )}
+              </div>
+              {pub && (
+                <aside className="pub-aside">
+                  <div><span>status</span><span className="pub-main">● online · {pub.version}</span></div>
+                  <div><span>site</span><a href={pub.url} target="_blank" rel="noopener">{pub.host}</a></div>
+                  <div><span>repo</span><span>{GITHUB_USER}/{pub.repoName}</span></div>
+                  {repo?.language && <div><span><span lang="pt-BR">linguagem</span><span lang="en-US">language</span></span><span>{repo.language}</span></div>}
+                </aside>
               )}
             </div>
           </>

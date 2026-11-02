@@ -353,3 +353,84 @@ section.repos { padding: 32px 0 96px; border-bottom: 0; }
   .marquee-track, .role-caret { animation:none; }
   .pub-card { transition:none; }
 }
+
+/* ---- Redesign: home sections ---- */
+.home-sec { padding-top:96px; }
+.exp-compact { display:flex; flex-direction:column; border-top:1px solid var(--line); }
+.exp-row { display:grid; grid-template-columns:40px minmax(0,1fr) 220px; gap:20px; align-items:center; padding:18px 0; border-bottom:1px solid var(--line); }
+.exp-row .exp-logo { width:40px; height:40px; }
+.exp-row-title { font-size:14.5px; color:var(--fg); }
+.exp-row-co { font-size:12.5px; color:var(--fg-faint); }
+.exp-row-range { font-size:12px; color:var(--fg-dim); text-align:right; }
+.stack-grid { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); border:1px solid var(--line); border-radius:var(--radius); }
+.stack-grid-cell { padding:18px 20px; border-right:1px solid var(--line-soft); display:flex; flex-direction:column; gap:8px; }
+.stack-grid-cell:last-child { border-right:0; }
+.stack-grid-k { font-size:11px; letter-spacing:.12em; text-transform:uppercase; color:var(--mint); }
+.stack-grid-v { font-size:13.5px; line-height:1.6; color:var(--fg-dim); }
+
+/* ---- Redesign: /projects ---- */
+.projects-head { display:flex; align-items:flex-end; justify-content:space-between; gap:24px; padding:72px 0 48px; border-bottom:1px solid var(--line); margin-bottom:56px; }
+.projects-head h1 { font-size:48px; margin:0; }
+.pub-list { display:flex; flex-direction:column; border-top:1px solid var(--line); }
+.pub-row { display:grid; grid-template-columns:44px 240px minmax(0,1fr) 120px 200px; gap:24px; align-items:center; padding:22px 0; border-bottom:1px solid var(--line); color:inherit; text-decoration:none; transition:background .2s; }
+.pub-row:hover { background:var(--mint-dim); }
+.pub-row-n { font-size:12px; color:var(--fg-faint); }
+.pub-row-shot { position:relative; aspect-ratio:16/10; border:1px solid var(--line); border-radius:var(--radius-sm); overflow:hidden; background:var(--bg-soft); }
+.pub-row-shot img { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; }
+.pub-row-main { display:flex; flex-direction:column; gap:6px; min-width:0; }
+.pub-row-main strong { font-size:20px; color:var(--fg); letter-spacing:-.015em; }
+.pub-row-desc { font-size:13.5px; line-height:1.55; color:var(--fg-dim); }
+.pub-row-status { display:flex; flex-direction:column; gap:6px; align-items:flex-start; }
+.pub-row-links { display:flex; flex-direction:column; gap:6px; align-items:flex-end; font-size:12.5px; color:var(--fg-faint); }
+.pub-row-links .pub-main, .pub-aside .pub-main { color:var(--mint); }
+.projects-published { padding-bottom:88px; }
+.grid.grid-3 { grid-template-columns:repeat(3,minmax(0,1fr)); gap:16px; }
+.card-foot { display:flex; align-items:center; gap:14px; font-size:11.5px; color:var(--fg-dim); margin-top:auto; }
+.card-ext { color:var(--mint); }
+
+/* ---- Redesign: published detail ---- */
+.pub-detail-head .readme-tag { align-self:flex-start; }
+.pub-detail-head { display:flex; flex-direction:column; gap:16px; padding-bottom:0; }
+.pub-detail-row { display:flex; align-items:flex-end; justify-content:space-between; gap:24px; }
+.pub-detail-title { display:flex; flex-direction:column; gap:12px; }
+.pub-detail-title .repo-desc { max-width:620px; font-size:16px; }
+.pub-browser { border:1px solid var(--line); border-radius:var(--radius-lg); overflow:hidden; background:var(--surface); margin-top:12px; }
+.pub-browser-bar { display:flex; align-items:center; gap:12px; padding:10px 14px; border-bottom:1px solid var(--line); font-size:11.5px; color:var(--fg-faint); }
+.pub-browser-bar span { display:flex; gap:6px; }
+.pub-browser-bar i { width:8px; height:8px; border-radius:50%; background:var(--line); }
+.pub-browser-shot { position:relative; aspect-ratio:16/8; overflow:hidden; background:var(--bg-soft); }
+.scaled-frame { position:absolute; inset:0; }
+.scaled-frame iframe { position:absolute; left:0; top:0; width:1440px; height:720px; border:0; transform-origin:0 0; pointer-events:none; background:var(--bg); }
+.pub-detail-body { display:grid; grid-template-columns:minmax(0,1fr) 280px; gap:56px; }
+.pub-aside { display:flex; flex-direction:column; border-top:1px solid var(--line); font-size:12.5px; align-self:start; }
+.pub-aside > div { display:flex; justify-content:space-between; gap:12px; padding:12px 0; border-bottom:1px solid var(--line-soft); color:var(--fg-dim); }
+.pub-aside > div > span:first-child { color:var(--fg-faint); }
+
+/* ---- Redesign: resume ---- */
+.cv-head { display:flex; flex-wrap:wrap; align-items:flex-end; justify-content:space-between; gap:16px 24px; padding:72px 0 40px; border-bottom:1px solid var(--line); }
+.cv-head h1 { font-size:48px; margin:0; }
+.cv-head .role { margin:0; flex-basis:100%; order:2; }
+.cv-meta { order:3; flex-basis:100%; }
+.cv-actions { order:1; }
+.resume-section { display:grid; grid-template-columns:200px minmax(0,1fr); gap:48px; padding:48px 0 0; margin-top:48px; border-top:1px solid var(--line); }
+.resume-section:first-of-type { margin-top:0; border-top:0; }
+.resume-section > .sec-head { display:block; margin:0; }
+.resume-section > .sec-head .sec-num, .resume-section > .sec-head .sec-rule, .resume-section > .sec-head .sec-count { display:none; }
+.resume-section > .sec-head .sec-title { font-family:inherit; font-size:11px; letter-spacing:.12em; text-transform:uppercase; color:var(--mint); font-weight:400; margin:0; }
+.resume-section > :not(.sec-head) { grid-column:2; }
+.resume-section .cv-job:first-of-type { margin-top:0; }
+
+@media (max-width: 980px) {
+  .exp-row { grid-template-columns:40px minmax(0,1fr); }
+  .exp-row-range { grid-column:2; text-align:left; }
+  .stack-grid { grid-template-columns:repeat(2,minmax(0,1fr)); }
+  .pub-row { grid-template-columns:1fr; gap:12px; }
+  .pub-row-links { align-items:flex-start; }
+  .grid.grid-3 { grid-template-columns:1fr; }
+  .projects-head, .pub-detail-row { flex-direction:column; align-items:flex-start; }
+  .pub-detail-body { grid-template-columns:1fr; }
+  .resume-section { grid-template-columns:1fr; gap:16px; }
+  .resume-section > :not(.sec-head) { grid-column:1; }
+}
+
+.pub-ph { position:absolute; inset:0; display:grid; place-items:center; font-family:var(--mono); font-size:18px; color:var(--mint); background:linear-gradient(135deg,var(--bg-soft),var(--mint-dim)); }

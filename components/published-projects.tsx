@@ -2,6 +2,7 @@
 
 import type { MouseEvent } from "react"
 import { useAppStore } from "@/lib/store"
+import { ScaledFrame } from "@/components/scaled-frame"
 import { PUBLISHED } from "@/data/published"
 
 function tilt(e: MouseEvent<HTMLElement>) {
@@ -41,7 +42,7 @@ export function PublishedProjects() {
               // eslint-disable-next-line @next/next/no-img-element
               <img src={p.img} alt={`${p.name} — ${p.host}`} loading="lazy" />
             ) : (
-              <span className="pub-ph">{p.name}</span>
+              <ScaledFrame src={p.url} title={p.name} />
             )}
           </div>
           <div className="pub-body">

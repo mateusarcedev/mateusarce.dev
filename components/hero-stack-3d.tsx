@@ -106,7 +106,6 @@ export function HeroStack3D() {
                 <iframe
                   src={p.url}
                   title={p.name}
-                  loading="lazy"
                   tabIndex={-1}
                   style={{ transform: `scale(${FRAME_SCALE})` }}
                 />

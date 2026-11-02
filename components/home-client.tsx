@@ -1,7 +1,6 @@
 "use client"
 
-import { useState, useEffect, useMemo } from "react"
-import { animate, stagger } from "animejs"
+import { useEffect, useMemo, useState } from "react"
 import Link from "next/link"
 import { useAppStore } from "@/lib/store"
 import { Topbar } from "@/components/topbar"
@@ -10,9 +9,7 @@ import { RevealObserver } from "@/components/reveal"
 import { HeroStack3D } from "@/components/hero-stack-3d"
 import { RoleRotator } from "@/components/role-rotator"
 import { PublishedProjects } from "@/components/published-projects"
-import { MARQUEE } from "@/data/published"
-import { ElectronicsLabVisual } from "@/components/electronics-lab-visual"
-import { TECH, CAT_LABEL, CAT_ORDER } from "@/data/technologies"
+import { MARQUEE, STACK_GROUPS } from "@/data/published"
 import { experiences } from "@/data/experiences"
 
 function useClock() {
@@ -43,50 +40,10 @@ function formatDuration(startDate: string, lk: "pt" | "en") {
   return parts.join(" ")
 }
 
-function useDuration(startDate: string) {
-  const { lang } = useAppStore()
-  const lk = lang === "pt-BR" ? "pt" : "en"
-  return formatDuration(startDate, lk)
-}
-
 export function HomeClient() {
   const { lang } = useAppStore()
   const lk = lang === "pt-BR" ? "pt" : "en"
   const clock = useClock()
-  const [curCat, setCurCat] = useState("all")
-  const [showAllExp, setShowAllExp] = useState(false)
-
-  useEffect(() => {
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return
-
-    const chips = document.querySelectorAll(".stack-cat:not([hidden]) .chip")
-    if (!chips.length) return
-
-    const animation = animate(chips, {
-      opacity: { from: 0 },
-      y: { from: 6 },
-      duration: 420,
-      delay: stagger(18),
-      ease: "out(3)",
-    })
-
-    return () => {
-      animation.revert()
-    }
-  }, [curCat])
-
-  const grouped = useMemo(() => {
-    const g: Record<string, typeof TECH> = {}
-    TECH.forEach((t) => { (g[t.cat] = g[t.cat] || []).push(t) })
-    Object.values(g).forEach((arr) => arr.sort((a, b) => a.name.localeCompare(b.name)))
-    return g
-  }, [])
-
-  const catCounts = useMemo(() => {
-    const c: Record<string, number> = {}
-    TECH.forEach((t) => { c[t.cat] = (c[t.cat] || 0) + 1 })
-    return c
-  }, [])
 
   const firstExperienceStart = useMemo(
     () =>
@@ -97,7 +54,6 @@ export function HomeClient() {
     []
   )
   const totalExperience = firstExperienceStart ? formatDuration(firstExperienceStart, lk) : null
-  const todayDate = new Date().toLocaleString(lk === "pt" ? "pt-BR" : "en-US", { month: "short", year: "numeric" })
 
   return (
     <>
@@ -176,230 +132,53 @@ export function HomeClient() {
         </section>
 
         {/* EXPERIENCE */}
-        <section id="experience" className="reveal">
+        <section id="experience" className="reveal home-sec">
           <div className="sec-head">
             <span className="sec-num">02</span>
             <h2 className="sec-title"><span lang="pt-BR">Experiência</span><span lang="en-US">Experience</span></h2>
             <span className="sec-rule" />
-            <span className="sec-count">0{experiences.length}</span>
+            {totalExperience && <span className="sec-count">{totalExperience}</span>}
           </div>
-          <div className="exp-list">
-            {experiences.slice(0, 2).map((exp, i) => (
-              <ExpCard key={i} exp={exp} />
+          <div className="exp-compact">
+            {experiences.map((exp, i) => (
+              <div className="exp-row" key={i}>
+                <div className={`exp-logo ${exp.logoClass || ""}`}>
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img src={exp.logo} alt={exp.company} />
+                </div>
+                <div className="exp-row-main">
+                  <div className="exp-row-title"><span lang="pt-BR">{exp.title.pt}</span><span lang="en-US">{exp.title.en}</span></div>
+                  <div className="exp-row-co">{exp.company}</div>
+                </div>
+                <div className="exp-row-range">
+                  <span lang="pt-BR">{exp.dateRange.pt}</span><span lang="en-US">{exp.dateRange.en}</span>
+                </div>
+              </div>
             ))}
-            <div className={`exp-collapsed${showAllExp ? " open" : ""}`}>
-              {experiences.slice(2).map((exp, i) => (
-                <ExpCard key={i + 2} exp={exp} />
-              ))}
-            </div>
-            <button className="exp-toggle" onClick={() => setShowAllExp((v) => !v)} aria-expanded={showAllExp}>
-              <span className="exp-toggle-line" />
-              <span className="exp-toggle-label">
-                {showAllExp ? (
-                  <><span lang="pt-BR">ver menos</span><span lang="en-US">show less</span></>
-                ) : (
-                  <><span lang="pt-BR">ver mais · +{experiences.length - 2} anteriores</span><span lang="en-US">show more · +{experiences.length - 2} previous</span></>
-                )}
-                <svg className={`exp-toggle-arrow${showAllExp ? " up" : ""}`} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8"><path d="M6 9l6 6 6-6" /></svg>
-              </span>
-              <span className="exp-toggle-line" />
-            </button>
           </div>
         </section>
 
         {/* STACK */}
-        <section id="stack" className="reveal">
+        <section id="stack" className="reveal home-sec">
           <div className="sec-head">
             <span className="sec-num">03</span>
-            <h2 className="sec-title"><span lang="pt-BR">Tecnologias</span><span lang="en-US">Technologies</span></h2>
+            <h2 className="sec-title">Stack</h2>
             <span className="sec-rule" />
-            <span className="sec-count">{TECH.length} {lk === "pt" ? "tecnologias" : "techs"}</span>
           </div>
-          <div className="stack-filters" role="group" aria-label="Category filter">
-            <button className="pill" aria-pressed={curCat === "all"} onClick={() => setCurCat("all")}>
-              <span className="ico">✦</span>
-              <span lang="pt-BR">Todos</span><span lang="en-US">All</span>
-              <span className="c">{TECH.length}</span>
-            </button>
-            {CAT_ORDER.map((cat) => (
-              <button key={cat} className="pill" aria-pressed={curCat === cat} onClick={() => setCurCat(cat)}>
-                <span className="ico">◆</span>
-                <span lang="pt-BR">{CAT_LABEL[cat]?.pt}</span><span lang="en-US">{CAT_LABEL[cat]?.en}</span>
-                <span className="c">{catCounts[cat] || 0}</span>
-              </button>
+          <div className="stack-grid">
+            {STACK_GROUPS.map((g) => (
+              <div className="stack-grid-cell" key={g.k.en}>
+                <span className="stack-grid-k">{g.k[lk]}</span>
+                <span className="stack-grid-v">{g.v}</span>
+              </div>
             ))}
           </div>
-          <div className="stack-cats">
-            {(() => {
-              let idx = 0
-              return CAT_ORDER.map((cat) => {
-                if (!grouped[cat]) return null
-                idx++
-                const hidden = curCat !== "all" && curCat !== cat
-                return (
-                  <div className="stack-cat" key={cat} hidden={hidden}>
-                    <div className="cat-head">
-                      <span className="num">{String(idx).padStart(2, "0")}</span>
-                      <span lang="pt-BR">{CAT_LABEL[cat]?.pt}</span><span lang="en-US">{CAT_LABEL[cat]?.en}</span>
-                      <span className="line" />
-                      <span className="count">{grouped[cat].length}</span>
-                    </div>
-                    <div className="chips">
-                      {grouped[cat].map((t) => (
-                        <span className="chip" key={t.name} data-tip={t.desc[lk]}>
-                          {/* eslint-disable-next-line @next/next/no-img-element */}
-                          <img
-                            src={`https://cdn.simpleicons.org/${t.slug}/${t.color}`}
-                            alt="" loading="lazy" decoding="async"
-                            className={t.invertible ? "invertible" : undefined}
-                          />
-                          <span>{t.name}</span>
-                        </span>
-                      ))}
-                    </div>
-                  </div>
-                )
-              })
-            })()}
-          </div>
-        </section>
-
-        {/* NOW */}
-        <section id="now" className="reveal">
-          <div className="sec-head">
-            <span className="sec-num">04</span>
-            <h2 className="sec-title"><span lang="pt-BR">Agora</span><span lang="en-US">Now</span></h2>
-            <span className="sec-rule" />
-            <span className="sec-count">{todayDate}</span>
-          </div>
-          <div className="now-grid">
-            <div className="now-cell">
-              <div className="now-label"><span className="marker" /><span lang="pt-BR">Construindo</span><span lang="en-US">Building</span></div>
-              <div className="now-val">
-                <span lang="pt-BR"><span className="h">sistemas backend</span> e automações na Supertrans</span>
-                <span lang="en-US"><span className="h">backend systems</span> and automation at Supertrans</span>
-              </div>
-            </div>
-            <div className="now-cell">
-              <div className="now-label"><span className="marker" /><span lang="pt-BR">Publicando</span><span lang="en-US">Shipping</span></div>
-              <div className="now-val">
-                <span lang="pt-BR"><span className="h">ferramentas para desenvolvedores</span> e projetos open source</span>
-                <span lang="en-US"><span className="h">developer tools</span> and open-source side projects</span>
-              </div>
-            </div>
-            <div className="now-cell">
-              <div className="now-label"><span className="marker" /><span lang="pt-BR">Aprendendo</span><span lang="en-US">Learning</span></div>
-              <div className="now-val">
-                <span lang="pt-BR"><span className="h">Go</span>, LangGraph e arquiteturas orientadas a eventos</span>
-                <span lang="en-US"><span className="h">Go</span>, LangGraph and event-driven architectures</span>
-              </div>
-            </div>
-            <div className="now-cell">
-              <div className="now-label"><span className="marker" /><span lang="pt-BR">Combustível</span><span lang="en-US">Fuel</span></div>
-              <div className="now-val">
-                <span className="p">☕</span>
-                <span lang="pt-BR">café preto e curiosidade técnica</span>
-                <span lang="en-US">black coffee and technical curiosity</span>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* WORKFLOW */}
-        <section id="workflow" className="reveal">
-          <div className="sec-head">
-            <span className="sec-num">05</span>
-            <h2 className="sec-title"><span lang="pt-BR">Workflow</span><span lang="en-US">Workflow</span></h2>
-            <span className="sec-rule" />
-            <span className="sec-count"><span lang="pt-BR">humano + agentes</span><span lang="en-US">human + agents</span></span>
-          </div>
-
-          <div className="workflow-intro">
-            <p lang="pt-BR">Uso agentes como uma camada de execução e revisão do meu trabalho: eu defino contexto, restrições e direção técnica; os agentes ajudam a decompor, implementar, testar e revisar com ciclos curtos.</p>
-            <p lang="en-US">I use agents as an execution and review layer: I define context, constraints and technical direction; agents help break down, implement, test and review work in short cycles.</p>
-          </div>
-
-          <div className="workflow-board">
-            <article className="workflow-stage">
-              <span className="workflow-stage-num">01</span>
-              <div>
-                <strong><span lang="pt-BR">Contexto & direção</span><span lang="en-US">Context & direction</span></strong>
-                <p lang="pt-BR">Requisitos, arquitetura, regras e definição do que significa “pronto”.</p>
-                <p lang="en-US">Requirements, architecture, rules and a clear definition of done.</p>
-              </div>
-              <span className="workflow-stage-status">human</span>
-            </article>
-            <div className="workflow-connector"><span /></div>
-            <article className="workflow-stage">
-              <span className="workflow-stage-num">02</span>
-              <div>
-                <strong><span lang="pt-BR">Agentes em paralelo</span><span lang="en-US">Agents in parallel</span></strong>
-                <p lang="pt-BR">Planejamento, código, busca no repositório, testes e revisão de diff.</p>
-                <p lang="en-US">Planning, coding, repository search, tests and diff review.</p>
-              </div>
-              <span className="workflow-stage-status active">agents</span>
-            </article>
-            <div className="workflow-connector"><span /></div>
-            <article className="workflow-stage">
-              <span className="workflow-stage-num">03</span>
-              <div>
-                <strong><span lang="pt-BR">Validação & entrega</span><span lang="en-US">Validate & ship</span></strong>
-                <p lang="pt-BR">Eu reviso decisões, valido o comportamento e fecho o ciclo com deploy e feedback.</p>
-                <p lang="en-US">I review decisions, validate behavior and close the loop with deployment and feedback.</p>
-              </div>
-              <span className="workflow-stage-status">ship</span>
-            </article>
-          </div>
-
-          <div className="workflow-toolbelt">
-            <span className="workflow-toolbelt-label"><span lang="pt-BR">modo de trabalho</span><span lang="en-US">working mode</span></span>
-            <span>frontend</span><span>backend</span><span>mobile</span><span>automation</span><span>agentic coding</span><span>review loops</span>
-          </div>
-        </section>
-
-        {/* LEARNING LAB */}
-        <section id="learning" className="reveal">
-          <div className="sec-head">
-            <span className="sec-num">06</span>
-            <h2 className="sec-title"><span lang="pt-BR">Aprendendo</span><span lang="en-US">Learning</span></h2>
-            <span className="sec-rule" />
-            <span className="sec-count"><span lang="pt-BR">hobby / curiosidade</span><span lang="en-US">hobby / curiosity</span></span>
-          </div>
-
-          <div className="learning-grid">
-            <div className="learning-copy">
-              <span className="learning-eyebrow"><span lang="pt-BR">fora do trabalho</span><span lang="en-US">outside work</span></span>
-              <h3><span lang="pt-BR">Eletrônica básica, Arduino e ESP32.</span><span lang="en-US">Basic electronics, Arduino and ESP32.</span></h3>
-              <p lang="pt-BR">Não é meu foco profissional — é um laboratório pessoal para entender melhor sensores, sinais, GPIO, microcontroladores e o caminho entre software e hardware.</p>
-              <p lang="en-US">It is not my professional focus — it is a personal lab for understanding sensors, signals, GPIO, microcontrollers and the bridge between software and hardware.</p>
-              <div className="learning-tags"><span>Arduino</span><span>ESP32</span><span>GPIO</span><span>sensores</span><span>eletrônica básica</span></div>
-            </div>
-            <ElectronicsLabVisual />
-          </div>
-        </section>
-
-        {/* PROJECTS LINK */}
-        <section id="projects-link" className="reveal">
-          <div className="sec-head">
-            <span className="sec-num">07</span>
-            <h2 className="sec-title"><span lang="pt-BR">Projetos</span><span lang="en-US">Projects</span></h2>
-            <span className="sec-rule" />
-          </div>
-          <Link className="proj-link" href="/projects">
-            <div className="proj-link-text">
-              <strong lang="pt-BR">Ver todos os projetos →</strong>
-              <strong lang="en-US">See all projects →</strong>
-              <span lang="pt-BR">repositórios públicos do GitHub, com READMEs renderizados e links externos quando disponíveis</span>
-              <span lang="en-US">public GitHub repositories, rendered READMEs and external links when available</span>
-            </div>
-            <svg className="arrow" viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" strokeWidth="1.6"><path d="M5 12h14M13 5l7 7-7 7" /></svg>
-          </Link>
         </section>
 
         {/* CONTACT */}
         <section id="contact" className="reveal">
           <div className="sec-head">
-            <span className="sec-num">08</span>
+            <span className="sec-num">04</span>
             <h2 className="sec-title"><span lang="pt-BR">Contato</span><span lang="en-US">Contact</span></h2>
             <span className="sec-rule" />
             <span className="sec-count"><span lang="pt-BR">resposta em ~24h</span><span lang="en-US">~24h response</span></span>
@@ -422,43 +201,5 @@ export function HomeClient() {
       </main>
       <Footer variant="home" />
     </>
-  )
-}
-
-function DurationBadge({ startDate }: { startDate: string }) {
-  const dur = useDuration(startDate)
-  return <span className="dur">{dur}</span>
-}
-
-function ExpCard({ exp }: { exp: (typeof experiences)[number] }) {
-  return (
-    <article className="exp">
-      <div className={`exp-logo ${exp.logoClass || ""}`}>
-        <img src={exp.logo} alt={exp.company} />
-      </div>
-      <div className="exp-body">
-        <div className="exp-dates">
-          {exp.current && <span className="now">● now</span>}
-          <span lang="pt-BR">{exp.dateRange.pt}</span>
-          <span lang="en-US">{exp.dateRange.en}</span>
-          {exp.current && exp.startDate ? (
-            <DurationBadge startDate={exp.startDate} />
-          ) : exp.duration ? (
-            <span className="dur">{exp.duration}</span>
-          ) : null}
-        </div>
-        <h3><span lang="pt-BR">{exp.title.pt}</span><span lang="en-US">{exp.title.en}</span></h3>
-        <div className="exp-co"><b>{exp.company}</b><span className="at">·</span>{exp.location}</div>
-        <ul className="exp-bullets" lang="pt-BR">
-          {exp.bullets.pt.map((b, j) => <li key={j} dangerouslySetInnerHTML={{ __html: b }} />)}
-        </ul>
-        <ul className="exp-bullets" lang="en-US">
-          {exp.bullets.en.map((b, j) => <li key={j} dangerouslySetInnerHTML={{ __html: b }} />)}
-        </ul>
-        <div className="exp-tech">
-          {exp.tech.map((t) => <span className="t" key={t}>{t}</span>)}
-        </div>
-      </div>
-    </article>
   )
 }

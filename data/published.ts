@@ -61,3 +61,14 @@ export const MARQUEE = [
   "Go", "TypeScript", "NestJS", "Next.js", "React", "Python",
   "LangGraph", "PostgreSQL", "RabbitMQ", "Redis", "Docker", "React Native",
 ]
+
+export const STACK_GROUPS = [
+  { k: { pt: "Front-end", en: "Front-end" }, v: "React, Next.js, TypeScript" },
+  { k: { pt: "Back-end", en: "Back-end" }, v: "Go, NestJS, Python, PostgreSQL" },
+  { k: { pt: "Mobile", en: "Mobile" }, v: "React Native" },
+  { k: { pt: "IA & automação", en: "AI & automation" }, v: "LangGraph, AI agents, workflows" },
+]
+
+export const PUBLISHED_BY_REPO: Record<string, PublishedProject> = Object.fromEntries(
+  PUBLISHED.map((p) => [p.repoName, p])
+)
