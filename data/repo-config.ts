@@ -17,7 +17,7 @@ export const COURSE_REPOS = ["clean-DDD", "api-forum", "interviews_questions"]
  * "devlist": "https://devlist.mateusarce.dev",
  */
 export const HOMEPAGE_OVERRIDES: Record<string, string> = {
-  "sql-vault": "https://sqlvault.mateusarce.dev",
+  "sql-vault": "https://sqlvault.mateusarce.dev/pt-BR",
 }
 
 export const EXTERNAL_REPO_LINKS: Record<string, { label: string; url: string }[]> = {
