@@ -73,6 +73,23 @@ export const PUBLISHED: PublishedProject[] = [
       en: "Open-source personal finance app. Explore a fictional demo without connecting your bank.",
     },
   },
+  {
+    n: "04",
+    slug: "sqlvault",
+    name: "SQL Vault",
+    kind: { pt: "cofre SQL self-hosted · open source", en: "self-hosted SQL vault · open source" },
+    host: "sqlvault.mateusarce.dev",
+    url: "https://sqlvault.mateusarce.dev/pt-BR",
+    repo: `${GH}/sql-vault`,
+    repoName: "sql-vault",
+    img: "",
+    version: "v0.1.0",
+    live: true,
+    desc: {
+      pt: "Cofre self-hosted para consultas SQL com versionamento, segurança, IA e integração com VS Code.",
+      en: "Self-hosted SQL vault with versioning, security, AI and VS Code integration.",
+    },
+  },
 ]
 
 export const HERO_ROLES = {
