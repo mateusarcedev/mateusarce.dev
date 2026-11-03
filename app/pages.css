@@ -418,6 +418,7 @@ section.repos { padding: 32px 0 96px; border-bottom: 0; }
 .pub-browser-bar span { display:flex; gap:6px; }
 .pub-browser-bar i { width:8px; height:8px; border-radius:50%; background:var(--line); }
 .pub-browser-shot { position:relative; aspect-ratio:16/8; overflow:hidden; background:var(--bg-soft); }
+.pub-browser-shot img { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:top; }
 .scaled-frame { position:absolute; inset:0; }
 .scaled-frame iframe { position:absolute; left:0; top:0; width:1440px; height:720px; border:0; transform-origin:0 0; pointer-events:none; background:var(--bg); }
 .pub-detail-body { display:grid; grid-template-columns:minmax(0,1fr) 280px; gap:56px; }

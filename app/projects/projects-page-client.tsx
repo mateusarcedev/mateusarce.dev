@@ -10,7 +10,7 @@ import { ScaledFrame } from "@/components/scaled-frame"
 import { PUBLISHED, type PublishedProject } from "@/data/published"
 import { RevealObserver } from "@/components/reveal"
 import { type GithubRepo, GITHUB_USER } from "@/lib/github"
-import { FEATURED_REPOS, COURSE_REPOS, HOMEPAGE_OVERRIDES, EXTERNAL_REPO_LINKS } from "@/data/repo-config"
+import { FEATURED_REPOS, COURSE_REPOS, HOMEPAGE_OVERRIDES, HOMEPAGE_LABELS, EXTERNAL_REPO_LINKS } from "@/data/repo-config"
 
 function PubRowLink({ p, children }: { p: PublishedProject; children: React.ReactNode }) {
   if (p.private) {
@@ -172,7 +172,7 @@ export function ProjectsPageClient() {
                         <a key={link.url} className="card-ext" href={link.url} target="_blank" rel="noopener" onClick={(e) => e.stopPropagation()}>{link.label} ↗</a>
                       ))}
                       {homepage && (
-                        <a className="card-ext" href={homepage} target="_blank" rel="noopener" onClick={(e) => e.stopPropagation()}>demo ↗</a>
+                        <a className="card-ext" href={homepage} target="_blank" rel="noopener" onClick={(e) => e.stopPropagation()}>{HOMEPAGE_LABELS[repo.name] ?? "demo"} ↗</a>
                       )}
                     </div>
                   </article>

@@ -98,7 +98,12 @@ export function ProjectReadme({ repoName }: Props) {
                 <div className="pub-browser">
                   <div className="pub-browser-bar"><span><i /><i /><i /></span>{pub.host}</div>
                   <div className="pub-browser-shot">
-                    <ScaledFrame src={pub.url} title={pub.name} />
+                    {pub.noEmbed && pub.img ? (
+                      // eslint-disable-next-line @next/next/no-img-element
+                      <img src={pub.img} alt={`${pub.name} — ${pub.host}`} loading="lazy" />
+                    ) : (
+                      <ScaledFrame src={pub.url} title={pub.name} />
+                    )}
                   </div>
                 </div>
               </div>

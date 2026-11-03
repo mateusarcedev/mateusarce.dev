@@ -20,6 +20,11 @@ export const HOMEPAGE_OVERRIDES: Record<string, string> = {
   "sql-vault": "https://sqlvault.mateusarce.dev/pt-BR",
 }
 
+/** Label for the homepage link on a repo card. Defaults to "demo". */
+export const HOMEPAGE_LABELS: Record<string, string> = {
+  "sql-vault": "apresentação",
+}
+
 export const EXTERNAL_REPO_LINKS: Record<string, { label: string; url: string }[]> = {
   "sql-vault": [
     {
@@ -36,6 +41,7 @@ export function findMissingConfiguredRepos(publicRepoNames: string[]): string[] 
     ...FEATURED_REPOS,
     ...COURSE_REPOS,
     ...Object.keys(HOMEPAGE_OVERRIDES),
+    ...Object.keys(HOMEPAGE_LABELS),
     ...Object.keys(EXTERNAL_REPO_LINKS),
   ])
   return [...configured].filter((name) => !available.has(name))

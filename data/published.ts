@@ -82,9 +82,11 @@ export const PUBLISHED: PublishedProject[] = [
     url: "https://sqlvault.mateusarce.dev/pt-BR",
     repo: `${GH}/sql-vault`,
     repoName: "sql-vault",
-    img: "",
+    img: "/images/sqlvault.png",
     version: "v0.1.0",
     live: true,
+    /** the site sends X-Frame-Options: DENY, so img is the preview */
+    noEmbed: true,
     desc: {
       pt: "Cofre self-hosted para consultas SQL com versionamento, segurança, IA e integração com VS Code.",
       en: "Self-hosted SQL vault with versioning, security, AI and VS Code integration.",

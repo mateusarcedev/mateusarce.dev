@@ -56,7 +56,7 @@ test.describe("projects", () => {
     await page.goto("/projects")
 
     const card = page.locator("article.card", { has: page.locator(".card-name", { hasText: /^sql-vault$/ }) })
-    await expect(card.getByRole("link", { name: /demo/ })).toHaveAttribute("href", "https://sqlvault.mateusarce.dev/pt-BR")
+    await expect(card.getByRole("link", { name: /apresentação/ })).toHaveAttribute("href", "https://sqlvault.mateusarce.dev/pt-BR")
   })
 
   test("shows the rate limit message instead of cards when the API fails", async ({ page }) => {
