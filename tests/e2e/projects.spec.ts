@@ -51,6 +51,14 @@ test.describe("projects", () => {
     await expect(page.locator("main#main-content")).not.toContainText("forked-repo")
   })
 
+  test("links sql-vault to its live site", async ({ page }) => {
+    await mockRepos(page)
+    await page.goto("/projects")
+
+    const card = page.locator("article.card", { has: page.locator(".card-name", { hasText: /^sql-vault$/ }) })
+    await expect(card.getByRole("link", { name: /demo/ })).toHaveAttribute("href", "https://sqlvault.mateusarce.dev")
+  })
+
   test("shows the rate limit message instead of cards when the API fails", async ({ page }) => {
     await mockRepos(page, 403)
     await page.goto("/projects")

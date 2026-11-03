@@ -13,11 +13,12 @@ export const COURSE_REPOS = ["clean-DDD", "api-forum", "interviews_questions"]
  * Override the homepage URL for specific repos.
  * Useful for subdomains that aren't reflected in GitHub repo settings yet.
  *
- * Example — uncomment when subdomains go live:
+ * Example — uncomment when the subdomain goes live:
  * "devlist": "https://devlist.mateusarce.dev",
- * "sql-vault": "https://sql-vault.mateusarce.dev",
  */
-export const HOMEPAGE_OVERRIDES: Record<string, string> = {}
+export const HOMEPAGE_OVERRIDES: Record<string, string> = {
+  "sql-vault": "https://sqlvault.mateusarce.dev",
+}
 
 export const EXTERNAL_REPO_LINKS: Record<string, { label: string; url: string }[]> = {
   "sql-vault": [

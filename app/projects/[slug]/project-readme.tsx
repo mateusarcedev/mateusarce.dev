@@ -11,6 +11,7 @@ import rehypeSanitize from "rehype-sanitize"
 import { type GithubRepo, GITHUB_USER } from "@/lib/github"
 import { ScaledFrame } from "@/components/scaled-frame"
 import { PUBLISHED_BY_REPO } from "@/data/published"
+import { HOMEPAGE_OVERRIDES } from "@/data/repo-config"
 
 type Props = { repoName: string }
 
@@ -22,6 +23,7 @@ export function ProjectReadme({ repoName }: Props) {
   const loading = readmeState?.key !== requestKey
   const readme = loading ? null : readmeState.content
   const pub = PUBLISHED_BY_REPO[repoName]
+  const homepage = HOMEPAGE_OVERRIDES[repoName] ?? repo?.homepage
   const lk = lang === "pt-BR" ? "pt" : "en"
 
   useEffect(() => {
@@ -127,8 +129,8 @@ export function ProjectReadme({ repoName }: Props) {
                     github
                   </a>
                 )}
-                {repo?.homepage && (
-                  <a className="ql primary" href={repo.homepage} target="_blank" rel="noopener">
+                {homepage && (
+                  <a className="ql primary" href={homepage} target="_blank" rel="noopener">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6M15 3h6v6M10 14 21 3" /></svg>
                     demo
                   </a>
