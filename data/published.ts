@@ -71,7 +71,7 @@ export const PUBLISHED: PublishedProject[] = [
     url: "https://tools.mateusarce.dev/",
     repo: `${GH}/tools-on-desk`,
     repoName: "tools-on-desk",
-    img: "",
+    img: "https://raw.githubusercontent.com/mateusarcedev/tools-on-desk/main/public/logo-toolsondesk.svg",
     version: "v0.1.0",
     live: true,
     desc: {
@@ -88,7 +88,7 @@ export const PUBLISHED: PublishedProject[] = [
     url: "https://sql-vault-landing.vercel.app/",
     repo: `${GH}/sql-vault`,
     repoName: "sql-vault",
-    img: "",
+    img: "https://raw.githubusercontent.com/mateusarcedev/sql-vault/main/public/screenshots/dashboard.png",
     version: "",
     live: true,
     desc: {
@@ -125,7 +125,7 @@ export const PUBLISHED: PublishedProject[] = [
     url: "https://tefe.mateusarce.dev/",
     repo: `${GH}/vila-de-ega`,
     repoName: "vila-de-ega",
-    img: "",
+    img: "https://raw.githubusercontent.com/mateusarcedev/vila-de-ega/main/public/scenes/posters/tefe-opening-atlas.png",
     version: "",
     live: true,
     desc: {
