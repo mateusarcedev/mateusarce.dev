@@ -60,7 +60,7 @@ test.describe("projects", () => {
 
     await expect(page.getByRole("heading", { name: "Projetos com site" })).toBeVisible()
     await expect(page.getByRole("heading", { name: "Outros projetos no GitHub" })).toBeVisible()
-    await expect(page.locator(".pub-card").filter({ hasText: "DevHub" }).getByRole("link", { name: /abrir site/i })).toHaveAttribute(
+    await expect(page.locator(".pub-card").filter({ hasText: "DevHub" }).locator(".pub-main")).toHaveAttribute(
       "href",
       "https://devhub.mateusarce.dev/",
     )
