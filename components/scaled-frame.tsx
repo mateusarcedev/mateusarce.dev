@@ -19,7 +19,7 @@ export function ScaledFrame({ src, title, width = 1440 }: { src: string; title: 
   }, [width])
   return (
     <div ref={box} className="scaled-frame">
-      <iframe ref={frame} src={src} title={title} tabIndex={-1} />
+      <iframe ref={frame} src={src} title={title} tabIndex={-1} loading="lazy" />
     </div>
   )
 }

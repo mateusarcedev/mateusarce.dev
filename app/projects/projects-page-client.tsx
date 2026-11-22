@@ -5,19 +5,11 @@ import { useRouter } from "next/navigation"
 import { useAppStore } from "@/lib/store"
 import { Topbar } from "@/components/topbar"
 import { Footer } from "@/components/footer"
-import Link from "next/link"
-import { ScaledFrame } from "@/components/scaled-frame"
-import { PUBLISHED, type PublishedProject } from "@/data/published"
+import { PUBLISHED } from "@/data/published"
+import { PublishedProjects } from "@/components/published-projects"
 import { RevealObserver } from "@/components/reveal"
 import { type GithubRepo, GITHUB_USER } from "@/lib/github"
-import { FEATURED_REPOS, COURSE_REPOS, HOMEPAGE_OVERRIDES, EXTERNAL_REPO_LINKS } from "@/data/repo-config"
-
-function PubRowLink({ p, children }: { p: PublishedProject; children: React.ReactNode }) {
-  if (p.private) {
-    return <a className="pub-row" href={p.url} target="_blank" rel="noopener">{children}</a>
-  }
-  return <Link className="pub-row" href={`/projects/${p.repoName}`}>{children}</Link>
-}
+import { FEATURED_REPOS, COURSE_REPOS, HIDDEN_REPOS, HOMEPAGE_OVERRIDES, EXTERNAL_REPO_LINKS } from "@/data/repo-config"
 
 export function ProjectsPageClient() {
   const { lang } = useAppStore()
@@ -38,8 +30,11 @@ export function ProjectsPageClient() {
       .finally(() => setLoading(false))
   }, [])
 
-  const languages = Array.from(new Set(repos.map((r) => r.language).filter(Boolean))) as string[]
-  const filtered = (langFilter === "all" ? repos : repos.filter((r) => r.language === langFilter))
+  // A public repository with a published frontend is represented above, not twice.
+  const hostedRepos = new Set(PUBLISHED.filter((p) => !p.private).map((p) => p.repoName))
+  const codeRepos = repos.filter((r) => !hostedRepos.has(r.name) && !HIDDEN_REPOS.includes(r.name))
+  const languages = Array.from(new Set(codeRepos.map((r) => r.language).filter(Boolean))) as string[]
+  const filtered = (langFilter === "all" ? codeRepos : codeRepos.filter((r) => r.language === langFilter))
     .sort((a, b) => a.name.localeCompare(b.name))
 
   return (
@@ -58,7 +53,7 @@ export function ProjectsPageClient() {
             </p>
           ) : (
             <p>
-              <b>{PUBLISHED.length}</b> <span lang="pt-BR">publicados</span><span lang="en-US">published</span> · <b>{repos.length}</b> <span lang="pt-BR">repositórios públicos</span><span lang="en-US">public repositories</span>
+              <b>{PUBLISHED.length}</b> <span lang="pt-BR">projetos com site</span><span lang="en-US">projects with websites</span> · <b>{codeRepos.length}</b> <span lang="pt-BR">projetos só no GitHub</span><span lang="en-US">GitHub-only projects</span>
             </p>
           )}
         </div>
@@ -66,45 +61,18 @@ export function ProjectsPageClient() {
         <section className="reveal projects-published">
           <div className="sec-head">
             <span className="sec-num">01</span>
-            <h2 className="sec-title"><span lang="pt-BR">Publicados</span><span lang="en-US">Published</span></h2>
+            <h2 className="sec-title"><span lang="pt-BR">Projetos com site</span><span lang="en-US">Projects with websites</span></h2>
             <span className="sec-rule" />
-            <span className="sec-count"><span lang="pt-BR">no ar</span><span lang="en-US">live</span></span>
+            <span className="sec-count">Vercel · web</span>
           </div>
-          <div className="pub-list">
-            {PUBLISHED.map((p) => (
-              <PubRowLink p={p} key={p.slug}>
-                <span className="pub-row-n">{p.n}</span>
-                <div className="pub-row-shot">
-                  {p.img ? (
-                    // eslint-disable-next-line @next/next/no-img-element
-                    <img src={p.img} alt="" loading="lazy" />
-                  ) : (
-                    <ScaledFrame src={p.url} title={p.name} />
-                  )}
-                </div>
-                <div className="pub-row-main">
-                  <strong>{p.name}</strong>
-                  <span className="pub-kind">{p.kind[lk]}</span>
-                  <span className="pub-row-desc">{p.desc[lk]}</span>
-                </div>
-                <div className="pub-row-status">
-                  {p.live && <span className="pub-live"><span />online</span>}
-                  {p.version && <span className="pub-ver">{p.version}</span>}
-                </div>
-                <div className="pub-row-links">
-                  <span className="pub-main">{p.host} ↗</span>
-                  {!p.private && <span>{p.repoName}</span>}
-                </div>
-              </PubRowLink>
-            ))}
-          </div>
+          <PublishedProjects showCodeLink />
         </section>
 
         <div className="sec-head reveal">
           <span className="sec-num">02</span>
-          <h2 className="sec-title"><span lang="pt-BR">Repositórios</span><span lang="en-US">Repositories</span></h2>
+          <h2 className="sec-title"><span lang="pt-BR">Outros projetos no GitHub</span><span lang="en-US">Other GitHub projects</span></h2>
           <span className="sec-rule" />
-          <span className="sec-count"><span lang="pt-BR">README + código-fonte · via GitHub API</span><span lang="en-US">README + source code · via GitHub API</span></span>
+          <span className="sec-count"><span lang="pt-BR">sem site publicado · README e código</span><span lang="en-US">no published website · README and source</span></span>
         </div>
 
         {!loading && (
@@ -113,12 +81,12 @@ export function ProjectsPageClient() {
             <div className="pills">
               <button className="pill" aria-pressed={langFilter === "all"} onClick={() => setLangFilter("all")}>
                 <span lang="pt-BR">Todos</span><span lang="en-US">All</span>
-                <span className="c">{repos.length}</span>
+                <span className="c">{codeRepos.length}</span>
               </button>
               {languages.map((l) => (
                 <button key={l} className="pill" aria-pressed={langFilter === l} onClick={() => setLangFilter(l)}>
                   {l}
-                  <span className="c">{repos.filter((r) => r.language === l).length}</span>
+                  <span className="c">{codeRepos.filter((r) => r.language === l).length}</span>
                 </button>
               ))}
             </div>

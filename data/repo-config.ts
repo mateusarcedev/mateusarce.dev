@@ -6,6 +6,14 @@
 /** Repos that will be featured with special visual treatment */
 export const FEATURED_REPOS = ["sql-vault", "devlist", "tcc"]
 
+/** Repositories intentionally excluded from the public portfolio. */
+export const HIDDEN_REPOS = [
+  "freelas.mateusarce.dev",
+  "leo-motos-linktree",
+  "supertrans-prototip",
+  "sistema-de-entrega-epis",
+]
+
 /** Repos built during Rocketseat courses */
 export const COURSE_REPOS = ["clean-DDD", "api-forum", "interviews_questions"]
 

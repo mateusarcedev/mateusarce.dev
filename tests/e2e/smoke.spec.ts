@@ -10,6 +10,22 @@ test.describe("portfolio smoke", () => {
     await expect(page).toHaveTitle(/Mateus Arce/i)
   })
 
+  test("home prioritizes experience and keeps project thumbnails compact", async ({ page }) => {
+    await page.goto("/")
+
+    const sections = await page.locator("main section[id]").evaluateAll((nodes) =>
+      nodes.map((node) => node.id),
+    )
+    expect(sections).toEqual(["experience", "projects", "stack", "contact"])
+    await expect(page.locator("#projects .pub-card")).toHaveCount(6)
+    await expect(page.locator("#projects .pub-card iframe")).toHaveCount(0)
+    await expect(page.locator("#projects .pub-card").filter({ hasText: "DevHub" }).locator(".pub-shot-cover")).toHaveAttribute(
+      "href",
+      "https://devhub.mateusarce.dev/",
+    )
+    await expect(page.locator(".quick-links .ql.primary")).toHaveAttribute("href", "#projects")
+  })
+
   test("projects route renders", async ({ page }) => {
     const response = await page.goto("/projects")
 

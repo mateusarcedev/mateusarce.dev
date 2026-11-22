@@ -24,6 +24,8 @@ const fixture = [
   repo(2, "devlist", "TypeScript"),
   repo(3, "tcc", "Python"),
   repo(4, "scripts", "Python"),
+  repo(6, "leo-motos-linktree", "TypeScript"),
+  repo(7, "supertrans-prototip", "TypeScript"),
   { ...repo(5, "forked-repo", "Go"), fork: true },
 ]
 
@@ -41,14 +43,34 @@ test.describe("projects", () => {
     await page.goto("/projects")
 
     const cards = page.locator("article.card")
-    await expect(cards).toHaveCount(4)
+    await expect(cards).toHaveCount(3)
+    await expect(page.locator(".pub-card")).toHaveCount(6)
+    await expect(page.locator(".pub-card").filter({ hasText: "SQL Vault" })).toHaveCount(1)
 
     const featured = page.locator("article.card.featured")
-    await expect(featured).toHaveCount(FEATURED_REPOS.length)
-    await expect(featured.locator(".card-name")).toHaveText([...FEATURED_REPOS].sort())
+    const codeOnlyFeatured = FEATURED_REPOS.filter((name) => name !== "sql-vault")
+    await expect(featured).toHaveCount(codeOnlyFeatured.length)
+    await expect(featured.locator(".card-name")).toHaveText([...codeOnlyFeatured].sort())
 
     await expect(page.locator("main#main-content")).not.toContainText("prompt-manager")
     await expect(page.locator("main#main-content")).not.toContainText("forked-repo")
+    await expect(page.locator("main#main-content")).not.toContainText("Léo Motos")
+    await expect(page.locator("main#main-content")).not.toContainText("supertrans-prototip")
+    await expect(page.locator("main#main-content")).not.toContainText("Entrega de EPIs")
+    await expect(page.locator("main#main-content")).not.toContainText("Freelancer")
+  })
+
+  test("offers websites separately from GitHub-only projects", async ({ page }) => {
+    await mockRepos(page)
+    await page.goto("/projects")
+
+    await expect(page.getByRole("heading", { name: "Projetos com site" })).toBeVisible()
+    await expect(page.getByRole("heading", { name: "Outros projetos no GitHub" })).toBeVisible()
+    await expect(page.locator(".pub-card").filter({ hasText: "DevHub" }).locator(".pub-main")).toHaveAttribute(
+      "href",
+      "https://devhub.mateusarce.dev/",
+    )
+    await expect(page.locator("article.card").filter({ hasText: "sql-vault" })).toHaveCount(0)
   })
 
   test("shows the rate limit message instead of cards when the API fails", async ({ page }) => {
@@ -57,6 +79,11 @@ test.describe("projects", () => {
 
     await expect(page.getByText("GitHub API rate limit reached", { exact: false }).first()).toBeAttached()
     await expect(page.locator("article.card")).toHaveCount(0)
+  })
+
+  test("excluded repositories are not accessible as portfolio pages", async ({ page }) => {
+    const response = await page.goto("/projects/leo-motos-linktree")
+    expect(response?.status()).toBe(404)
   })
 
   test("deleted repositories have no project page", async ({ page }) => {
