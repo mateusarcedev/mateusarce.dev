@@ -64,7 +64,7 @@ test.describe("projects", () => {
       "href",
       "https://devhub.mateusarce.dev/",
     )
-    await expect(page.locator("article.card .card-name")).not.toContainText(["sql-vault"])
+    await expect(page.locator("article.card").filter({ hasText: "sql-vault" })).toHaveCount(0)
   })
 
   test("shows the rate limit message instead of cards when the API fails", async ({ page }) => {
