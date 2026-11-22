@@ -140,11 +140,12 @@ export const PUBLISHED: PublishedProject[] = [
     kind: { pt: "site profissional", en: "professional website" },
     host: "freelancer.mateusarce.dev",
     url: "https://freelancer.mateusarce.dev/",
-    repo: `${GH}/freelas.mateusarce.dev`,
+    repo: "",
     repoName: "freelas.mateusarce.dev",
     img: "",
     version: "",
     live: true,
+    private: true,
     desc: {
       pt: "Página para apresentar serviços de desenvolvimento de software.",
       en: "Website presenting software development services.",
