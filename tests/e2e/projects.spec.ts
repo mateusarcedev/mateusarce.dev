@@ -81,6 +81,11 @@ test.describe("projects", () => {
     await expect(page.locator("article.card")).toHaveCount(0)
   })
 
+  test("excluded repositories are not accessible as portfolio pages", async ({ page }) => {
+    const response = await page.goto("/projects/leo-motos-linktree")
+    expect(response?.status()).toBe(404)
+  })
+
   test("deleted repositories have no project page", async ({ page }) => {
     const response = await page.goto("/projects/prompt-manager")
 
