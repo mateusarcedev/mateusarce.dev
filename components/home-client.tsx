@@ -83,7 +83,7 @@ export function HomeClient() {
               <span lang="en-US">Senior full stack at <a href="https://supertranstransportes.com.br/" target="_blank" rel="noopener">Supertrans Transportes</a>, building end to end: backend, web, native mobile and AI.</span>
             </p>
             <div className="quick-links">
-              <a className="ql primary" href="#published">
+              <a className="ql primary" href="#projects">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z" /></svg>
                 <span lang="pt-BR">projetos</span><span lang="en-US">projects</span>
               </a>
@@ -116,29 +116,10 @@ export function HomeClient() {
           </div>
         </div>
 
-        {/* PUBLISHED */}
-        <section id="published" className="reveal" style={{ paddingTop: 80 }}>
-          <div className="sec-head">
-            <span className="sec-num">01</span>
-            <h2 className="sec-title"><span lang="pt-BR">Publicados</span><span lang="en-US">Published</span></h2>
-            <span className="sec-rule" />
-            <span className="sec-count"><span lang="pt-BR">no ar</span><span lang="en-US">live</span> · *.mateusarce.dev</span>
-          </div>
-          <PublishedProjects />
-          <Link className="proj-link" href="/projects" style={{ marginTop: 20 }}>
-            <div className="proj-link-text">
-              <strong lang="pt-BR">Todos os projetos →</strong>
-              <strong lang="en-US">All projects →</strong>
-              <span lang="pt-BR">publicados + repositórios (README e código-fonte)</span>
-              <span lang="en-US">published + repositories (README and source code)</span>
-            </div>
-          </Link>
-        </section>
-
         {/* EXPERIENCE */}
         <section id="experience" className="reveal home-sec">
           <div className="sec-head">
-            <span className="sec-num">02</span>
+            <span className="sec-num">01</span>
             <h2 className="sec-title"><span lang="pt-BR">Experiência</span><span lang="en-US">Experience</span></h2>
             <span className="sec-rule" />
             {totalExperience && <span className="sec-count">{totalExperience}</span>}
@@ -171,6 +152,25 @@ export function HomeClient() {
               </div>
             ))}
           </div>
+        </section>
+
+        {/* PROJECTS */}
+        <section id="projects" className="reveal home-sec">
+          <div className="sec-head">
+            <span className="sec-num">02</span>
+            <h2 className="sec-title"><span lang="pt-BR">Projetos</span><span lang="en-US">Projects</span></h2>
+            <span className="sec-rule" />
+            <span className="sec-count"><span lang="pt-BR">sites e demonstrações</span><span lang="en-US">websites and demos</span></span>
+          </div>
+          <PublishedProjects />
+          <Link className="proj-link" href="/projects" style={{ marginTop: 16 }}>
+            <div className="proj-link-text">
+              <strong lang="pt-BR">Ver todos os projetos →</strong>
+              <strong lang="en-US">View all projects →</strong>
+              <span lang="pt-BR">sites publicados e outros projetos com código no GitHub</span>
+              <span lang="en-US">published sites and additional GitHub code projects</span>
+            </div>
+          </Link>
         </section>
 
         {/* STACK */}
