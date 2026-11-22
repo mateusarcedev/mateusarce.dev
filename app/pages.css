@@ -623,3 +623,13 @@ section.repos { padding: 32px 0 96px; border-bottom: 0; }
   .pub-body p { font-size: 11px; }
   .pub-kind { font-size: 8.5px; }
 }
+
+.pub-shot-cover {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+}
+.pub-shot-cover:focus-visible {
+  outline: 2px solid var(--mint);
+  outline-offset: -2px;
+}
