@@ -540,19 +540,32 @@ section.repos { padding: 32px 0 96px; border-bottom: 0; }
   height: 100%;
   object-fit: cover;
 }
-.pub-shot .scaled-frame {
-  z-index: 1;
-  pointer-events: none;
-}
+.pub-shot-logo { background: #111a1a; }
+.pub-shot-logo img { object-fit: contain; padding: 12px; }
 .pub-shot-fallback {
   position: absolute;
   inset: 0;
-  display: grid;
-  place-items: center;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 7px;
+  padding: 12px;
+  color: var(--fg);
+  background: radial-gradient(ellipse at 80% 30%, var(--mint-dim), transparent 75%), var(--bg-soft);
+}
+.pub-shot-fallback-kicker {
+  font: 8px var(--mono);
   color: var(--fg-faint);
-  font-size: 22px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  max-width: 100%;
+}
+.pub-shot-fallback-name {
+  font-size: 13px;
   font-weight: 600;
-  background: var(--bg-soft);
+  line-height: 1.1;
 }
 .pub-body {
   display: flex;
@@ -618,6 +631,9 @@ section.repos { padding: 32px 0 96px; border-bottom: 0; }
     min-height: 103px;
   }
   .pub-shot { width: 88px; height: 64px; }
+  .pub-shot-fallback { padding: 7px; gap: 4px; }
+  .pub-shot-fallback-kicker { font-size: 6px; }
+  .pub-shot-fallback-name { font-size: 11px; }
   .pub-title a { font-size: 13px; }
   .pub-body { gap: 4px; }
   .pub-body p { font-size: 11px; }
