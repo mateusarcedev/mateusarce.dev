@@ -9,7 +9,7 @@ import { PUBLISHED } from "@/data/published"
 import { PublishedProjects } from "@/components/published-projects"
 import { RevealObserver } from "@/components/reveal"
 import { type GithubRepo, GITHUB_USER } from "@/lib/github"
-import { FEATURED_REPOS, COURSE_REPOS, HOMEPAGE_OVERRIDES, EXTERNAL_REPO_LINKS } from "@/data/repo-config"
+import { FEATURED_REPOS, COURSE_REPOS, HIDDEN_REPOS, HOMEPAGE_OVERRIDES, EXTERNAL_REPO_LINKS } from "@/data/repo-config"
 
 export function ProjectsPageClient() {
   const { lang } = useAppStore()
@@ -32,7 +32,7 @@ export function ProjectsPageClient() {
 
   // A public repository with a published frontend is represented above, not twice.
   const hostedRepos = new Set(PUBLISHED.filter((p) => !p.private).map((p) => p.repoName))
-  const codeRepos = repos.filter((r) => !hostedRepos.has(r.name))
+  const codeRepos = repos.filter((r) => !hostedRepos.has(r.name) && !HIDDEN_REPOS.includes(r.name))
   const languages = Array.from(new Set(codeRepos.map((r) => r.language).filter(Boolean))) as string[]
   const filtered = (langFilter === "all" ? codeRepos : codeRepos.filter((r) => r.language === langFilter))
     .sort((a, b) => a.name.localeCompare(b.name))
