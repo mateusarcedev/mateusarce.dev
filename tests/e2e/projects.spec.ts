@@ -41,14 +41,30 @@ test.describe("projects", () => {
     await page.goto("/projects")
 
     const cards = page.locator("article.card")
-    await expect(cards).toHaveCount(4)
+    await expect(cards).toHaveCount(3)
+    await expect(page.locator(".pub-card")).toHaveCount(10)
+    await expect(page.locator(".pub-card").filter({ hasText: "SQL Vault" })).toHaveCount(1)
 
     const featured = page.locator("article.card.featured")
-    await expect(featured).toHaveCount(FEATURED_REPOS.length)
-    await expect(featured.locator(".card-name")).toHaveText([...FEATURED_REPOS].sort())
+    const codeOnlyFeatured = FEATURED_REPOS.filter((name) => name !== "sql-vault")
+    await expect(featured).toHaveCount(codeOnlyFeatured.length)
+    await expect(featured.locator(".card-name")).toHaveText([...codeOnlyFeatured].sort())
 
     await expect(page.locator("main#main-content")).not.toContainText("prompt-manager")
     await expect(page.locator("main#main-content")).not.toContainText("forked-repo")
+  })
+
+  test("offers websites separately from GitHub-only projects", async ({ page }) => {
+    await mockRepos(page)
+    await page.goto("/projects")
+
+    await expect(page.getByRole("heading", { name: "Projetos com site" })).toBeVisible()
+    await expect(page.getByRole("heading", { name: "Outros projetos no GitHub" })).toBeVisible()
+    await expect(page.locator(".pub-card").filter({ hasText: "DevHub" }).getByRole("link", { name: /abrir site/i })).toHaveAttribute(
+      "href",
+      "https://devhub.mateusarce.dev/",
+    )
+    await expect(page.locator("article.card .card-name")).not.toContainText(["sql-vault"])
   })
 
   test("shows the rate limit message instead of cards when the API fails", async ({ page }) => {
