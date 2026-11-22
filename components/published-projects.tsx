@@ -13,7 +13,7 @@ export function PublishedProjects({ showCodeLink = false }: { showCodeLink?: boo
     <div className="pub-grid">
       {PUBLISHED.map((p) => (
         <article className="pub-card" key={p.slug}>
-          <a className="pub-shot" href={p.url} target="_blank" rel="noopener noreferrer" aria-label={lk === "pt" ? `Abrir site do projeto ${p.name}` : `Open ${p.name} website`}>
+          <div className="pub-shot">
             {p.img ? (
               // eslint-disable-next-line @next/next/no-img-element
               <img src={p.img} alt="" loading="lazy" />
@@ -23,7 +23,8 @@ export function PublishedProjects({ showCodeLink = false }: { showCodeLink?: boo
                 <span className="pub-shot-fallback" aria-hidden="true">{p.name.slice(0, 2)}</span>
               </>
             )}
-          </a>
+            <a className="pub-shot-cover" href={p.url} target="_blank" rel="noopener noreferrer" aria-label={lk === "pt" ? `Abrir site do projeto ${p.name}` : `Open ${p.name} website`} />
+          </div>
           <div className="pub-body">
             <div className="pub-title">
               <a href={p.url} target="_blank" rel="noopener noreferrer">{p.name}</a>
