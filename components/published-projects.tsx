@@ -1,7 +1,6 @@
 "use client"
 
 import { useAppStore } from "@/lib/store"
-import { ScaledFrame } from "@/components/scaled-frame"
 import { PUBLISHED } from "@/data/published"
 
 /** Compact, scannable list of frontends — no full-size promotional cards. */
@@ -13,15 +12,15 @@ export function PublishedProjects({ showCodeLink = false }: { showCodeLink?: boo
     <div className="pub-grid">
       {PUBLISHED.map((p) => (
         <article className="pub-card" key={p.slug}>
-          <div className="pub-shot">
+          <div className={`pub-shot${p.slug === "tools" ? " pub-shot-logo" : ""}`}>
             {p.img ? (
               // eslint-disable-next-line @next/next/no-img-element
               <img src={p.img} alt="" loading="lazy" />
             ) : (
-              <>
-                <ScaledFrame src={p.url} title={p.name} />
-                <span className="pub-shot-fallback" aria-hidden="true">{p.name.slice(0, 2)}</span>
-              </>
+              <span className="pub-shot-fallback" aria-hidden="true">
+                <span className="pub-shot-fallback-kicker">{p.host}</span>
+                <span className="pub-shot-fallback-name">{p.name}</span>
+              </span>
             )}
             <a className="pub-shot-cover" href={p.url} target="_blank" rel="noopener noreferrer" aria-label={lk === "pt" ? `Abrir site do projeto ${p.name}` : `Open ${p.name} website`} />
           </div>
