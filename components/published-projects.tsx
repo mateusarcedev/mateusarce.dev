@@ -5,7 +5,7 @@ import { ScaledFrame } from "@/components/scaled-frame"
 import { PUBLISHED } from "@/data/published"
 
 /** Compact, scannable list of frontends — no full-size promotional cards. */
-export function PublishedProjects() {
+export function PublishedProjects({ showCodeLink = false }: { showCodeLink?: boolean }) {
   const { lang } = useAppStore()
   const lk = lang === "pt-BR" ? "pt" : "en"
 
@@ -37,6 +37,11 @@ export function PublishedProjects() {
               {p.demoUrl && (
                 <a href={p.demoUrl} target="_blank" rel="noopener noreferrer">
                   <span lang="pt-BR">ver demo ↗</span><span lang="en-US">view demo ↗</span>
+                </a>
+              )}
+              {showCodeLink && !p.private && p.repo && (
+                <a href={p.repo} target="_blank" rel="noopener noreferrer">
+                  <span lang="pt-BR">código ↗</span><span lang="en-US">source ↗</span>
                 </a>
               )}
             </div>
