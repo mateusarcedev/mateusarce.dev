@@ -1,6 +1,7 @@
 import { ProjectReadme } from "./project-readme"
 import { getPublicRepos } from "@/lib/github"
-import { findMissingConfiguredRepos } from "@/data/repo-config"
+import { findMissingConfiguredRepos, HIDDEN_REPOS } from "@/data/repo-config"
+import { notFound } from "next/navigation"
 
 // generateStaticParams runs only at build time on Vercel (not in dev).
 // Returns empty in dev; project pages are rendered on-demand.
@@ -16,10 +17,11 @@ export async function generateStaticParams() {
     throw new Error(`data/repo-config.ts references repositories that are not public on GitHub: ${missing.join(", ")}`)
   }
 
-  return repos.map((r) => ({ slug: r.name }))
+  return repos.filter((r) => !HIDDEN_REPOS.includes(r.name)).map((r) => ({ slug: r.name }))
 }
 
 export default async function ProjectPage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params
+  if (HIDDEN_REPOS.includes(slug)) notFound()
   return <ProjectReadme repoName={slug} />
 }
