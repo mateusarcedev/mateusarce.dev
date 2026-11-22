@@ -18,7 +18,7 @@ test.describe("portfolio smoke", () => {
     )
     expect(sections).toEqual(["experience", "projects", "stack", "contact"])
     await expect(page.locator("#projects .pub-card")).toHaveCount(10)
-    await expect(page.locator("#projects .pub-card").filter({ hasText: "DevHub" }).locator(".pub-shot")).toHaveAttribute(
+    await expect(page.locator("#projects .pub-card").filter({ hasText: "DevHub" }).locator(".pub-shot-cover")).toHaveAttribute(
       "href",
       "https://devhub.mateusarce.dev/",
     )
