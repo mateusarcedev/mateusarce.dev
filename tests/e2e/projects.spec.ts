@@ -24,6 +24,8 @@ const fixture = [
   repo(2, "devlist", "TypeScript"),
   repo(3, "tcc", "Python"),
   repo(4, "scripts", "Python"),
+  repo(6, "leo-motos-linktree", "TypeScript"),
+  repo(7, "supertrans-prototip", "TypeScript"),
   { ...repo(5, "forked-repo", "Go"), fork: true },
 ]
 
@@ -42,7 +44,7 @@ test.describe("projects", () => {
 
     const cards = page.locator("article.card")
     await expect(cards).toHaveCount(3)
-    await expect(page.locator(".pub-card")).toHaveCount(10)
+    await expect(page.locator(".pub-card")).toHaveCount(6)
     await expect(page.locator(".pub-card").filter({ hasText: "SQL Vault" })).toHaveCount(1)
 
     const featured = page.locator("article.card.featured")
@@ -52,6 +54,10 @@ test.describe("projects", () => {
 
     await expect(page.locator("main#main-content")).not.toContainText("prompt-manager")
     await expect(page.locator("main#main-content")).not.toContainText("forked-repo")
+    await expect(page.locator("main#main-content")).not.toContainText("Léo Motos")
+    await expect(page.locator("main#main-content")).not.toContainText("supertrans-prototip")
+    await expect(page.locator("main#main-content")).not.toContainText("Entrega de EPIs")
+    await expect(page.locator("main#main-content")).not.toContainText("Freelancer")
   })
 
   test("offers websites separately from GitHub-only projects", async ({ page }) => {
