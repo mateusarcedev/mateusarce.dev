@@ -12,19 +12,44 @@ export type PublishedProject = {
   img: string
   version: string
   live: boolean
-  /** repo is private: no repo link, no detail page */
+  /** Repository isn't public: never link to or generate a public details page. */
   private?: boolean
-  /** site blocks iframes: use img as the preview in the hero */
+  /** Site blocks embedding in an iframe. */
   noEmbed?: boolean
+  /** Optional second public frontend belonging to the same project. */
+  demoUrl?: string
   desc: { pt: string; en: string }
 }
 
+/**
+ * Frontends with successful production deployments on Vercel.
+ * A landing page and its demo count as ONE project, not two entries.
+ * GitHub-only projects are listed separately in /projects.
+ */
 export const PUBLISHED: PublishedProject[] = [
   {
     n: "01",
+    slug: "devhub",
+    name: "DevHub",
+    kind: { pt: "catálogo de ferramentas", en: "developer tools catalog" },
+    host: "devhub.mateusarce.dev",
+    url: "https://devhub.mateusarce.dev/",
+    repo: "",
+    repoName: "devhub",
+    img: "",
+    version: "",
+    live: true,
+    private: true,
+    desc: {
+      pt: "Catálogo de ferramentas para desenvolvedores com busca e comparações inteligentes.",
+      en: "Developer tools catalog with intelligent search and comparisons.",
+    },
+  },
+  {
+    n: "02",
     slug: "motion",
     name: "MOTION",
-    kind: { pt: "framework criativo open source", en: "open source creative framework" },
+    kind: { pt: "framework criativo", en: "creative framework" },
     host: "motion.mateusarce.dev",
     url: "https://motion.mateusarce.dev/",
     repo: `${GH}/motion-studio`,
@@ -33,15 +58,15 @@ export const PUBLISHED: PublishedProject[] = [
     version: "v1.0.0-rc.2",
     live: true,
     desc: {
-      pt: "Framework de desenvolvimento criativo open-source: websites cinematográficos, 3D, vídeo CFR, carrosséis e posts em código reproduzível.",
-      en: "Open-source creative development framework: cinematic websites, 3D, CFR video, carousels and posts as reproducible code.",
+      pt: "Framework open source para criação de sites, vídeos e conteúdos visuais.",
+      en: "Open-source framework for creating websites, video and visual content.",
     },
   },
   {
-    n: "02",
+    n: "03",
     slug: "tools",
     name: "ToolsOnDesk",
-    kind: { pt: "app desktop · Windows", en: "desktop app · Windows" },
+    kind: { pt: "ferramentas desktop", en: "desktop tools" },
     host: "tools.mateusarce.dev",
     url: "https://tools.mateusarce.dev/",
     repo: `${GH}/tools-on-desk`,
@@ -50,18 +75,36 @@ export const PUBLISHED: PublishedProject[] = [
     version: "v0.1.0",
     live: true,
     desc: {
-      pt: "A suíte desktop definitiva para edição de mídias, conversão de documentos, pôsteres e estúdio criativo com IA. 100% offline-first, seguro e sem assinaturas.",
-      en: "The ultimate desktop suite for media editing, document conversion, posters and an AI creative studio. 100% offline-first, secure, no subscriptions.",
+      pt: "Suíte desktop para editar, converter e produzir conteúdos localmente.",
+      en: "Desktop suite to edit, convert and create content locally.",
     },
   },
   {
-    n: "03",
+    n: "04",
+    slug: "sql-vault",
+    name: "SQL Vault",
+    kind: { pt: "ferramenta para devs", en: "developer tool" },
+    host: "sql-vault-landing.vercel.app",
+    url: "https://sql-vault-landing.vercel.app/",
+    repo: `${GH}/sql-vault`,
+    repoName: "sql-vault",
+    img: "",
+    version: "",
+    live: true,
+    desc: {
+      pt: "Gerenciador self-hosted de consultas SQL com histórico, IA e extensão VS Code.",
+      en: "Self-hosted SQL query manager with versioning, AI and a VS Code extension.",
+    },
+  },
+  {
+    n: "05",
     slug: "financeiro",
     name: "Meu Financeiro",
-    kind: { pt: "finanças pessoais · open source", en: "personal finance · open source" },
+    kind: { pt: "gestão financeira", en: "personal finance" },
     host: "meufinanceiro.mateusarce.dev",
     url: "https://meufinanceiro.mateusarce.dev/",
-    repo: `${GH}/meu-financeiro`,
+    demoUrl: "https://demo.meufinanceiro.mateusarce.dev/",
+    repo: "",
     repoName: "meu-financeiro",
     img: "/images/meufinanceiro.png",
     version: "",
@@ -69,8 +112,94 @@ export const PUBLISHED: PublishedProject[] = [
     private: true,
     noEmbed: true,
     desc: {
-      pt: "App de finanças pessoais de código aberto. Explore uma demo fictícia sem conectar seu banco.",
-      en: "Open-source personal finance app. Explore a fictional demo without connecting your bank.",
+      pt: "Gestão financeira pessoal com uma demonstração pública de dados fictícios.",
+      en: "Personal finance management with a public demo using fictional data.",
+    },
+  },
+  {
+    n: "06",
+    slug: "tefe",
+    name: "Memórias de Tefé",
+    kind: { pt: "museu digital", en: "digital museum" },
+    host: "tefe.mateusarce.dev",
+    url: "https://tefe.mateusarce.dev/",
+    repo: `${GH}/vila-de-ega`,
+    repoName: "vila-de-ega",
+    img: "",
+    version: "",
+    live: true,
+    desc: {
+      pt: "Museu digital com histórias, acontecimentos, personagens e lugares de Tefé.",
+      en: "Digital museum of the stories, people, events and places of Tefé.",
+    },
+  },
+  {
+    n: "07",
+    slug: "freelancer",
+    name: "Freelancer",
+    kind: { pt: "site profissional", en: "professional website" },
+    host: "freelancer.mateusarce.dev",
+    url: "https://freelancer.mateusarce.dev/",
+    repo: `${GH}/freelas.mateusarce.dev`,
+    repoName: "freelas.mateusarce.dev",
+    img: "",
+    version: "",
+    live: true,
+    desc: {
+      pt: "Página para apresentar serviços de desenvolvimento de software.",
+      en: "Website presenting software development services.",
+    },
+  },
+  {
+    n: "08",
+    slug: "leo-motos",
+    name: "Léo Motos",
+    kind: { pt: "site de cliente", en: "client website" },
+    host: "leo-motos-links.vercel.app",
+    url: "https://leo-motos-links.vercel.app/",
+    repo: `${GH}/leo-motos-linktree`,
+    repoName: "leo-motos-linktree",
+    img: "",
+    version: "",
+    live: true,
+    desc: {
+      pt: "Página de aluguel de motos com modelos e acesso direto ao WhatsApp.",
+      en: "Motorcycle rental website with model listings and WhatsApp contact.",
+    },
+  },
+  {
+    n: "09",
+    slug: "supertrans",
+    name: "Supertrans — Protótipo",
+    kind: { pt: "protótipo web", en: "web prototype" },
+    host: "supertrans-prototip.vercel.app",
+    url: "https://supertrans-prototip.vercel.app/",
+    repo: `${GH}/supertrans-prototip`,
+    repoName: "supertrans-prototip",
+    img: "",
+    version: "",
+    live: true,
+    desc: {
+      pt: "Protótipo publicado de interface para a área de transportes.",
+      en: "Published interface prototype for transportation workflows.",
+    },
+  },
+  {
+    n: "10",
+    slug: "epis",
+    name: "Entrega de EPIs",
+    kind: { pt: "protótipo web", en: "web prototype" },
+    host: "sistema-de-entrega-epis.vercel.app",
+    url: "https://sistema-de-entrega-epis.vercel.app/",
+    repo: "",
+    repoName: "sistema-de-entrega-epis",
+    img: "",
+    version: "",
+    live: true,
+    private: true,
+    desc: {
+      pt: "Interface web para um sistema de entrega de equipamentos de proteção.",
+      en: "Web interface for a personal protective equipment delivery system.",
     },
   },
 ]
@@ -93,5 +222,5 @@ export const STACK_GROUPS = [
 ]
 
 export const PUBLISHED_BY_REPO: Record<string, PublishedProject> = Object.fromEntries(
-  PUBLISHED.map((p) => [p.repoName, p])
+  PUBLISHED.filter((p) => !p.private).map((p) => [p.repoName, p])
 )
